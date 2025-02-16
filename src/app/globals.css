@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+      @apply font-playfair;
+    }
+}
+
+/* Oculta la barra superior de Google Translate */
+.goog-te-banner-frame {
+    display: none !important;
+}
+  
+/* Asegurar que el body no se empuje hacia abajo */
+body {
+    top: 0px !important;
+}
+  
+/* Oculta cualquier iframe de Google Translate que aparezca */
+iframe.skiptranslate {
+    display: none !important;
+}
