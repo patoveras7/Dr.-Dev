@@ -1,4 +1,3 @@
-import GoogleTranslateProvider from "../components/translateComponents/GoogleTranslateProvider"
 import "./globals.css";
 
 export const metadata = {
@@ -13,8 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <GoogleTranslateProvider />
-        {children}
+          {children} 
       </body>
     </html>
   );

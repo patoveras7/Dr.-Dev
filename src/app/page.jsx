@@ -40,7 +40,7 @@ const page = () => {
                 <h1 className="text-clearIce text-[30px] md:text-[35px] xl:text-[40px]">
                   Welcome to Dr. Dev 👨‍⚖️
                 </h1>
-                <Link href="./Dr.Dev/home">
+                <Link href="PortfolioDrDev/home">
                   <button
                     className="flex items-center justify-center w-[230px] h-[45px] md:w-[280px] md:h-[50px] bg-primary text-clearIce p-[4px] rounded-[7px] text-[25px] md:text-[30px] border-solid border-[2px] border-clearIce"
                   >
