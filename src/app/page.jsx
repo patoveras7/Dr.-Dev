@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
 import Link from "next/link";
+import TranslatableText from "../components/TranslatableText";
 
 const page = () => {
   return (
@@ -15,7 +16,9 @@ const page = () => {
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
       >
         <div className="font-caveat text-[30px] md:text-[35px] lg:text-[40px] xl:text-[50px] w-full text-clearIce text-center leading-normal">
-          "A lawyer passionate for technology and software development 💻🚀"
+          <TranslatableText>
+            "A lawyer passionate for technology and software development 💻🚀"
+          </TranslatableText>
         </div>
 
       </motion.div>
@@ -38,13 +41,17 @@ const page = () => {
           >
             
                 <h1 className="text-clearIce text-[30px] md:text-[35px] xl:text-[40px]">
-                  Welcome to Dr. Dev 👨‍⚖️
+                  <TranslatableText>
+                    Welcome to Dr. Dev 👨‍⚖️
+                  </TranslatableText>
                 </h1>
                 <Link href="PortfolioDrDev/home">
                   <button
                     className="flex items-center justify-center w-[230px] h-[45px] md:w-[280px] md:h-[50px] bg-primary text-clearIce p-[4px] rounded-[7px] text-[25px] md:text-[30px] border-solid border-[2px] border-clearIce"
                   >
-                    Tap to get in 💼
+                    <TranslatableText>
+                      Tap to get in 💼
+                    </TranslatableText>
                   </button>
                 </Link>
 
