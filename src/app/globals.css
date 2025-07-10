@@ -10,6 +10,26 @@
     }
 }
 
+/* Optimizaciones para animaciones */
+* {
+  box-sizing: border-box;
+}
+
+/* Mejorar el rendimiento de las animaciones */
+.motion-safe\:animate-none {
+  animation: none;
+}
+
+/* Asegurar que las animaciones funcionen correctamente */
+.motion-reduce\:animate-none {
+  animation: none;
+}
+
+/* Optimizaciones para Framer Motion */
+[data-framer-motion] {
+  will-change: transform, opacity;
+}
+
 /* Oculta la barra superior de Google Translate */
 .goog-te-banner-frame {
     display: none !important;

@@ -1,15 +1,15 @@
 "use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import React from "react";
 import Link from "next/link";
 import TranslatableText from "../components/TranslatableText";
+import AnimatedWrapper from "../components/AnimatedWrapper";
 
 const page = () => {
   return (
     <div className="bg-secondary flex flex-col items-center h-screen w-full">
 
-      <motion.div
+      <AnimatedWrapper
         className="flex items-center justify-center w-[340px] sm:w-[600px] lg:w-[800px] xl:w-[1000px] mt-[80px]"
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -20,8 +20,7 @@ const page = () => {
             "A lawyer passionate for technology and software development 💻🚀"
           </TranslatableText>
         </div>
-
-      </motion.div>
+      </AnimatedWrapper>
 
       <div className="flex flex-col items-center lg:flex-row lg:justify-between">
        
@@ -33,7 +32,7 @@ const page = () => {
             className="lg:w-[500px] lg:h-[500px] xl:w-[600px] xl:h-[600px]"
           />
 
-          <motion.div
+          <AnimatedWrapper
             className="flex flex-col items-center gap-[20px] lg:mr-[60px] lg:w-[500px] xl:w-[600px]"
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -55,7 +54,7 @@ const page = () => {
                   </button>
                 </Link>
 
-          </motion.div>
+          </AnimatedWrapper>
 
       </div>
 
