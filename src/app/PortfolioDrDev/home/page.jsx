@@ -7,7 +7,7 @@ const page = () => {
     <>
       <div>
         <TranslatableText>
-          Este es el home central
+          
         </TranslatableText>
       </div>
     </>

@@ -22,7 +22,7 @@ const Navbar = () => {
 
   // SOLO para 350px: retraída 70px (20%), expandida 140px (40%)
   // Para sm+ se mantienen los valores previos
-  const collapsedWidths = 'w-[70px] sm:w-[64px] md:w-[77px] lg:w-[102px] xl:w-[128px] flex items-center justify-center';
+  const collapsedWidths = 'w-[70px] sm:w-[85px] md:w-[100px] lg:w-[115px] xl:w-[130px] flex items-center justify-center';
   const expandedWidths = 'w-[140px] sm:w-[256px] md:w-[307px] lg:w-[410px] xl:w-[512px]';
 
   return (
@@ -49,7 +49,7 @@ const Navbar = () => {
           <img
             src="/images/martillo1.png"
             alt="Martillo"
-            className="w-2/3 max-w-[40px] sm:max-w-[50px] md:max-w-[60px] lg:max-w-[70px] xl:max-w-[80px] mx-auto"
+            className="w-[65px] h-[65px] sm:w-[75px] sm:h-[75px] md:w-[85px] md:h-[85px] lg:w-[95px] lg:h-[95px] xl:w-[105px] xl:h-[105px]"
             draggable="false"
           />
         )}
@@ -58,7 +58,7 @@ const Navbar = () => {
         {isNavbarExpanded && (
           <div className="flex flex-col h-full">
             {/* Header con logo y título */}
-            <div className="flex flex-col items-center p-4 border-b border-clearIce/20">
+            <div className="flex flex-col items-center p-4 border-b border-clearIce/20 md:p-2">
               <div className="relative flex justify-center items-center mb-2">
                 <Logo />
               </div>
@@ -67,7 +67,7 @@ const Navbar = () => {
               </div>
             </div>
             {/* Foto personal centrada debajo de la línea */}
-            <div className="flex justify-center items-center py-4">
+            <div className="flex justify-center items-center pt-4 pb-4 md:pt-4 md:pb-2 lg:pt-4 lg:pb-2 xl:pt-4 xl:pb-2">
               <img
                 src="/images/fotoPato.jpeg"
                 alt="Foto personal"
@@ -81,7 +81,7 @@ const Navbar = () => {
               />
             </div>
             {/* Nombre completo centrado debajo de la foto */}
-            <div className="flex justify-center items-center pb-4">
+            <div className="flex justify-center items-center pb-4 md:pb-2 lg:pb-1 xl:pb-1">
               <div className="text-clearIceFullLight text-center font-medium
                 text-[12px] leading-tight
                 sm:text-[16px] sm:leading-tight
@@ -93,10 +93,10 @@ const Navbar = () => {
             </div>
 
             {/* Logos de redes sociales */}
-            <div className="flex justify-center items-center pb-4">
-              <div className="flex flex-col gap-3 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5">
+            <div className="flex justify-center items-center pb-4 pt-4 md:pt-2 md:pb-2 lg:pt-1 lg:pb-1 xl:pt-1 xl:pb-1">
+              <div className="flex flex-col gap-3 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-5">
                 {/* Primera fila */}
-                <div className="flex gap-2 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-5">
+                <div className="flex gap-3 sm:gap-4 md:gap-3 lg:gap-4 xl:gap-5">
                   {/* GitHub */}
                   <a 
                     href="https://github.com/tu-usuario" 
@@ -107,7 +107,7 @@ const Navbar = () => {
                     <img
                       src="/images/github.png"
                       alt="GitHub"
-                      className="w-14 h-14 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10"
+                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                       draggable="false"
                     />
                   </a>
@@ -122,14 +122,14 @@ const Navbar = () => {
                     <img
                       src="/images/linkedin.png"
                       alt="LinkedIn"
-                      className="w-14 h-14 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10"
+                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                       draggable="false"
                     />
                   </a>
                 </div>
                 
                 {/* Segunda fila */}
-                <div className="flex gap-2 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5">
+                <div className="flex gap-3 sm:gap-4 md:gap-3 lg:gap-4 xl:gap-5">
                   {/* Instagram */}
                   <a 
                     href="https://instagram.com/tu-usuario" 
@@ -140,7 +140,7 @@ const Navbar = () => {
                     <img
                       src="/images/instagram.png"
                       alt="Instagram"
-                      className="w-14 h-14 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10"
+                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                       draggable="false"
                     />
                   </a>
@@ -155,7 +155,7 @@ const Navbar = () => {
                     <img
                       src="/images/gmail.png"
                       alt="Gmail"
-                      className="w-14 h-14 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10"
+                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                       draggable="false"
                     />
                   </a>
@@ -164,16 +164,51 @@ const Navbar = () => {
             </div>
 
             {/* Texto de contacto */}
-            <div className="flex justify-center items-center px-2 pb-4">
+            <div className="flex justify-center items-center px-2 pb-4 md:pb-2 md:pt-1 lg:pb-1 xl:pb-1">
               <div className="text-clearIceFullLight text-center font-medium
                 text-[12px] leading-tight
                 sm:text-[16px] sm:leading-tight
-                md:text-[19px] md:leading-tight
-                lg:text-[21px] lg:leading-tight
-                xl:text-[23px] xl:leading-tight">
-                Puedes contactarme por cualquier vía 🚀
+                md:text-[17px] md:leading-tight
+                lg:text-[19px] lg:leading-tight">
+                Puedes contactarme por cualquier vía.
               </div>
             </div>
+
+            {/* Contenedor unificado para botones y ubicación */}
+            <div className="flex-1 flex flex-col justify-center gap-12 md:gap-6 lg:gap-4 xl:gap-6 pb-4 lg:pb-2">
+              {/* Botones Stack tecnológico y Sobre mí */}
+              <div className="flex flex-col items-center gap-6 md:gap-3 lg:gap-2 xl:gap-6 pt-4 md:pt-1 lg:pt-1 xl:pt-1">
+                <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
+                  text-[12px] sm:text-[16px] md:text-[17px] lg:text-[19px]
+                  font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-full max-w-[120px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
+                  Stack tecnológico
+                </button>
+                <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
+                  text-[12px] sm:text-[16px] md:text-[17px] lg:text-[19px]
+                  font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-full max-w-[120px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
+                  Sobre mí
+                </button>
+              </div>
+
+              {/* Información de ubicación */}
+              <div className="flex flex-col items-center gap-2">
+                <img
+                  src="/images/location.png"
+                  alt="Ubicación"
+                   className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
+                  draggable="false"
+                />
+                <div className="text-clearIceFullLight text-center font-medium
+                  text-[11px] leading-tight
+                  sm:text-[13px] sm:leading-tight
+                  md:text-[15px] md:leading-tight
+                  lg:text-[17px] lg:leading-tight
+                  xl:text-[19px] xl:leading-tight">
+                  Córdoba Capital, Argentina
+                </div>
+              </div>
+            </div>
+
             {/* Botón de toggle */}
             <button
               onClick={handleCollapse}
@@ -185,11 +220,9 @@ const Navbar = () => {
             </button>
 
             {/* Footer fijo al fondo */}
-            <div className="flex-1 flex flex-col justify-end">
-              <div className="p-4 border-t border-clearIce/20">
-                <div className="text-clearIce/70 text-[12px] text-center">
-                  © 2025 Dr. Dev - All rights reserved
-                </div>
+            <div className="p-4 border-t border-clearIce/20">
+              <div className="text-clearIce/70 text-[12px] text-center">
+                © 2025 Dr. Dev - All rights reserved
               </div>
             </div>
           </div>
