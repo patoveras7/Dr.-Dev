@@ -19,25 +19,15 @@ export default function RootLayout({ children }) {
   const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
 
   return (
-    <html lang="en">
-      <body>
-        <NavbarContext.Provider value={{ isNavbarExpanded, setIsNavbarExpanded }}>
-          <div className="flex">
-            <Navbar />
-            <main className={`
-              flex-1 min-h-screen transition-all duration-300 ease-in-out
-              ${isNavbarExpanded 
-                ? 'ml-[140px] sm:ml-[256px] md:ml-[307px] lg:ml-[410px] xl:ml-[512px]' 
-                : 'ml-[70px] sm:ml-[64px] md:ml-[77px] lg:ml-[102px] xl:ml-[128px]'
-              }
-            `}>
-              <TranslationButton />
-              <DownloadCVButton />
-              {children} 
-            </main>
-          </div>
-        </NavbarContext.Provider>
-      </body>
-    </html>
+    <NavbarContext.Provider value={{ isNavbarExpanded, setIsNavbarExpanded }}>
+      <div className="flex overflow-hidden bg-secondary">
+        <Navbar />
+        <main className="flex-1 min-h-screen ml-[70px] sm:ml-[85px] md:ml-[100px] lg:ml-[115px] xl:ml-[130px] overflow-hidden">
+          <TranslationButton />
+          <DownloadCVButton />
+          {children} 
+        </main>
+      </div>
+    </NavbarContext.Provider>
   );
 }

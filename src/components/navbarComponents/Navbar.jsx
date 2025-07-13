@@ -23,7 +23,7 @@ const Navbar = () => {
   // SOLO para 350px: retraída 70px (20%), expandida 140px (40%)
   // Para sm+ se mantienen los valores previos
   const collapsedWidths = 'w-[70px] sm:w-[85px] md:w-[100px] lg:w-[115px] xl:w-[130px] flex items-center justify-center';
-  const expandedWidths = 'w-[140px] sm:w-[256px] md:w-[307px] lg:w-[410px] xl:w-[512px]';
+  const expandedWidths = 'w-[160px] sm:w-[256px] md:w-[307px] lg:w-[410px] xl:w-[512px]';
 
   return (
     <>
@@ -107,7 +107,7 @@ const Navbar = () => {
                     <img
                       src="/images/github.png"
                       alt="GitHub"
-                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
+                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
                       draggable="false"
                     />
                   </a>
@@ -122,7 +122,7 @@ const Navbar = () => {
                     <img
                       src="/images/linkedin.png"
                       alt="LinkedIn"
-                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
+                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
                       draggable="false"
                     />
                   </a>
@@ -140,7 +140,7 @@ const Navbar = () => {
                     <img
                       src="/images/instagram.png"
                       alt="Instagram"
-                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
+                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
                       draggable="false"
                     />
                   </a>
@@ -155,7 +155,7 @@ const Navbar = () => {
                     <img
                       src="/images/gmail.png"
                       alt="Gmail"
-                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
+                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
                       draggable="false"
                     />
                   </a>

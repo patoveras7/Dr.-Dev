@@ -1,6 +1,5 @@
 import "./globals.css";
 import { TranslationProvider } from "../context/TranslationContext";
-import TranslationButton from "../components/TranslationButton";
 
 export const metadata = {
   title: "Dr. Dev Portfolio",
@@ -13,9 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-secondary overflow-x-hidden">
         <TranslationProvider>
-          <TranslationButton />
           {children} 
         </TranslationProvider>
       </body>
