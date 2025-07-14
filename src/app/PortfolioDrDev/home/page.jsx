@@ -33,7 +33,7 @@ const page = () => {
           {/* Primera card - aparece desde la izquierda */}
           <motion.button
             onClick={handleCard1Click}
-            className="relative z-10 w-[250px] h-[70px] sm:w-[280px] sm:h-[100px] md:w-[320px] md:h-[110px] lg:w-[350px] lg:h-[135px] xl:w-[380px] xl:h-[140px] bg-primary text-clearIce border-4 border-clearIce rounded-[7px] px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 text-sm sm:text-base md:text-lg lg:text-xl font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg flex flex-col items-center justify-center"
+            className="relative z-10 w-[250px] h-[70px] sm:w-[280px] sm:h-[100px] md:w-[320px] md:h-[110px] lg:w-[350px] lg:h-[135px] bg-primary text-clearIce border-4 border-clearIce rounded-[7px] px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 text-sm sm:text-base md:text-lg lg:text-xl font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg flex flex-col items-center justify-center"
             initial={{ x: -1000, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ 
@@ -66,7 +66,7 @@ const page = () => {
           {/* Segunda card - aparece desde la derecha */}
           <motion.button
             onClick={handleCard2Click}
-            className="relative z-10 w-[250px] h-[70px] sm:h-[100px] md:w-[320px] md:h-[110px] lg:w-[350px] lg:h-[135px] xl:w-[380px] xl:h-[140px]
+            className="relative z-10 w-[250px] h-[70px] sm:h-[100px] md:w-[320px] md:h-[110px] lg:w-[350px] lg:h-[135px]
              bg-primary text-clearIce border-4 border-clearIce rounded-[7px] px-3 py-2 
              sm:px-4 sm:py-3 md:px-6 md:py-4 font-medium hover:bg-clearIce
               hover:text-primary transition-all duration-200 shadow-lg flex flex-col items-center justify-center"

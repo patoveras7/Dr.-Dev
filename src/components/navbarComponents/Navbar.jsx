@@ -107,7 +107,7 @@ const Navbar = () => {
                     <img
                       src="/images/github.png"
                       alt="GitHub"
-                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
+                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                       draggable="false"
                     />
                   </a>
@@ -122,7 +122,7 @@ const Navbar = () => {
                     <img
                       src="/images/linkedin.png"
                       alt="LinkedIn"
-                      className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
+                     className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                       draggable="false"
                     />
                   </a>
@@ -140,7 +140,7 @@ const Navbar = () => {
                     <img
                       src="/images/instagram.png"
                       alt="Instagram"
-                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
+                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                       draggable="false"
                     />
                   </a>
@@ -155,7 +155,7 @@ const Navbar = () => {
                     <img
                       src="/images/gmail.png"
                       alt="Gmail"
-                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
+                       className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                       draggable="false"
                     />
                   </a>

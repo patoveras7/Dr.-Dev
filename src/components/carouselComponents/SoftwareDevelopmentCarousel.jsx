@@ -12,7 +12,7 @@ const SoftwareDevelopmentCarousel = () => {
   ];
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none w-screen">
       <style jsx>{`
         @keyframes slideLeft {
           0% {
@@ -22,46 +22,45 @@ const SoftwareDevelopmentCarousel = () => {
             transform: translateX(-50%);
           }
         }
-        
-        .infinite-carousel {
+
+        .carousel-track {
           display: flex;
-          gap: 2rem;
+          gap: 2rem; /* separación entre imágenes */
           animation: slideLeft 25s linear infinite;
-          width: max-content;
-          will-change: transform;
+          width: fit-content;
         }
-        
-        .infinite-carousel:hover {
+
+        .carousel-track:hover {
           animation-play-state: paused;
         }
       `}</style>
-      
-      <div className="infinite-carousel">
+
+      <div className="carousel-track">
         {/* Primera secuencia */}
         {images.map((image, index) => (
           <div
             key={`first-${index}`}
-            className="flex-shrink-0 w-[200px] h-[180px] sm:w-[350px] sm:h-[250px] md:w-[400px] md:h-[300px] lg:w-[450px] lg:h-[350px] xl:w-[500px] xl:h-[400px]"
+            className="flex-shrink-0 rounded-[7px] overflow-hidden w-[200px] h-[180px] sm:w-[350px] sm:h-[250px] md:w-[400px] md:h-[300px] lg:w-[450px] lg:h-[350px] xl:w-[500px] xl:h-[400px]"
           >
             <img
               src={image}
               alt={`Software Development ${index + 1}`}
-              className="w-full h-full object-cover rounded-lg shadow-lg"
+              className="w-full h-full object-cover shadow-lg"
               draggable="false"
             />
           </div>
         ))}
-        
-        {/* Segunda secuencia (duplicada) */}
+
+        {/* Segunda secuencia (duplicada para loop) */}
         {images.map((image, index) => (
           <div
             key={`second-${index}`}
-            className="flex-shrink-0 w-[200px] h-[180px] sm:w-[350px] sm:h-[250px] md:w-[400px] md:h-[300px] lg:w-[450px] lg:h-[350px] xl:w-[500px] xl:h-[400px]"
+            className="flex-shrink-0 rounded-[7px] overflow-hidden w-[200px] h-[180px] sm:w-[350px] sm:h-[250px] md:w-[400px] md:h-[300px] lg:w-[450px] lg:h-[350px] xl:w-[500px] xl:h-[400px]"
           >
             <img
               src={image}
               alt={`Software Development ${index + 1}`}
-              className="w-full h-full object-cover rounded-lg shadow-lg"
+              className="w-full h-full object-cover shadow-lg"
               draggable="false"
             />
           </div>
@@ -71,4 +70,4 @@ const SoftwareDevelopmentCarousel = () => {
   );
 };
 
-export default SoftwareDevelopmentCarousel; 
+export default SoftwareDevelopmentCarousel;
