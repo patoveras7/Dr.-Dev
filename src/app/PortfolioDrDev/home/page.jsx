@@ -50,7 +50,7 @@ const page = () => {
               transition: { duration: 0.1 }
             }}
           >
-            <h3 className="text-[18px] sm:text-[21px] md:text-[22px] lg:text-[25px] xl:text-[27px] font-bold mb-1 sm:mb-2">Software Development 💻</h3>
+            <h3 className="text-[18px] sm:text-[21px] md:text-[22px] lg:text-[25px] font-bold mb-1 sm:mb-2">Software Development 💻</h3>
           </motion.button>
         </div>
 
@@ -86,7 +86,7 @@ const page = () => {
               transition: { duration: 0.1 }
             }}
           >
-            <h3 className="text-[18px] sm:text-[21px] md:text-[22px] lg:text-[25px] xl:text-[27px] font-bold mb-1 sm:mb-2">Law ✍🏻📜</h3>
+            <h3 className="text-[18px] sm:text-[21px] md:text-[22px] lg:text-[25px] font-bold mb-1 sm:mb-2">Law ✍🏻📜</h3>
           </motion.button>
         </div>
       </div>

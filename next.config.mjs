@@ -8,8 +8,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  // Configuración para mejorar la hidratación
-  swcMinify: true,
 };
 
 export default nextConfig;

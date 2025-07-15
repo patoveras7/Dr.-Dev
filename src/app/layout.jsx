@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <TranslationProvider>
           {/* Botón de traducción siempre visible arriba a la derecha */}
           <div className="fixed top-4 right-4 z-[100]">
-            <TranslationButton />
+          <TranslationButton />
           </div>
           {children} 
         </TranslationProvider>
