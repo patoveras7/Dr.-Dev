@@ -25,7 +25,7 @@ const page = () => {
         <div className="h-[35%] sm:h-[45%] flex items-center justify-center relative w-full">
           {/* Carrusel de fondo */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[80%] h-[80%] relative overflow-hidden">
+          <div className="w-[80%] h-[80%] relative overflow-hidden sm:top-5 md:top-0 max-[350px]:top-1/2 max-[350px]:-translate-y-1/2">
               <SoftwareDevelopmentCarousel />
             </div>
           </div>
@@ -58,7 +58,7 @@ const page = () => {
         <div className="h-[35%] sm:h-[45%] flex items-center justify-center relative w-full">
           {/* Carrusel de fondo */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[80%] h-[80%] relative overflow-hidden">
+          <div className="w-[80%] h-[80%] relative overflow-hidden sm:top-5 md:top-0 max-[350px]:top-1/2 max-[350px]:-translate-y-1/2">
               <LawCarousel />
             </div>
           </div>
