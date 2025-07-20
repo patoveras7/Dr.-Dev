@@ -1,15 +1,17 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import Carousel from '../../../components/carouselComponents/Carousel';
 import TranslatableText from '../../../components/TranslatableText';
 import SoftwareDevelopmentCarousel from '../../../components/carouselComponents/SoftwareDevelopmentCarousel';
 import LawCarousel from '../../../components/carouselComponents/LawCarousel';
 
 const page = () => {
+  const router = useRouter();
+
   const handleCard1Click = () => {
-    // Aquí puedes agregar la lógica para redirigir a la primera vista
-    console.log('Card 1 clicked');
+    router.push('/PortfolioDrDev/software-development');
   };
 
   const handleCard2Click = () => {
@@ -33,9 +35,9 @@ const page = () => {
           {/* Primera card - aparece desde la izquierda */}
           <motion.button
             onClick={handleCard1Click}
-            className="relative z-10 w-[250px] h-[70px] sm:w-[280px] sm:h-[100px] md:w-[320px] md:h-[110px] lg:w-[350px] lg:h-[135px] bg-primary text-clearIce border-4 border-clearIce rounded-[7px] px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 text-sm sm:text-base md:text-lg lg:text-xl font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg flex flex-col items-center justify-center"
-            initial={{ x: -1000, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            className="relative opacity-85 z-10 w-[250px] h-[70px] sm:w-[280px] sm:h-[100px] md:w-[320px] md:h-[110px] lg:w-[350px] lg:h-[135px] bg-primary text-clearIce border-4 border-clearIce rounded-[7px] px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 text-sm sm:text-base md:text-lg lg:text-xl font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg flex flex-col items-center justify-center"
+            initial={{ x: -1000}}
+            animate={{ x: 0}}
             transition={{ 
               type: "tween",
               duration: 0.8,
@@ -66,12 +68,12 @@ const page = () => {
           {/* Segunda card - aparece desde la derecha */}
           <motion.button
             onClick={handleCard2Click}
-            className="relative z-10 w-[250px] h-[70px] sm:h-[100px] md:w-[320px] md:h-[110px] lg:w-[350px] lg:h-[135px]
+            className="relative opacity-85 z-10 w-[250px] h-[70px] sm:h-[100px] md:w-[320px] md:h-[110px] lg:w-[350px] lg:h-[135px]
              bg-primary text-clearIce border-4 border-clearIce rounded-[7px] px-3 py-2 
              sm:px-4 sm:py-3 md:px-6 md:py-4 font-medium hover:bg-clearIce
               hover:text-primary transition-all duration-200 shadow-lg flex flex-col items-center justify-center"
-            initial={{ x: 1000, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: 1000}}
+            animate={{ x: 0}}
             transition={{ 
               type: "tween",
               duration: 0.8,
