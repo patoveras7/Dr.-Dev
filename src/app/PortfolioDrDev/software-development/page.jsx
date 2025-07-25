@@ -103,7 +103,7 @@ const SoftwareDevelopmentPage = () => {
   return (
     <div className="min-h-screen bg-clearIceFullLight">
       {/* SECCIÓN 1 */}
-      <section className="min-h-screen flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-32">
+      <section className="flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-32 pb-10 sm:pb-[45px] md:pb-[55px] lg:pb-[70px]">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-[10px]">
             <motion.div
@@ -136,7 +136,7 @@ const SoftwareDevelopmentPage = () => {
                 <img
                   src="/images/fotoPato.jpeg"
                   alt="Patricio Veras - Software Developer"
-                  className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] object-cover rounded-2xl shadow-2xl"
+                  className="w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] object-cover rounded-2xl shadow-2xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl"></div>
               </div>

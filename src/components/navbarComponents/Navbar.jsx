@@ -118,14 +118,14 @@ const Navbar = () => {
 
             <div className="flex justify-center items-center pt-4 pb-4 md:pt-4 md:pb-2 lg:pt-4 lg:pb-2 xl:pt-4 xl:pb-2">
               <img
-                src="/images/fotoPato.jpeg"
-                alt="Foto personal"
-                className="rounded-[7px] border-2 border-clearIceFullLight object-cover
-                  w-[120px] h-[140px]
-                  sm:w-[130px] sm:h-[150px]
-                  md:w-[140px] md:h-[160px]
-                  lg:w-[160px] lg:h-[180px]
-                  xl:w-[175px] xl:h-[195px]"
+                src="/images/navbarIMG.jpeg"
+                alt="Foto Navbar"
+                className="rounded-[10px] border-2 border-clearIceFullLight object-cover shadow-md
+                  w-[110px] h-[110px]
+                  sm:w-[120px] sm:h-[120px]
+                  md:w-[130px] md:h-[130px]
+                  lg:w-[150px] lg:h-[150px]
+                  xl:w-[170px] xl:h-[170px]"
                 draggable="false"
               />
             </div>
