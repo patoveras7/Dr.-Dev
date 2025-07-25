@@ -158,33 +158,42 @@ const SoftwareDevelopmentPage = () => {
           </motion.h2>
 
           {/* XS/SM */}
-          <div className="md:hidden lg:hidden">
-            <div className="relative overflow-hidden rounded-2xl">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {projects.concat(projects).map((p, idx) => (
-                  <div key={idx} className="w-full flex-shrink-0">
-                    <ProjectCard project={p} />
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Botones */}
-            <div className="flex justify-center gap-4 mt-6">
-              <button onClick={prevSlide} className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button onClick={nextSlide} className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
+<div className="md:hidden lg:hidden">
+  <div className="relative overflow-hidden rounded-2xl">
+    <div
+      className="flex gap-3 transition-transform duration-500 ease-in-out"
+      style={{
+        transform: `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 0.75}rem))`
+      }}
+    >
+      {projects.concat(projects).map((p, idx) => (
+        <div key={idx} className="w-full flex-shrink-0">
+          <ProjectCard project={p} />
+        </div>
+      ))}
+    </div>
+  </div>
+  {/* Botones */}
+  <div className="flex justify-center gap-4 mt-6">
+    <button
+      onClick={prevSlide}
+      className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200"
+    >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button
+      onClick={nextSlide}
+      className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200"
+    >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+</div>
+
 
           {/* MD */}
           <div className="hidden md:block lg:hidden">
@@ -197,19 +206,7 @@ const SoftwareDevelopmentPage = () => {
                 ))}
               </div>
             </div>
-            {/* Botones */}
-            <div className="flex justify-center gap-4 mt-6">
-              <button onClick={prevSlide} className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button onClick={nextSlide} className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+            {/* Botones eliminados en MD */}
           </div>
 
           {/* LG/XL */}
