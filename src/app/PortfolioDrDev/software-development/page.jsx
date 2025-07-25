@@ -1,13 +1,15 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-
-
 
 const SoftwareDevelopmentPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
+
+  const mdTrackRef = useRef(null);
+  const slideWidth = 300; // 280px + gap
+  const transitionTime = 500; // ms
 
   const projects = [
     {
@@ -30,57 +32,70 @@ const SoftwareDevelopmentPage = () => {
     }
   ];
 
+  // Duplicamos para un efecto continuo (como el ejemplo que me diste)
+  const mdSlides = [...projects, ...projects];
+
+  // Timer autoplay (3 segundos)
   useEffect(() => {
     if (!isAutoPlaying || isHovering) return;
-
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % projects.length);
+      nextSlide();
     }, 3000);
-
     return () => clearInterval(interval);
-  }, [isAutoPlaying, isHovering, projects.length]);
+  }, [isAutoPlaying, isHovering]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % projects.length);
-    setIsAutoPlaying(false);
   };
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
-    setIsAutoPlaying(false);
   };
 
-  const ProjectCard = ({ project }) => (
+  // Animación continua para MD (basada en keyframes del ejemplo)
+  useEffect(() => {
+    if (!mdTrackRef.current) return;
+    const totalWidth = slideWidth * mdSlides.length;
+    const duration = (mdSlides.length * 3); // velocidad proporcional
+    mdTrackRef.current.style.animation = `scrollLeft ${duration}s linear infinite`;
+
+    const styleTag = document.createElement("style");
+    styleTag.innerHTML = `
+      @keyframes scrollLeft {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-${totalWidth / 2}px); }
+      }
+    `;
+    document.head.appendChild(styleTag);
+    return () => {
+      if (document.head.contains(styleTag)) document.head.removeChild(styleTag);
+    };
+  }, [mdSlides.length]);
+
+  const ProjectCard = ({ project, width, height }) => (
     <div
-      className="relative overflow-hidden rounded-2xl group xl:w-[490px] xl:h-[370px] lg:w-[300px] lg:h-[400px] w-[325px] h-[360px] sm:w-[600px] sm:h-[400px] mx-auto"
+      className={`relative overflow-hidden rounded-2xl group ${
+        width ? width : "xl:w-[490px] xl:h-[370px] lg:w-[300px] lg:h-[400px] w-[325px] h-[360px] sm:w-[500px] sm:h-[380px]"
+      } mx-auto`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Imagen con zoom en hover */}
       <img
         src={project.image}
         alt={project.title}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        style={height ? { height: height.replace("h-[", "").replace("]", "") } : {}}
       />
-      {/* Gradiente + texto */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-2 py-2">
         <div className="inline-block bg-primary xl:bg-primary/70 rounded-[7px] px-2 mb-1">
           <h1 className="text-[17px] xl:text-[25px] font-bold text-clearIceFullLight">
             {project.title}
           </h1>
         </div>
-                 <div
-   className="
-     text-clearIceFullLight text-[12px] sm:text-base xl:text-[16px] pl-1
-     font-bold font-['Manrope',sans-serif] leading-relaxed
-     w-[250px] sm:w-full whitespace-normal break-words 
-   "
- >
-  <p className="m-0 w-full">
-    {project.description}
-  </p>
-  <span className="block h-0.5 bg-clearIceFullLight w-0 group-hover:w-full transition-all duration-500 ease-out"></span>
-</div>
+        <div className="text-clearIceFullLight text-[12px] sm:text-base xl:text-[16px] pl-1 font-bold font-['Manrope',sans-serif] leading-relaxed w-[250px] sm:w-full whitespace-normal break-words">
+          <p className="m-0 w-full">{project.description}</p>
+          <span className="block h-0.5 bg-clearIceFullLight w-0 group-hover:w-full transition-all duration-500 ease-out"></span>
+        </div>
       </div>
     </div>
   );
@@ -91,7 +106,6 @@ const SoftwareDevelopmentPage = () => {
       <section className="min-h-screen flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-32">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-[10px]">
-            {/* Texto introductorio */}
             <motion.div
               className="flex-1 text-left lg:text-left"
               initial={{ opacity: 0, x: -100 }}
@@ -112,7 +126,6 @@ const SoftwareDevelopmentPage = () => {
               </p>
             </motion.div>
 
-            {/* Imagen lateral */}
             <motion.div
               className="flex justify-center lg:w-[45%]"
               initial={{ opacity: 0, x: 100 }}
@@ -144,15 +157,15 @@ const SoftwareDevelopmentPage = () => {
             Proyectos personales
           </motion.h2>
 
-          {/* Vista XS y SM (carousel) */}
-          <div className="lg:hidden">
+          {/* XS/SM */}
+          <div className="md:hidden lg:hidden">
             <div className="relative overflow-hidden rounded-2xl">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
-                                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
-                {projects.map((p) => (
-                  <div key={p.id} className="w-full flex-shrink-0">
+                {projects.concat(projects).map((p, idx) => (
+                  <div key={idx} className="w-full flex-shrink-0">
                     <ProjectCard project={p} />
                   </div>
                 ))}
@@ -160,18 +173,12 @@ const SoftwareDevelopmentPage = () => {
             </div>
             {/* Botones */}
             <div className="flex justify-center gap-4 mt-6">
-              <button
-                onClick={prevSlide}
-                className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200"
-              >
+              <button onClick={prevSlide} className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <button
-                onClick={nextSlide}
-                className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200"
-              >
+              <button onClick={nextSlide} className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -179,18 +186,33 @@ const SoftwareDevelopmentPage = () => {
             </div>
           </div>
 
-          {/* Vista MD */}
+          {/* MD */}
           <div className="hidden md:block lg:hidden">
-            <div className="flex gap-4 overflow-hidden">
-              {projects.map((p, idx) => (
-                <div key={p.id} className={idx < 2 ? "w-[300px] h-[350px]" : "w-[30px] h-[350px]"}>
-                  <ProjectCard project={p} />
-                </div>
-              ))}
+            <div className="relative overflow-hidden rounded-2xl w-full" style={{ maxWidth: 900 }}>
+              <div ref={mdTrackRef} className="flex gap-4">
+                {mdSlides.map((p, idx) => (
+                  <div key={idx} className="flex-shrink-0">
+                    <ProjectCard project={p} width="w-[280px] h-[280px]" height="h-[280px]" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Botones */}
+            <div className="flex justify-center gap-4 mt-6">
+              <button onClick={prevSlide} className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button onClick={nextSlide} className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
 
-          {/* Vista LG y XL */}
+          {/* LG/XL */}
           <div className="hidden lg:block">
             <div className="flex gap-[10px] xl:gap-[45px] justify-center">
               {projects.map((p) => (
@@ -205,5 +227,3 @@ const SoftwareDevelopmentPage = () => {
 };
 
 export default SoftwareDevelopmentPage;
-
-
