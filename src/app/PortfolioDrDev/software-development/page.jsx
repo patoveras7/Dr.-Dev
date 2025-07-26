@@ -7,6 +7,8 @@ const SoftwareDevelopmentPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
+  const [showTechModal, setShowTechModal] = useState(false);
+  const [currentTechImage, setCurrentTechImage] = useState("");
 
   const mdTrackRef = useRef(null);
   const slideWidth = 300; // 280px + gap
@@ -100,6 +102,41 @@ const SoftwareDevelopmentPage = () => {
       </div>
     </div>
   );
+
+  const handleShowTechs = (projectName) => {
+    let techImage = "";
+    switch (projectName) {
+      case "AlkemyPocket":
+        techImage = "/images/Proyectos/AlkemyPocketTechs.png";
+        break;
+      case "AppleBe":
+        techImage = "/images/Proyectos/AppleTechs.jpg";
+        break;
+      case "RompiendoBarreras":
+        techImage = "/images/Proyectos/RBTechs.png";
+        break;
+      default:
+        techImage = "";
+    }
+    setCurrentTechImage(techImage);
+    setShowTechModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowTechModal(false);
+    setCurrentTechImage("");
+  };
+
+// --- ESCAPE PARA CERRAR MODAL ---
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+      handleCloseModal();
+    }
+  };
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, [handleCloseModal]);
 
   return (
     <div className="min-h-screen bg-clearIceFullLight">
@@ -247,10 +284,13 @@ const SoftwareDevelopmentPage = () => {
           />
           {/* Botones */}
           <div className="flex flex-row gap-4 mt-6">
-            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
               Ver código
             </button>
-            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+            <button 
+              onClick={() => handleShowTechs("AlkemyPocket")}
+              className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+            >
               Ver tecnologías
             </button>
           </div>
@@ -275,10 +315,13 @@ const SoftwareDevelopmentPage = () => {
           />
           {/* Botones */}
           <div className="flex flex-row gap-4 mt-6">
-            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
               Ver código
             </button>
-            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+            <button 
+              onClick={() => handleShowTechs("AppleBe")}
+              className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+            >
               Ver tecnologías
             </button>
           </div>
@@ -302,16 +345,57 @@ const SoftwareDevelopmentPage = () => {
           />
           {/* Botones */}
           <div className="flex flex-row gap-4 mt-6">
-            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
               Ver código
             </button>
-            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+            <button 
+              onClick={() => handleShowTechs("RompiendoBarreras")}
+              className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+            >
               Ver tecnologías
             </button>
           </div>
         </div>
       </section>
+
+      {/* Modal de Tecnologías */}
+      {showTechModal && (
+  <>
+    {/* Overlay con opacity y blur */}
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
+      onClick={handleCloseModal} // Cierra si se clickea fuera
+    />
+
+    {/* Modal centrado */}
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      onClick={handleCloseModal} // Cierra si clickea fuera del modal
+    >
+      <div
+        className="relative"
+        onClick={(e) => e.stopPropagation()} // No cierra si se hace click en la imagen
+      >
+        {/* Imagen de tecnologías */}
+        <img
+          src={currentTechImage}
+          alt="Tecnologías del proyecto"
+          className="w-[330px] h-[190px] sm:w-[400px] sm:h-[300px] md:w-[500px] md:h-[375px] lg:w-[600px] lg:h-[450px] xl:w-[700px] xl:h-[525px] object-contain"
+        />
+        {/* Botón de cerrar */}
+        <button
+          onClick={handleCloseModal}
+          className="absolute top-2 right-2 z-10 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </div>
+  </>
+)}
+</div>
   );
 };
 
