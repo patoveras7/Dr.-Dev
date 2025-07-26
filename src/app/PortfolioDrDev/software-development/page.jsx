@@ -150,7 +150,7 @@ const SoftwareDevelopmentPage = () => {
       <section className="flex items-start justify-center px-1">
         <div className="container mx-auto">
           <motion.h2
-            className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-primary mb-8 lg:mb-12 text-left"
+            className="text-3xl flex justify-center sm:text-4xl lg:text-[45px] font-bold text-primary mb-8 lg:mb-12 text-left"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -224,11 +224,12 @@ const SoftwareDevelopmentPage = () => {
       {/* SECCIÓN 3: Proyectos individuales */}
       <section className="flex flex-col gap-12 items-center w-full mt-8">
         {/* PARTE 1: Alkemy Pocket */}
-        <div className="flex flex-col items-center w-full max-w-[370px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] mx-auto bg-white/60 rounded-2xl shadow-lg p-4 sm:p-6 md:p-8">
-          {/* Header */}
-          <div className="flex flex-row items-center gap-3 mb-4 w-full">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">Alkemy Pocket</h1>
-            <p className="text-xs sm:text-sm md:text-base text-gray-700">Ejemplo de descripción del proyecto Alkemy Pocket. Aquí irá una breve explicación del objetivo y funcionalidades principales.</p>
+        <div className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto mt-[30px] lg:mt-[50px] xl:mt-[70px]">
+          {/* Header unificado */}
+          <div className="mb-4 w-full">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
+              <span className="font-extrabold underline text-primary">AlkemyPocket</span>: Ejemplo de descripción del proyecto Alkemy Pocket. Aquí irá una breve explicación del objetivo y funcionalidades principales.
+            </p>
           </div>
           {/* Carousel */}
           <ProjectImagesCarousel
@@ -242,6 +243,61 @@ const SoftwareDevelopmentPage = () => {
               "/images/Proyectos/AlkemyPocket7.jpg",
               "/images/Proyectos/AlkemyPocket8.jpg",
               "/images/Proyectos/AlkemyPocketDataBase.png"
+            ]}
+          />
+          {/* Botones */}
+          <div className="flex flex-row gap-4 mt-6">
+            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+              Ver código
+            </button>
+            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+              Ver tecnologías
+            </button>
+          </div>
+        </div>
+
+        {/* PARTE 2: AppleBe */}
+        <div className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
+          {/* Header unificado */}
+          <div className="mb-4 w-full">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
+              <span className="font-extrabold underline text-primary">AppleBe</span>: Ejemplo de descripción del proyecto AppleBe. Aquí irá una breve explicación del objetivo y funcionalidades principales.
+            </p>
+          </div>
+          {/* Carousel */}
+          <ProjectImagesCarousel
+            images={[
+              "/images/Proyectos/Apple1.jpg",
+              "/images/Proyectos/Apple2.jpg",
+              "/images/Proyectos/Apple3.jpg",
+              "/images/Proyectos/Apple4.jpg"
+            ]}
+          />
+          {/* Botones */}
+          <div className="flex flex-row gap-4 mt-6">
+            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+              Ver código
+            </button>
+            <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+              Ver tecnologías
+            </button>
+          </div>
+        </div>
+
+        {/* PARTE 3: Rompiendo Barreras */}
+        <div className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
+          {/* Header unificado */}
+          <div className="mb-4 w-full">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
+              <span className="font-extrabold underline text-primary">RompiendoBarreras</span>: Ejemplo de descripción del proyecto Rompiendo Barreras. Aquí irá una breve explicación del objetivo y funcionalidades principales.
+            </p>
+          </div>
+          {/* Carousel */}
+          <ProjectImagesCarousel
+            images={[
+              "/images/Proyectos/RB1.jpeg",
+              "/images/Proyectos/RB2.jpeg",
+              "/images/Proyectos/RB3.jpeg"
             ]}
           />
           {/* Botones */}
