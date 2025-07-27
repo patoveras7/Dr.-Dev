@@ -496,9 +496,50 @@ useEffect(() => {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-clearIceFullLight mb-4">
               Fullness
             </h2>
-            <p className="text-clearIceFullLight text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
+            <p className="text-clearIceFullLight text-justify text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed px-3">
               Fullness es una aplicación profesional desarrollada con tecnologías modernas que permite a los usuarios gestionar y optimizar sus recursos de manera eficiente. La plataforma ofrece una interfaz intuitiva y funcionalidades avanzadas para mejorar la productividad y organización del trabajo diario.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECCIÓN 5: Por qué Dr. Dev?? */}
+      <section className="flex items-start justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-32 bg-clearIceFullLight">
+        <div className="container mx-auto">
+          <div className="flex flex-col sm:flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+            {/* Contenido de texto */}
+            <motion.div
+              className="flex-1 text-center lg:text-left"
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary mb-6 leading-tight">
+                Por qué Dr. Dev??
+              </h1>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-700 leading-relaxed max-w-4xl mx-auto lg:mx-0">
+                Dr. Dev representa la excelencia en el desarrollo de software, combinando la precisión científica con la creatividad artística. Como un médico diagnostica y cura, un Dr. Dev analiza problemas complejos y crea soluciones innovadoras. La pasión por el código limpio, la arquitectura robusta y la experiencia de usuario excepcional define cada proyecto, transformando ideas en realidades digitales que impactan positivamente en la vida de las personas.
+              </p>
+            </motion.div>
+
+            {/* GIF animado */}
+            <motion.div
+              className="flex justify-center lg:w-[45%]"
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative">
+                <img
+                  src="https://i.pinimg.com/originals/81/17/8b/81178b47a8598f0c81c4799f2cdd4057.gif"
+                  alt="Desarrollador trabajando en código"
+                  className="w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] object-cover rounded-2xl shadow-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent rounded-2xl"></div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
