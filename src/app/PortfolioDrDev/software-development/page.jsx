@@ -9,6 +9,7 @@ const SoftwareDevelopmentPage = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [showTechModal, setShowTechModal] = useState(false);
   const [currentTechImage, setCurrentTechImage] = useState("");
+  const [fullnessCurrentSlide, setFullnessCurrentSlide] = useState(0);
 
   const mdTrackRef = useRef(null);
   const slideWidth = 300; // 280px + gap
@@ -53,6 +54,25 @@ const SoftwareDevelopmentPage = () => {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const fullnessImages = [
+    "/images/Proyectos/Fullness1.jpg",
+    "/images/Proyectos/Fullness2.jpg", 
+    "/images/Proyectos/Fullness3.jpg",
+    "/images/Proyectos/Fullness4.jpg",
+    "/images/Proyectos/Fullness5.jpg"
+  ];
+
+  // Duplicamos las imágenes para crear un carousel infinito
+  const fullnessSlides = [...fullnessImages, ...fullnessImages];
+
+  const nextFullnessSlide = () => {
+    setFullnessCurrentSlide((prev) => (prev + 1) % fullnessImages.length);
+  };
+
+  const prevFullnessSlide = () => {
+    setFullnessCurrentSlide((prev) => (prev - 1 + fullnessImages.length) % fullnessImages.length);
   };
 
   // Animación continua para MD (basada en keyframes del ejemplo)
@@ -380,7 +400,7 @@ useEffect(() => {
         <img
           src={currentTechImage}
           alt="Tecnologías del proyecto"
-          className="w-[330px] h-[190px] sm:w-[400px] sm:h-[300px] md:w-[500px] md:h-[375px] lg:w-[600px] lg:h-[450px] xl:w-[700px] xl:h-[525px] object-contain"
+          className="w-[330px] h-[190px] sm:w-[500px] sm:h-[280px] md:w-[650px] md:h-[365px] lg:w-[750px] lg:h-[420px] xl:w-[900px] xl:h-[505px] object-contain"
         />
         {/* Botón de cerrar */}
         <button
@@ -395,6 +415,93 @@ useEffect(() => {
     </div>
   </>
 )}
+
+      {/* SECCIÓN 4: Proyecto Profesional */}
+      <section className="flex flex-col gap-12 items-center w-full mt-8 bg-secondary py-12 px-1">
+        <div className="w-full max-w-7xl mx-auto">
+          {/* Header con título y enlace */}
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8">
+            <h1 className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-clearIceFullLight mb-4 sm:mb-0">
+              Proyecto Profesional
+            </h1>
+            <div className="flex items-center gap-2">
+              <span className="text-clearIceFullLight text-lg sm:text-xl font-medium underline">
+                Más imágenes
+              </span>
+              <svg 
+                className="w-6 h-6 text-clearIceFullLight transition-transform duration-300 hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Carousel de Fullness */}
+          <div className="relative overflow-hidden rounded-2xl">
+            <div 
+              className="flex gap-4 transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(calc(-${fullnessCurrentSlide * 100}% - ${fullnessCurrentSlide * 1}rem))`
+              }}
+            >
+              {fullnessSlides.map((image, index) => (
+                <div 
+                  key={index}
+                  className="flex-shrink-0 w-[270px] h-[400px] sm:w-[470px] sm:h-[360px] md:w-[330px] md:h-[410px] lg:w-[450px] lg:h-[440px] xl:w-[630px] xl:h-[500px] bg-clearIceFullLight rounded-2xl overflow-hidden shadow-lg"
+                >
+                  {/* Imagen (65% del espacio) */}
+                  <div className="w-full h-[65%] relative">
+                    <img
+                      src={image}
+                      alt={`Fullness ${(index % fullnessImages.length) + 1}`}
+                      className="w-full h-full object-cover rounded-t-2xl"
+                    />
+                  </div>
+                  {/* Contenido de texto (35% del espacio) */}
+                  <div className="h-[35%] p-4 flex flex-col justify-center">
+                    <p className="text-gray-700 text-xs sm:text-sm md:text-xs lg:text-sm xl:text-xs leading-tight">
+                      Descripción del proyecto Fullness. Aquí se muestra información relevante sobre las funcionalidades y características principales de esta aplicación profesional.
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Botones de navegación */}
+          <div className="flex justify-center gap-4 mt-6">
+            <button 
+              onClick={prevFullnessSlide}
+              className="w-12 h-12 bg-clearIceFullLight rounded-full flex items-center justify-center text-secondary hover:bg-clearIceFullLight/80 transition-colors duration-200"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button 
+              onClick={nextFullnessSlide}
+              className="w-12 h-12 bg-clearIceFullLight rounded-full flex items-center justify-center text-secondary hover:bg-clearIceFullLight/80 transition-colors duration-200"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Título y descripción */}
+          <div className="text-center mt-8">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-clearIceFullLight mb-4">
+              Fullness
+            </h2>
+            <p className="text-clearIceFullLight text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
+              Fullness es una aplicación profesional desarrollada con tecnologías modernas que permite a los usuarios gestionar y optimizar sus recursos de manera eficiente. La plataforma ofrece una interfaz intuitiva y funcionalidades avanzadas para mejorar la productividad y organización del trabajo diario.
+            </p>
+          </div>
+        </div>
+      </section>
 </div>
   );
 };
