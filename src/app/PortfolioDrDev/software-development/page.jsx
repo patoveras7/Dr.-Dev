@@ -452,16 +452,16 @@ useEffect(() => {
                   key={index}
                   className="flex-shrink-0 w-[270px] h-[400px] sm:w-[470px] sm:h-[360px] md:w-[330px] md:h-[410px] lg:w-[450px] lg:h-[440px] xl:w-[630px] xl:h-[500px] bg-clearIceFullLight rounded-2xl overflow-hidden shadow-lg"
                 >
-                  {/* Imagen (65% del espacio) */}
-                  <div className="w-full h-[65%] relative">
+                  {/* Imagen (80% del espacio) */}
+                  <div className="w-full h-[80%] relative">
                     <img
                       src={image}
                       alt={`Fullness ${(index % fullnessImages.length) + 1}`}
                       className="w-full h-full object-cover rounded-t-2xl"
                     />
                   </div>
-                  {/* Contenido de texto (35% del espacio) */}
-                  <div className="h-[35%] p-4 flex flex-col justify-center">
+                  {/* Contenido de texto (20% del espacio) */}
+                  <div className="h-[20%] p-4 flex flex-col justify-center">
                     <p className="text-gray-700 text-xs sm:text-sm md:text-xs lg:text-sm xl:text-xs leading-tight">
                       Descripción del proyecto Fullness. Aquí se muestra información relevante sobre las funcionalidades y características principales de esta aplicación profesional.
                     </p>
