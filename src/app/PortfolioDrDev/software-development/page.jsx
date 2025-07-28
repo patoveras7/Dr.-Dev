@@ -75,6 +75,35 @@ const SoftwareDevelopmentPage = () => {
     setFullnessCurrentSlide((prev) => (prev - 1 + fullnessImages.length) % fullnessImages.length);
   };
 
+  const scrollToProject = (projectId) => {
+    const element = document.getElementById(projectId);
+    if (element) {
+      const targetPosition = element.offsetTop - 100; // 100px de offset para mejor vista
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 2000; // 2 segundos de duración
+      let start = null;
+
+      const animation = (currentTime) => {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      };
+
+      // Función de easing para scroll suave
+      const easeInOutCubic = (t, b, c, d) => {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t * t + b;
+        t -= 2;
+        return c / 2 * (t * t * t + 2) + b;
+      };
+
+      requestAnimationFrame(animation);
+    }
+  };
+
   // Animación continua para MD (basada en keyframes del ejemplo)
   useEffect(() => {
     if (!mdTrackRef.current) return;
@@ -95,14 +124,34 @@ const SoftwareDevelopmentPage = () => {
     };
   }, [mdSlides.length]);
 
-  const ProjectCard = ({ project, width, height }) => (
-    <div
-      className={`relative overflow-hidden rounded-2xl group ${
-        width ? width : "xl:w-[490px] xl:h-[370px] lg:w-[300px] lg:h-[400px] w-[325px] h-[360px] sm:w-[500px] sm:h-[380px]"
-      } mx-auto`}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-    >
+  const ProjectCard = ({ project, width, height }) => {
+    const getProjectId = (title) => {
+      switch (title) {
+        case "ALKEMY POCKET":
+          return "alkemy-pocket";
+        case "APPLE BE":
+          return "apple-be";
+        case "ROMPIENDO BARRERAS":
+          return "rompiendo-barreras";
+        default:
+          return "";
+      }
+    };
+
+    return (
+      <div
+        className={`relative overflow-hidden rounded-2xl group cursor-pointer ${
+          width ? width : "xl:w-[490px] xl:h-[370px] lg:w-[300px] lg:h-[400px] w-[325px] h-[360px] sm:w-[500px] sm:h-[380px]"
+        } mx-auto`}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        onClick={() => {
+          const projectId = getProjectId(project.title);
+          if (projectId) {
+            scrollToProject(projectId);
+          }
+        }}
+      >
       <img
         src={project.image}
         alt={project.title}
@@ -121,7 +170,8 @@ const SoftwareDevelopmentPage = () => {
         </div>
       </div>
     </div>
-  );
+    );
+  };
 
   const handleShowTechs = (projectName) => {
     let techImage = "";
@@ -167,7 +217,8 @@ useEffect(() => {
             <motion.div
               className="flex-1 text-left lg:text-left"
               initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold text-primary mb-6 leading-tight">
@@ -187,7 +238,8 @@ useEffect(() => {
             <motion.div
               className="flex justify-center lg:w-[45%]"
               initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
               <div className="relative">
@@ -207,9 +259,10 @@ useEffect(() => {
       <section className="flex items-start justify-center px-1">
         <div className="container mx-auto">
           <motion.h2
-            className="text-3xl flex justify-center sm:text-4xl lg:text-[45px] font-bold text-primary mb-8 lg:mb-12 text-left"
+            className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-primary mb-8 lg:mb-12 text-left ml-[10px] sm:ml-[18px] lg:ml-[25px] xl:ml-0"
             initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             Proyectos personales
@@ -225,9 +278,20 @@ useEffect(() => {
       }}
     >
       {projects.concat(projects).map((p, idx) => (
-        <div key={idx} className="w-full flex-shrink-0">
+        <motion.div 
+          key={idx} 
+          className="w-full flex-shrink-0"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ 
+            duration: 0.8, 
+            ease: "easeOut", 
+            delay: idx * 0.2 
+          }}
+        >
           <ProjectCard project={p} />
-        </div>
+        </motion.div>
       ))}
     </div>
   </div>
@@ -269,9 +333,21 @@ useEffect(() => {
 
           {/* LG/XL */}
           <div className="hidden lg:block">
-            <div className="flex gap-[10px] xl:gap-[45px] justify-center">
-              {projects.map((p) => (
-                <ProjectCard key={p.id} project={p} />
+            <div className="flex gap-[10px] xl:gap-[45px] justify-start">
+              {projects.map((p, index) => (
+                <motion.div
+                  key={p.id}
+                  initial={{ opacity: 0, x: -100 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.8, 
+                    ease: "easeOut", 
+                    delay: index * 0.3 
+                  }}
+                >
+                  <ProjectCard project={p} />
+                </motion.div>
               ))}
             </div>
           </div>
@@ -281,7 +357,7 @@ useEffect(() => {
       {/* SECCIÓN 3: Proyectos individuales */}
       <section className="flex flex-col gap-12 items-center w-full mt-8 bg-clearIceFullLight py-12">
         {/* PARTE 1: Alkemy Pocket */}
-        <div className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto mt-[30px] lg:mt-[50px] xl:mt-[70px]">
+        <div id="alkemy-pocket" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto mt-[30px] lg:mt-[50px] xl:mt-[70px]">
           {/* Header unificado */}
           <div className="mb-4 w-full">
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
@@ -317,7 +393,7 @@ useEffect(() => {
         </div>
 
         {/* PARTE 2: AppleBe */}
-        <div className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
+        <div id="apple-be" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
           {/* Header unificado */}
           <div className="mb-4 w-full">
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
@@ -348,7 +424,7 @@ useEffect(() => {
         </div>
 
         {/* PARTE 3: Rompiendo Barreras */}
-        <div className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
+        <div id="rompiendo-barreras" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
           {/* Header unificado */}
           <div className="mb-4 w-full">
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
@@ -515,10 +591,10 @@ useEffect(() => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true }}
             >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold text-primary mb-6 leading-tight">
                 Por qué Dr. Dev??
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-700 leading-relaxed max-w-4xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto lg:mx-0">
                 Dr. Dev representa la excelencia en el desarrollo de software, combinando la precisión científica con la creatividad artística. Como un médico diagnostica y cura, un Dr. Dev analiza problemas complejos y crea soluciones innovadoras. La pasión por el código limpio, la arquitectura robusta y la experiencia de usuario excepcional define cada proyecto, transformando ideas en realidades digitales que impactan positivamente en la vida de las personas.
               </p>
             </motion.div>
@@ -557,6 +633,15 @@ useEffect(() => {
               }
             }
 
+            @keyframes slideLeft {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(-50%);
+              }
+            }
+
             .tech-carousel-track {
               display: flex;
               gap: 1rem;
@@ -565,10 +650,28 @@ useEffect(() => {
               will-change: transform;
             }
 
+            .tech-carousel-track-left {
+              display: flex;
+              gap: 1rem;
+              animation: slideLeft 12.5s linear infinite;
+              width: fit-content;
+              will-change: transform;
+            }
 
+            /* Carousels más rápidos para pantallas pequeñas */
+            @media (max-width: 640px) {
+              .tech-carousel-track {
+                animation: slideRight 4.17s linear infinite;
+              }
+              .tech-carousel-track-left {
+                animation: slideLeft 4.17s linear infinite;
+              }
+            }
           `}</style>
 
-          <div className="tech-carousel-track">
+          {/* Carousel para pantallas grandes (768px, 1024px, 1280px) */}
+          <div className="hidden md:block">
+            <div className="tech-carousel-track">
             {/* Primer conjunto de logos */}
             {[
               "/images/Logos Techs/React.png",
@@ -619,6 +722,199 @@ useEffect(() => {
                 />
               </div>
             ))}
+          </div>
+          </div>
+
+          {/* Carousels para pantallas pequeñas (350px y 640px) */}
+          <div className="md:hidden">
+            {/* Carousels para 640px (2 carousels) */}
+            <div className="hidden sm:block">
+              {/* Primer carousel - hacia la derecha */}
+              <div className="tech-carousel-track mb-8">
+                {[
+                  "/images/Logos Techs/React.png",
+                  "/images/Logos Techs/Next.png",
+                  "/images/Logos Techs/JS.png",
+                  "/images/Logos Techs/TS.png",
+                  "/images/Logos Techs/node.png",
+                  "/images/Logos Techs/nests.png",
+                  "/images/Logos Techs/Java.png"
+                ].map((tech, index) => (
+                  <div key={index} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+                {/* Duplicado para efecto infinito */}
+                {[
+                  "/images/Logos Techs/React.png",
+                  "/images/Logos Techs/Next.png",
+                  "/images/Logos Techs/JS.png",
+                  "/images/Logos Techs/TS.png",
+                  "/images/Logos Techs/node.png",
+                  "/images/Logos Techs/nests.png",
+                  "/images/Logos Techs/Java.png"
+                ].map((tech, index) => (
+                  <div key={`duplicate-1-${index}`} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Segundo carousel - hacia la izquierda */}
+              <div className="tech-carousel-track-left">
+                {[
+                  "/images/Logos Techs/Spring Boot.png",
+                  "/images/Logos Techs/SQL.png",
+                  "/images/Logos Techs/PostgreSQL.png",
+                  "/images/Logos Techs/SQLITE.png",
+                  "/images/Logos Techs/Docker.png",
+                  "/images/Logos Techs/KUBERNETS.png",
+                  "/images/Logos Techs/Tailwind.png"
+                ].map((tech, index) => (
+                  <div key={index} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+                {/* Duplicado para efecto infinito */}
+                {[
+                  "/images/Logos Techs/Spring Boot.png",
+                  "/images/Logos Techs/SQL.png",
+                  "/images/Logos Techs/PostgreSQL.png",
+                  "/images/Logos Techs/SQLITE.png",
+                  "/images/Logos Techs/Docker.png",
+                  "/images/Logos Techs/KUBERNETS.png",
+                  "/images/Logos Techs/Tailwind.png"
+                ].map((tech, index) => (
+                  <div key={`duplicate-2-${index}`} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Carousels para 350px (3 carousels) */}
+            <div className="sm:hidden">
+              {/* Primer carousel - hacia la derecha (5 imágenes) */}
+              <div className="tech-carousel-track mb-6">
+                {[
+                  "/images/Logos Techs/React.png",
+                  "/images/Logos Techs/NEXT.png",
+                  "/images/Logos Techs/JS.png",
+                  "/images/Logos Techs/TS.png",
+                  "/images/Logos Techs/node.png"
+                ].map((tech, index) => (
+                  <div key={index} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+                {/* Duplicado para efecto infinito */}
+                {[
+                  "/images/Logos Techs/React.png",
+                  "/images/Logos Techs/NEXT.png",
+                  "/images/Logos Techs/JS.png",
+                  "/images/Logos Techs/TS.png",
+                  "/images/Logos Techs/node.png"
+                ].map((tech, index) => (
+                  <div key={`duplicate-xs-1-${index}`} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Segundo carousel - hacia la izquierda (5 imágenes) */}
+              <div className="tech-carousel-track-left mb-6">
+                {[
+                  "/images/Logos Techs/nests.png",
+                  "/images/Logos Techs/Java.png",
+                  "/images/Logos Techs/Spring Boot.png",
+                  "/images/Logos Techs/SQL.png",
+                  "/images/Logos Techs/PostgreSQL.png"
+                ].map((tech, index) => (
+                  <div key={index} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+                {/* Duplicado para efecto infinito */}
+                {[
+                  "/images/Logos Techs/nests.png",
+                  "/images/Logos Techs/Java.png",
+                  "/images/Logos Techs/Spring Boot.png",
+                  "/images/Logos Techs/SQL.png",
+                  "/images/Logos Techs/PostgreSQL.png"
+                ].map((tech, index) => (
+                  <div key={`duplicate-xs-2-${index}`} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Tercer carousel - hacia la derecha (4 imágenes + 1 repetida) */}
+              <div className="tech-carousel-track">
+                {[
+                  "/images/Logos Techs/SQLITE.png",
+                  "/images/Logos Techs/Docker.png",
+                  "/images/Logos Techs/KUBERNETS.png",
+                  "/images/Logos Techs/Tailwind.png",
+                  "/images/Logos Techs/React.png" // Repetida para completar 5
+                ].map((tech, index) => (
+                  <div key={index} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+                {/* Duplicado para efecto infinito */}
+                {[
+                  "/images/Logos Techs/SQLITE.png",
+                  "/images/Logos Techs/Docker.png",
+                  "/images/Logos Techs/KUBERNETS.png",
+                  "/images/Logos Techs/Tailwind.png",
+                  "/images/Logos Techs/React.png" // Repetida para completar 5
+                ].map((tech, index) => (
+                  <div key={`duplicate-xs-3-${index}`} className="flex-shrink-0">
+                    <img
+                      src={tech}
+                      alt={`Tech ${index + 1}`}
+                      className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
