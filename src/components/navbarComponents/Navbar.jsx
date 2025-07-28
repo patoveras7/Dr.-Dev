@@ -179,9 +179,15 @@ const Navbar = () => {
 
             <div className="flex-1 flex flex-col justify-center gap-12 md:gap-6 lg:gap-4 xl:gap-6 pb-4 lg:pb-2">
               <div className="flex flex-col items-center gap-6 md:gap-3 lg:gap-2 xl:gap-6 pt-4 md:pt-1 lg:pt-1 xl:pt-1">
-                <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
-                  text-[12px] sm:text-[16px] md:text-[17px] lg:text-[19px]
-                  font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-full max-w-[120px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
+                <button 
+                  onClick={() => {
+                    handleCollapse();
+                    // Navegar a Software Development y hacer scroll al tech stack
+                    window.location.href = '/PortfolioDrDev/software-development#tech-stack';
+                  }}
+                  className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
+                    text-[12px] sm:text-[16px] md:text-[17px] lg:text-[19px]
+                    font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-full max-w-[120px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
                   Stack tecnológico
                 </button>
                 <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 

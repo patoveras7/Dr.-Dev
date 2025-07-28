@@ -279,7 +279,7 @@ useEffect(() => {
       </section>
 
       {/* SECCIÓN 3: Proyectos individuales */}
-      <section className="flex flex-col gap-12 items-center w-full mt-8">
+      <section className="flex flex-col gap-12 items-center w-full mt-8 bg-clearIceFullLight py-12">
         {/* PARTE 1: Alkemy Pocket */}
         <div className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto mt-[30px] lg:mt-[50px] xl:mt-[70px]">
           {/* Header unificado */}
@@ -540,6 +540,85 @@ useEffect(() => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent rounded-2xl"></div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECCIÓN 6: Carousel de Tecnologías */}
+      <section id="tech-stack" className="bg-clearIceFullLight pb-[100px]">
+        <div className="relative overflow-hidden">
+          <style jsx>{`
+            @keyframes slideRight {
+              0% {
+                transform: translateX(-50%);
+              }
+              100% {
+                transform: translateX(0);
+              }
+            }
+
+            .tech-carousel-track {
+              display: flex;
+              gap: 1rem;
+              animation: slideRight 12.5s linear infinite;
+              width: fit-content;
+              will-change: transform;
+            }
+
+
+          `}</style>
+
+          <div className="tech-carousel-track">
+            {/* Primer conjunto de logos */}
+            {[
+              "/images/Logos Techs/React.png",
+              "/images/Logos Techs/Next.png",
+              "/images/Logos Techs/JS.png",
+              "/images/Logos Techs/TS.png",
+              "/images/Logos Techs/node.png",
+              "/images/Logos Techs/nests.png",
+              "/images/Logos Techs/Java.png",
+              "/images/Logos Techs/Spring Boot.png",
+              "/images/Logos Techs/SQL.png",
+              "/images/Logos Techs/POSTGRESQL.png",
+              "/images/Logos Techs/SQLITE.png",
+              "/images/Logos Techs/DOCKER.png",
+              "/images/Logos Techs/KUBERNETS.png",
+              "/images/Logos Techs/Tailwind.png"
+            ].map((tech, index) => (
+              <div key={index} className="flex-shrink-0">
+                <img
+                  src={tech}
+                  alt={`Tech ${index + 1}`}
+                  className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                />
+              </div>
+            ))}
+            {/* Segundo conjunto (duplicado para efecto infinito) */}
+            {[
+              "/images/Logos Techs/React.png",
+              "/images/Logos Techs/Next.png",
+              "/images/Logos Techs/JS.png",
+              "/images/Logos Techs/TS.png",
+              "/images/Logos Techs/node.png",
+              "/images/Logos Techs/nests.png",
+              "/images/Logos Techs/Java.png",
+              "/images/Logos Techs/Spring Boot.png",
+              "/images/Logos Techs/SQL.png",
+              "/images/Logos Techs/POSTGRESQL.png",
+              "/images/Logos Techs/SQLITE.png",
+              "/images/Logos Techs/DOCKER.png",
+              "/images/Logos Techs/KUBERNETS.png",
+              "/images/Logos Techs/Tailwind.png"
+            ].map((tech, index) => (
+              <div key={`duplicate-${index}`} className="flex-shrink-0">
+                <img
+                  src={tech}
+                  alt={`Tech ${index + 1}`}
+                  className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
