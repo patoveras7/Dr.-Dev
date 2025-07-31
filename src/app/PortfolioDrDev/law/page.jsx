@@ -310,6 +310,14 @@ const LawPage = () => {
           </div>
         </>
       )}
+
+      {/* Botón Volver */}
+      <button
+        onClick={() => window.location.href = '/PortfolioDrDev/home'}
+        className="fixed z-50 right-16 top-2.5 sm:top-4 sm:right-20 md:top-6 md:right-[85px] lg:top-8 lg:right-[100px] xl:top-10 xl:right-[120px] bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-2 py-1 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+      >
+        volver
+      </button>
     </div>
   );
 };
