@@ -15,8 +15,7 @@ const page = () => {
   };
 
   const handleCard2Click = () => {
-    // Aquí puedes agregar la lógica para redirigir a la segunda vista
-    console.log('Card 2 clicked');
+    router.push('/PortfolioDrDev/law');
   };
 
   return (
