@@ -34,6 +34,10 @@ const LawPage = () => {
       "20250702_JusticiaCordoba_Certificado_veras14584 (1)_page-0001.jpg",
       "20250702_JusticiaCordoba_Certificado_veras14584 (2)_page-0001.jpg",
       "20250702_JusticiaCordoba_Certificado_veras14584 (3)_page-0001.jpg"
+    ],
+    destacadas: [
+      "20250702_JusticiaCordoba_Certificado_veras14584 (1)_page-0001.jpg",
+      "20250702_JusticiaCordoba_Certificado_veras14584 (2)_page-0001.jpg"
     ]
   };
 
@@ -49,7 +53,8 @@ const LawPage = () => {
 
   const handleImageClick = (imagePath) => {
     // Para mostrar la imagen JPG en el modal
-    setCurrentImage(`/certificaciones/${selectedYear}/${imagePath}`);
+    const folder = selectedYear === "destacadas" ? "Destacadas" : selectedYear;
+    setCurrentImage(`/certificaciones/${folder}/${imagePath}`);
     setShowImageModal(true);
   };
 
@@ -187,6 +192,21 @@ const LawPage = () => {
                 {year}
               </button>
             ))}
+
+            {/* Botón Destacadas */}
+            <button
+              onClick={() => handleYearSelect("destacadas")}
+              className={`border-2 rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-bold transition-all duration-200 shadow-lg flex items-center gap-2 ${
+                selectedYear === "destacadas"
+                  ? "bg-clearIce border-clearIce"
+                  : "bg-primary border-clearIce hover:bg-clearIce"
+              }`}
+                         >
+               <svg className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 text-clearYellow" fill="currentColor" viewBox="0 0 20 20">
+                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+               </svg>
+              <span className="text-clearYellow">Destacadas</span>
+            </button>
           </motion.div>
 
           {/* Contenedores por año (render condicional) */}
@@ -208,16 +228,16 @@ const LawPage = () => {
                     transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
                   >
-                    {/* Miniatura (38% del ancho) */}
-                    <div className="w-[48%] sm:w-[37%] lg:w-[30%] xl:w-[25%] bg-primary flex items-center justify-center p-2">
-                      <div className="w-full h-full bg-white rounded-lg overflow-hidden shadow-sm">
-                      <img
-                          src={`/certificaciones/${selectedYear}/${pdfFile}`}
-                          alt="Certificación"
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                    </div>
+                                         {/* Miniatura (38% del ancho) */}
+                     <div className="w-[48%] sm:w-[37%] lg:w-[30%] xl:w-[25%] bg-primary flex items-center justify-center p-2">
+                       <div className="w-full h-full bg-white rounded-lg overflow-hidden shadow-sm">
+                       <img
+                           src={`/certificaciones/${selectedYear === "destacadas" ? "Destacadas" : selectedYear}/${pdfFile}`}
+                           alt="Certificación"
+                           className="w-full h-full object-contain"
+                         />
+                       </div>
+                     </div>
 
                     {/* Contenido (62% del ancho) */}
                     <div className="w-[52%] sm:w-[63%] lg:w-[70%] xl:w-[75%] flex items-center justify-center">
@@ -260,7 +280,7 @@ const LawPage = () => {
             onClick={handleCloseModal}
           >
             <div
-              className="relative max-h-[90vh] overflow-y-auto overflow-x-auto md:overflow-hidden md:max-h-none md:max-w-none"
+              className="relative overflow-y-auto overflow-x-auto md:overflow-hidden md:max-h-none md:max-w-none"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Imagen de la certificación */}
@@ -280,7 +300,7 @@ const LawPage = () => {
               {/* Botón de cerrar fijo sobre la imagen */}
               <button
                 onClick={handleCloseModal}
-                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[163px] lg:top-[123px] md:right-6 lg:right-24 xl:right-40 xl:top-[78px]"
+                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[163px] lg:top-[123px] md:right-6 lg:right-24 xl:right-1/2 xl:top-[75px]"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
