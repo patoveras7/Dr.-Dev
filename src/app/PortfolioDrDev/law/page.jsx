@@ -75,8 +75,10 @@ const LawPage = () => {
     const handleResize = () => {
       const imgElement = document.querySelector('.certification-image');
       if (imgElement) {
-        if (window.innerWidth >= 640) {
+        if (window.innerWidth >= 640 && window.innerWidth < 768) {
           imgElement.style.minWidth = '1000px';
+        } else if (window.innerWidth >= 768) {
+          imgElement.style.minWidth = 'auto';
         } else {
           imgElement.style.minWidth = '700px';
         }
@@ -143,10 +145,10 @@ const LawPage = () => {
       </section>
 
       {/* SECCIÓN 2: Certificaciones por año */}
-      <section className="flex items-start justify-center px-1">
+      <section className="flex items-start justify-center px-1 pb-20">
         <div className="container mx-auto">
           <motion.h2
-            className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-primary mb-8 lg:mb-12 text-left ml-[10px] sm:ml-[18px] lg:ml-[25px] xl:ml-0"
+            className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-primary mb-8 lg:mb-12 text-left ml-[10px] sm:ml-[18px] lg:ml-[25px]"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -157,7 +159,7 @@ const LawPage = () => {
 
           {/* Panel de selección de año */}
           <motion.div
-            className="flex flex-wrap gap-3 mb-8 px-4 sm:px-6 lg:px-8 justify-center sm:justify-start"
+            className="flex flex-wrap gap-3 mb-8 px-4 lg:px-7 justify-center sm:justify-start"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -195,7 +197,7 @@ const LawPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="flex flex-col gap-6 justify-center items-center">
+              <div className="flex flex-col gap-6 justify-center items-center md:px-[30px] lg:px-[40px] xl:px-[50px]">
                 {certificationsData[selectedYear].map((pdfFile, index) => (
                   <motion.div
                     key={index}
@@ -207,18 +209,18 @@ const LawPage = () => {
                     whileHover={{ scale: 1.02 }}
                   >
                     {/* Miniatura (38% del ancho) */}
-                    <div className="w-[48%] sm:w-[37%] bg-primary flex items-center justify-center p-2">
+                    <div className="w-[48%] sm:w-[37%] lg:w-[30%] xl:w-[25%] bg-primary flex items-center justify-center p-2">
                       <div className="w-full h-full bg-white rounded-lg overflow-hidden shadow-sm">
-                        <img
+                      <img
                           src={`/certificaciones/${selectedYear}/${pdfFile}`}
                           alt="Certificación"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                     </div>
 
                     {/* Contenido (62% del ancho) */}
-                    <div className="w-[52%] sm:w-[63%] flex items-center justify-center">
+                    <div className="w-[52%] sm:w-[63%] lg:w-[70%] xl:w-[75%] flex items-center justify-center">
                       <p className="text-gray-600 text-[12px] text-center">
                         {getCertificationDescription(pdfFile)}
                       </p>
@@ -258,25 +260,27 @@ const LawPage = () => {
             onClick={handleCloseModal}
           >
             <div
-              className="relative max-h-[90vh] overflow-y-auto overflow-x-auto"
+              className="relative max-h-[90vh] overflow-y-auto overflow-x-auto md:overflow-hidden md:max-h-none md:max-w-none"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Imagen de la certificación */}
               <img
                 src={currentImage}
                 alt="Certificación"
-                className="certification-image w-[700px] h-[500px] sm:w-[800px] sm:h-[600px] md:w-[650px] md:h-[365px] lg:w-[750px] lg:h-[420px] xl:w-[900px] xl:h-[505px] object-fill sm:object-fill md:object-contain"
+                className="certification-image w-[700px] h-[500px] sm:w-[800px] sm:h-[600px] md:w-[730px] md:h-[530px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill"
                 style={{ minWidth: '700px' }}
                 onLoad={(e) => {
-                  if (window.innerWidth >= 640) {
+                  if (window.innerWidth >= 640 && window.innerWidth < 768) {
                     e.target.style.minWidth = '1000px';
+                  } else if (window.innerWidth >= 768) {
+                    e.target.style.minWidth = 'auto';
                   }
                 }}
               />
               {/* Botón de cerrar fijo sobre la imagen */}
               <button
                 onClick={handleCloseModal}
-                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6"
+                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[163px] lg:top-[123px] md:right-6 lg:right-24 xl:right-40 xl:top-[78px]"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
