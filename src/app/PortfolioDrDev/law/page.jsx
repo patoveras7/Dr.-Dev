@@ -12,6 +12,8 @@ const LawPage = () => {
     proyectosInvestigacion: false
   });
   const [showIaModal, setShowIaModal] = useState(false);
+  const [showMaratonModal, setShowMaratonModal] = useState(false);
+  const [showInvestigacionModal, setShowInvestigacionModal] = useState(false);
 
   // Datos de certificaciones por año (JPG)
   const certificationsData = {
@@ -82,6 +84,8 @@ const LawPage = () => {
         setShowImageModal(false);
         setCurrentImage("");
         setShowIaModal(false);
+        setShowMaratonModal(false);
+        setShowInvestigacionModal(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -128,6 +132,22 @@ const LawPage = () => {
 
   const handleCloseIaModal = () => {
     setShowIaModal(false);
+  };
+
+  const handleShowMaratonModal = () => {
+    setShowMaratonModal(true);
+  };
+
+  const handleCloseMaratonModal = () => {
+    setShowMaratonModal(false);
+  };
+
+  const handleShowInvestigacionModal = () => {
+    setShowInvestigacionModal(true);
+  };
+
+  const handleCloseInvestigacionModal = () => {
+    setShowInvestigacionModal(false);
   };
 
   return (
@@ -297,8 +317,8 @@ const LawPage = () => {
       <section className="flex flex-col gap-12 items-center w-full bg-secondary py-12 px-1 pb-20">
         <div className="w-full max-w-7xl mx-auto">
           {/* Header con título */}
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8">
-            <h1 className="text-2xl sm:text-4xl lg:text-[45px] font-bold text-clearIceFullLight text-center">
+          <div className="flex justify-center mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-bold text-clearIceFullLight text-center">
               Relacionado al Desarrollo de Software
             </h1>
           </div>
@@ -319,7 +339,7 @@ const LawPage = () => {
               </button>
               
               {expandedItems.iaGenerativa && (
-                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center">
+                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
                     <p className="text-gray-700 text-sm leading-relaxed text-justify">
                       Proyecto innovador que integra tecnologías de inteligencia artificial generativa en el ámbito judicial. 
@@ -329,7 +349,7 @@ const LawPage = () => {
                   </div>
                   <button 
                     onClick={handleShowIaModal}
-                    className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+                    className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
                   >
                     ver certificación
                   </button>
@@ -350,7 +370,7 @@ const LawPage = () => {
               </button>
               
               {expandedItems.maratonIdeas && (
-                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center">
+                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
                     <p className="text-gray-700 text-sm leading-relaxed text-justify">
                       Evento colaborativo que reúne profesionales del derecho y desarrolladores para crear soluciones 
@@ -358,7 +378,10 @@ const LawPage = () => {
                       para modernizar la justicia argentina.
                     </p>
                   </div>
-                  <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+                  <button 
+                    onClick={handleShowMaratonModal}
+                    className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+                  >
                     ver certificación
                   </button>
                 </div>
@@ -375,11 +398,11 @@ const LawPage = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
                                  <span className="text-secondary font-medium sm:hidden">Investigación Aplicada</span>
-                 <span className="text-secondary font-medium hidden sm:block">Proyectos de Investigación Aplicada</span>
+                 <span className="text-secondary font-medium hidden sm:block">Proyectos de Investigación Aplicada (PIA)</span>
               </button>
               
               {expandedItems.proyectosInvestigacion && (
-                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center">
+                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
                     <p className="text-gray-700 text-sm leading-relaxed text-justify">
                       Investigación aplicada que combina conocimientos jurídicos con desarrollo de software. 
@@ -387,7 +410,10 @@ const LawPage = () => {
                       contribuyendo al avance tecnológico en la justicia.
                     </p>
                   </div>
-                  <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+                  <button 
+                    onClick={handleShowInvestigacionModal}
+                    className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+                  >
                     ver certificación
                   </button>
                 </div>
@@ -481,6 +507,90 @@ const LawPage = () => {
                 className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[163px] lg:top-[123px] md:right-6 lg:right-24 xl:right-1/2 xl:top-[75px]"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Modal de Maratón de Ideas */}
+      {showMaratonModal && (
+        <>
+          {/* Overlay con blur */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
+            onClick={handleCloseMaratonModal}
+          />
+
+          {/* Modal centrado */}
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={handleCloseMaratonModal}
+          >
+            <div
+              className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Contenido del modal */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-primary mb-4">
+                  Certificación en curso
+                </h3>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  La certificación para el proyecto "Maratón de ideas justicIA" se encuentra actualmente en proceso de evaluación.
+                </p>
+              </div>
+              
+              {/* Botón de cerrar */}
+              <button
+                onClick={handleCloseMaratonModal}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Modal de Investigación Aplicada */}
+      {showInvestigacionModal && (
+        <>
+          {/* Overlay con blur */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
+            onClick={handleCloseInvestigacionModal}
+          />
+
+          {/* Modal centrado */}
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={handleCloseInvestigacionModal}
+          >
+            <div
+              className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Contenido del modal */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-primary mb-4">
+                  Proyecto pendiente de aprobación por comité evaluador
+                </h3>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  El proyecto de investigación aplicada se encuentra actualmente en revisión por el comité evaluador correspondiente.
+                </p>
+              </div>
+              
+              {/* Botón de cerrar */}
+              <button
+                onClick={handleCloseInvestigacionModal}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
