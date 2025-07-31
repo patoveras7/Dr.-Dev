@@ -6,11 +6,21 @@ const LawPage = () => {
   const [selectedYear, setSelectedYear] = useState(null);
   const [showImageModal, setShowImageModal] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
+  const [expandedItems, setExpandedItems] = useState({
+    iaGenerativa: false,
+    maratonIdeas: false,
+    proyectosInvestigacion: false
+  });
+  const [showIaModal, setShowIaModal] = useState(false);
 
   // Datos de certificaciones por año (JPG)
   const certificationsData = {
-    2021: [],
+    2021: [
+      "TITULO ANVERSO Y REVERSO._page-0001.jpg",
+      "WhatsApp Image 2025-07-31 at 16.31.44.jpeg"
+    ],
     2022: [
+      "TITULO ESCRIBANO.-_page-0001.jpg",
       "20221214_JusticiaCordoba_Certificado_veras14584_page-0001.jpg",
       "20221226_JusticiaCordoba_Certificado_veras14584_page-0001.jpg",
       "20221227_JusticiaCordoba_Certificado_veras14584 (1)_page-0001.jpg",
@@ -36,6 +46,8 @@ const LawPage = () => {
       "20250702_JusticiaCordoba_Certificado_veras14584 (3)_page-0001.jpg"
     ],
     destacadas: [
+      "TITULO ESCRIBANO.-_page-0001.jpg",
+      "TITULO ANVERSO Y REVERSO._page-0001.jpg",
       "20250702_JusticiaCordoba_Certificado_veras14584 (1)_page-0001.jpg",
       "20250702_JusticiaCordoba_Certificado_veras14584 (2)_page-0001.jpg"
     ]
@@ -69,6 +81,7 @@ const LawPage = () => {
       if (e.key === "Escape") {
         setShowImageModal(false);
         setCurrentImage("");
+        setShowIaModal(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -100,6 +113,21 @@ const LawPage = () => {
   const getCertificationDescription = (filename) => {
     // Descripción de ejemplo basada en el archivo
     return "Certificación oficial emitida por la Justicia de Córdoba.";
+  };
+
+  const toggleExpandedItem = (itemKey) => {
+    setExpandedItems(prev => ({
+      ...prev,
+      [itemKey]: !prev[itemKey]
+    }));
+  };
+
+  const handleShowIaModal = () => {
+    setShowIaModal(true);
+  };
+
+  const handleCloseIaModal = () => {
+    setShowIaModal(false);
   };
 
   return (
@@ -150,7 +178,7 @@ const LawPage = () => {
       </section>
 
       {/* SECCIÓN 2: Certificaciones por año */}
-      <section className="flex items-start justify-center px-1 pb-20">
+      <section className="flex items-start justify-center px-1">
         <div className="container mx-auto">
           <motion.h2
             className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-primary mb-8 lg:mb-12 text-left ml-[10px] sm:ml-[18px] lg:ml-[25px]"
@@ -164,7 +192,7 @@ const LawPage = () => {
 
           {/* Panel de selección de año */}
           <motion.div
-            className="flex flex-wrap gap-3 mb-8 px-4 lg:px-7 justify-center sm:justify-start"
+            className="flex flex-wrap pb-10 gap-3 px-4 lg:px-7 justify-center sm:justify-start"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -217,7 +245,7 @@ const LawPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="flex flex-col gap-6 justify-center items-center md:px-[30px] lg:px-[40px] xl:px-[50px]">
+              <div className="flex flex-col gap-6 justify-center items-center md:px-[30px] lg:px-[40px] xl:px-[50px] pb-10">
                 {certificationsData[selectedYear].map((pdfFile, index) => (
                   <motion.div
                     key={index}
@@ -265,6 +293,110 @@ const LawPage = () => {
         </div>
       </section>
 
+      {/* SECCIÓN 3: Relacionado al Desarrollo de Software */}
+      <section className="flex flex-col gap-12 items-center w-full bg-secondary py-12 px-1 pb-20">
+        <div className="w-full max-w-7xl mx-auto">
+          {/* Header con título */}
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8">
+            <h1 className="text-2xl sm:text-4xl lg:text-[45px] font-bold text-clearIceFullLight text-center">
+              Relacionado al Desarrollo de Software
+            </h1>
+          </div>
+
+          {/* Elementos desplegables */}
+          <div className="flex flex-col gap-4 w-[80%] md:w-[70%] lg:w-[60%] mx-auto">
+            
+            {/* Elemento 1: IA generativa en la Justicia */}
+            <div className="bg-clearIceFullLight rounded-lg overflow-hidden">
+              <button
+                onClick={() => toggleExpandedItem('iaGenerativa')}
+                className="w-full p-2 flex items-center gap-3 hover:bg-clearIceFullLight/90 transition-colors duration-200"
+              >
+                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                <span className="text-secondary font-medium">IA generativa en la Justicia</span>
+              </button>
+              
+              {expandedItems.iaGenerativa && (
+                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center">
+                  <div className="mb-4">
+                    <p className="text-gray-700 text-sm leading-relaxed text-justify">
+                      Proyecto innovador que integra tecnologías de inteligencia artificial generativa en el ámbito judicial. 
+                      Desarrollamos soluciones que optimizan procesos legales, automatizan análisis de documentos y mejoran 
+                      la eficiencia en la administración de justicia.
+                    </p>
+                  </div>
+                  <button 
+                    onClick={handleShowIaModal}
+                    className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+                  >
+                    ver certificación
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Elemento 2: Maratón de ideas justicIA */}
+            <div className="bg-clearIceFullLight rounded-lg overflow-hidden">
+              <button
+                onClick={() => toggleExpandedItem('maratonIdeas')}
+                className="w-full p-2 flex items-center gap-3 hover:bg-clearIceFullLight/90 transition-colors duration-200"
+              >
+                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                <span className="text-secondary font-medium">Maratón de ideas justicIA</span>
+              </button>
+              
+              {expandedItems.maratonIdeas && (
+                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center">
+                  <div className="mb-4">
+                    <p className="text-gray-700 text-sm leading-relaxed text-justify">
+                      Evento colaborativo que reúne profesionales del derecho y desarrolladores para crear soluciones 
+                      tecnológicas innovadoras en el campo legal. Fomentamos la creatividad y el intercambio de ideas 
+                      para modernizar la justicia argentina.
+                    </p>
+                  </div>
+                  <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+                    ver certificación
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Elemento 3: Proyectos de Investigación Aplicada */}
+            <div className="bg-clearIceFullLight rounded-lg overflow-hidden">
+              <button
+                onClick={() => toggleExpandedItem('proyectosInvestigacion')}
+                className="w-full p-2 flex items-center gap-3 hover:bg-clearIceFullLight/90 transition-colors duration-200"
+              >
+                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                                 <span className="text-secondary font-medium sm:hidden">Investigación Aplicada</span>
+                 <span className="text-secondary font-medium hidden sm:block">Proyectos de Investigación Aplicada</span>
+              </button>
+              
+              {expandedItems.proyectosInvestigacion && (
+                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center">
+                  <div className="mb-4">
+                    <p className="text-gray-700 text-sm leading-relaxed text-justify">
+                      Investigación aplicada que combina conocimientos jurídicos con desarrollo de software. 
+                      Desarrollamos herramientas y aplicaciones que resuelven problemas reales en el ámbito legal, 
+                      contribuyendo al avance tecnológico en la justicia.
+                    </p>
+                  </div>
+                  <button className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg">
+                    ver certificación
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Modal de visualización de imagen */}
       {showImageModal && (
         <>
@@ -300,6 +432,52 @@ const LawPage = () => {
               {/* Botón de cerrar fijo sobre la imagen */}
               <button
                 onClick={handleCloseModal}
+                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[163px] lg:top-[123px] md:right-6 lg:right-24 xl:right-1/2 xl:top-[75px]"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Modal de visualización de imagen de IA */}
+      {showIaModal && (
+        <>
+          {/* Overlay con blur */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
+            onClick={handleCloseIaModal}
+          />
+
+          {/* Modal centrado */}
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={handleCloseIaModal}
+          >
+            <div
+              className="relative overflow-y-auto overflow-x-auto md:overflow-hidden md:max-h-none md:max-w-none"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Imagen de la certificación de IA */}
+              <img
+                src="/certificaciones/Relacionados/IA generativa en la justicia.jpg"
+                alt="Certificación IA Generativa"
+                className="certification-image w-[700px] h-[500px] sm:w-[800px] sm:h-[600px] md:w-[730px] md:h-[530px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill"
+                style={{ minWidth: '700px' }}
+                onLoad={(e) => {
+                  if (window.innerWidth >= 640 && window.innerWidth < 768) {
+                    e.target.style.minWidth = '1000px';
+                  } else if (window.innerWidth >= 768) {
+                    e.target.style.minWidth = 'auto';
+                  }
+                }}
+              />
+              {/* Botón de cerrar fijo sobre la imagen */}
+              <button
+                onClick={handleCloseIaModal}
                 className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[163px] lg:top-[123px] md:right-6 lg:right-24 xl:right-1/2 xl:top-[75px]"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
