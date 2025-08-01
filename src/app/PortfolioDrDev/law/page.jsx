@@ -707,7 +707,7 @@ const LawPage = () => {
       )}
 
      {/* SECCIÓN 4: De interés */}
-<section className="flex items-start justify-start px-2 pt-10 pb-20 bg-clearIceFullLight">
+<section className="flex items-start justify-start px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 pt-10 pb-20 bg-clearIceFullLight">
   <div className="container mx-auto">
     {/* Título de la sección */}
     <motion.h1
@@ -918,12 +918,12 @@ const LawPage = () => {
   </div>
 </section>
 
-      {/* Botón Volver */}
+      {/* Botón Home */}
       <button
         onClick={() => window.location.href = '/PortfolioDrDev/home'}
         className="fixed z-50 right-16 top-2.5 sm:top-4 sm:right-20 md:top-6 md:right-[85px] lg:top-8 lg:right-[100px] xl:top-10 xl:right-[120px] bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-2 py-1 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
       >
-        volver
+        home
       </button>
 
 
