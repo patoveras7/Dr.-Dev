@@ -14,6 +14,13 @@ const LawPage = () => {
   const [showIaModal, setShowIaModal] = useState(false);
   const [showMaratonModal, setShowMaratonModal] = useState(false);
   const [showInvestigacionModal, setShowInvestigacionModal] = useState(false);
+  const [expandedDescriptions, setExpandedDescriptions] = useState({
+    escribano: false,
+    procurador: false,
+    abogado: false
+  });
+  const [showAllCertifications, setShowAllCertifications] = useState(false);
+  const [isBlinking, setIsBlinking] = useState(false);
 
   // Datos de certificaciones por año (JPG)
   const certificationsData = {
@@ -63,6 +70,7 @@ const LawPage = () => {
     } else {
       setSelectedYear(year);
     }
+    setShowAllCertifications(false);
   };
 
   const handleImageClick = (imagePath) => {
@@ -113,6 +121,19 @@ const LawPage = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [showImageModal]);
 
+  // Timer para parpadeo del botón "ver más"
+  useEffect(() => {
+    if (selectedYear && certificationsData[selectedYear] && certificationsData[selectedYear].length > 4 && !showAllCertifications) {
+      const blinkInterval = setInterval(() => {
+        setIsBlinking(prev => !prev);
+      }, 1000); // Parpadea cada 1 segundo
+
+      return () => clearInterval(blinkInterval);
+    } else {
+      setIsBlinking(false);
+    }
+  }, [selectedYear, showAllCertifications]);
+
 
   const getCertificationDescription = (filename) => {
     // Descripción de ejemplo basada en el archivo
@@ -148,6 +169,17 @@ const LawPage = () => {
 
   const handleCloseInvestigacionModal = () => {
     setShowInvestigacionModal(false);
+  };
+
+  const toggleDescription = (descriptionKey) => {
+    setExpandedDescriptions(prev => ({
+      ...prev,
+      [descriptionKey]: !prev[descriptionKey]
+    }));
+  };
+
+  const toggleShowAllCertifications = () => {
+    setShowAllCertifications(!showAllCertifications);
   };
 
   return (
@@ -257,7 +289,7 @@ const LawPage = () => {
             </button>
           </motion.div>
 
-          {/* Contenedores por año (render condicional) */}
+                    {/* Contenedores por año (render condicional) */}
           {selectedYear && certificationsData[selectedYear] && (
             <motion.div
               className=""
@@ -266,7 +298,9 @@ const LawPage = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <div className="flex flex-col gap-6 justify-center items-center md:px-[30px] lg:px-[40px] xl:px-[50px] pb-10">
-                {certificationsData[selectedYear].map((pdfFile, index) => (
+                {certificationsData[selectedYear]
+                  .slice(0, showAllCertifications ? certificationsData[selectedYear].length : 4)
+                  .map((pdfFile, index) => (
                   <motion.div
                     key={index}
                     className="flex w-[98%] h-[110px] bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
@@ -276,8 +310,10 @@ const LawPage = () => {
                     transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
                   >
-                                         {/* Miniatura (38% del ancho) */}
-                     <div className="w-[48%] sm:w-[37%] lg:w-[30%] xl:w-[25%] bg-primary flex items-center justify-center p-2">
+                     {/* Miniatura (38% del ancho) */}
+                     <div className={`w-[48%] sm:w-[37%] lg:w-[30%] xl:w-[25%] flex items-center justify-center p-2 ${
+                       selectedYear === "destacadas" ? "bg-clearYellow" : "bg-primary"
+                     }`}>
                        <div className="w-full h-full bg-white rounded-lg overflow-hidden shadow-sm">
                        <img
                            src={`/certificaciones/${selectedYear === "destacadas" ? "Destacadas" : selectedYear}/${pdfFile}`}
@@ -295,6 +331,54 @@ const LawPage = () => {
                     </div>
                   </motion.div>
                 ))}
+
+                {/* Botón "Ver más" cuando hay más de 4 certificaciones */}
+                {certificationsData[selectedYear].length > 4 && !showAllCertifications && (
+                  <motion.div
+                    className="w-[98%] flex justify-center items-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                  >
+                    <button
+                      onClick={toggleShowAllCertifications}
+                      className={`flex items-center gap-2 px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${
+                        isBlinking 
+                          ? "bg-primary border-primary" 
+                          : "bg-white border-gray-200 hover:border-primary"
+                      }`}
+                    >
+                      <div className="w-full h-0.5 bg-gray-300 flex-1"></div>
+                      <svg className={`w-5 h-5 transform transition-all duration-300 ${
+                        isBlinking ? "text-clearIceFullLight" : "text-primary"
+                      }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                      <div className="w-full h-0.5 bg-gray-300 flex-1"></div>
+                    </button>
+                  </motion.div>
+                )}
+
+                {/* Botón "Ver menos" cuando están todas las certificaciones mostradas */}
+                {certificationsData[selectedYear].length > 4 && showAllCertifications && (
+                  <motion.div
+                    className="w-[98%] flex justify-center items-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                  >
+                    <button
+                      onClick={toggleShowAllCertifications}
+                      className="flex items-center gap-2 px-6 py-3 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gray-200 hover:border-primary"
+                    >
+                      <div className="w-full h-0.5 bg-gray-300 flex-1"></div>
+                      <svg className="w-5 h-5 text-primary transform rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                      <div className="w-full h-0.5 bg-gray-300 flex-1"></div>
+                    </button>
+                  </motion.div>
+                )}
               </div>
             </motion.div>
           )}
@@ -504,7 +588,7 @@ const LawPage = () => {
               {/* Botón de cerrar fijo sobre la imagen */}
               <button
                 onClick={handleCloseIaModal}
-                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[163px] lg:top-[123px] md:right-6 lg:right-24 xl:right-1/2 xl:top-[75px]"
+                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[157px] lg:top-[111px] md:right-8 lg:right-24 xl:right-1/2 xl:top-[62px]"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -598,6 +682,220 @@ const LawPage = () => {
           </div>
         </>
       )}
+
+      {/* SECCIÓN 4: De interés */}
+      <section className="flex items-start justify-start px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-32 bg-clearIceFullLight">
+        <div className="container mx-auto">
+          {/* Título de la sección */}
+          <motion.h1
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold text-primary mb-12 lg:mb-16 text-left"
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            De interés
+          </motion.h1>
+
+          {/* Contenido principal */}
+          <div className="max-w-4xl">
+            {/* Header de la empresa */}
+            <motion.div
+              className="flex items-center gap-4 mb-8"
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <img
+                src="/images/PODER JUDICIAL.png"
+                alt="Poder Judicial"
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+              />
+              <div className="flex flex-col">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800">
+                  Poder Judicial de la Provincia de Córdoba
+                </h2>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Jornada Completa - 5 años
+                </p>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Argentina - Presencial
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Timeline de experiencia laboral */}
+            <div className="relative">
+              {/* Línea vertical - termina en el punto del Abogado */}
+              <motion.div
+                className="absolute left-4 sm:left-6 top-0 w-0.5 bg-gray-300"
+                style={{ height: 'calc(100% - 8rem)' }}
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              />
+
+              {/* Puesto 1 */}
+              <motion.div
+                className="relative flex items-start gap-6 sm:gap-8 mb-8"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              >
+                {/* Punto en la línea */}
+                <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
+                
+                {/* Contenido */}
+                <div className="ml-12 sm:ml-16 flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
+                      Escribano Público
+                    </h3>
+                    <img
+                      src="/images/MPF.png"
+                      alt="MPF"
+                      className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
+                    />
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 mb-3">
+                    ene. 2023 - actualidad · 2 años 3 meses
+                  </p>
+                  <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    <p className={expandedDescriptions.escribano ? "" : "line-clamp-3"}>
+                      Ejercicio profesional como Escribano Público, realizando actos de fe pública, 
+                      protocolización de documentos, asesoramiento legal y gestión de trámites notariales. 
+                      Especialización en derecho civil, comercial y sucesorio.
+                      {!expandedDescriptions.escribano && (
+                        <button 
+                          onClick={() => toggleDescription('escribano')}
+                          className="text-secondary font-bold ml-1 hover:underline"
+                        >
+                          ... ver más
+                        </button>
+                      )}
+                    </p>
+                    {expandedDescriptions.escribano && (
+                      <button 
+                        onClick={() => toggleDescription('escribano')}
+                        className="text-secondary font-bold hover:underline mt-2"
+                      >
+                        ... ver menos
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Puesto 2 */}
+              <motion.div
+                className="relative flex items-start gap-6 sm:gap-8 mb-8"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+              >
+                {/* Punto en la línea */}
+                <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
+                
+                {/* Contenido */}
+                <div className="ml-12 sm:ml-16 flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
+                      Procurador
+                    </h3>
+                    <img
+                      src="/images/MPF.png"
+                      alt="MPF"
+                      className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
+                    />
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 mb-3">
+                    jun. 2021 - dic. 2022 · 1 año 6 meses
+                  </p>
+                  <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    <p className={expandedDescriptions.procurador ? "" : "line-clamp-3"}>
+                      Representación legal en procesos judiciales, gestión de expedientes, 
+                      presentación de escritos y asesoramiento jurídico especializado. 
+                      Manejo de casos en diversas áreas del derecho.
+                      {!expandedDescriptions.procurador && (
+                        <button 
+                          onClick={() => toggleDescription('procurador')}
+                          className="text-secondary font-bold ml-1 hover:underline"
+                        >
+                          ... ver más
+                        </button>
+                      )}
+                    </p>
+                    {expandedDescriptions.procurador && (
+                      <button 
+                        onClick={() => toggleDescription('procurador')}
+                        className="text-secondary font-bold hover:underline mt-2"
+                      >
+                        ... ver menos
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Puesto 3 */}
+              <motion.div
+                className="relative flex items-start gap-6 sm:gap-8"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+              >
+                {/* Punto en la línea */}
+                <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
+                
+                {/* Contenido */}
+                <div className="ml-12 sm:ml-16 flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
+                      Abogado
+                    </h3>
+                    <img
+                      src="/images/MPF.png"
+                      alt="MPF"
+                      className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
+                    />
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 mb-3">
+                    mar. 2020 - may. 2021 · 1 año 2 meses
+                  </p>
+                  <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    <p className={expandedDescriptions.abogado ? "" : "line-clamp-3"}>
+                      Ejercicio de la abogacía con especialización en derecho civil y comercial. 
+                      Asesoramiento legal integral, representación en juicios y mediaciones. 
+                      Desarrollo de estrategias legales personalizadas para cada caso.
+                      {!expandedDescriptions.abogado && (
+                        <button 
+                          onClick={() => toggleDescription('abogado')}
+                          className="text-secondary font-bold ml-1 hover:underline"
+                        >
+                          ... ver más
+                        </button>
+                      )}
+                    </p>
+                    {expandedDescriptions.abogado && (
+                      <button 
+                        onClick={() => toggleDescription('abogado')}
+                        className="text-secondary font-bold hover:underline mt-2"
+                      >
+                        ... ver menos
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Botón Volver */}
       <button
