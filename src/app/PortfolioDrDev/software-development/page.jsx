@@ -595,7 +595,7 @@ useEffect(() => {
                 Por qué Dr. Dev??
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto lg:mx-0">
-                Dr. Dev representa la excelencia en el desarrollo de software, combinando la precisión científica con la creatividad artística. Como un médico diagnostica y cura, un Dr. Dev analiza problemas complejos y crea soluciones innovadoras. La pasión por el código limpio, la arquitectura robusta y la experiencia de usuario excepcional define cada proyecto, transformando ideas en realidades digitales que impactan positivamente en la vida de las personas.
+              Mi background consta de graduación y experiencia en una gran cantidad de rubros lo cual es fiel reflejo de mi responsabilidad, disciplina y optimismo a la hora de aprender nuevas habilidades y desenvolverme en el campo laboral, cualquiera sea la dedicacion que se requiera. Creo firmemente en el trabajo duro y en responder con mi maximo esfuerzo a quienes me brindaron su confianza, si me das la oportunidad con total seguridad te seré de gran utilidad. Dr. Dev se jacta de poseer una gran capacidad de gestión, por lo que si existe alguna solicitud que requiera de investigacion para llevarse a cabo, se encontrará la forma de concretarla. Además, la pasión por el código limpio, la arquitectura robusta y la experiencia de usuario excepcional define cada proyecto, transformando ideas en realidades digitales que impactan positivamente en la vida de las personas.
               </p>
             </motion.div>
 
@@ -760,7 +760,7 @@ useEffect(() => {
                 ].map((tech, index) => (
                   <div key={`duplicate-1-${index}`} className="flex-shrink-0">
                     <img
-                    
+
                       src={tech}
                       alt={`Tech ${index + 1}`}
                       className={`w-20 h-20 sm:w-24 sm:h-24 object-contain ${tech.includes('Next.png') ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40' : ''}`}
