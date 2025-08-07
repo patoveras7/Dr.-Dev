@@ -228,10 +228,10 @@ useEffect(() => {
                 Desarrollando soluciones innovadoras y aplicaciones web modernas que transforman ideas en realidad digital.
               </p>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
-                Especializado en tecnologías frontend y backend, creando experiencias de usuario excepcionales y sistemas robustos que escalan con tu negocio.
+                Dr. Dev está especializado en tecnologías frontend y backend, creando experiencias de usuario excepcionales y sistemas robustos que escalan con tu negocio. Desde aplicaciones web responsivas hasta sistemas complejos de gestión, cada proyecto es una oportunidad para innovar y superar expectativas.
               </p>
-              <p className="text-sm sm:text-base md:text-lg text-gray-500 leading-relaxed">
-                Desde aplicaciones web responsivas hasta sistemas complejos de gestión, cada proyecto es una oportunidad para innovar y superar expectativas.
+              <p className="text-sm sm:text-base md:text-lg text-gray-500 leading-relaxed italic font-semibold">
+              "Sólo aquellos que se atreven a desafiar lo establecido pueden crear lo imposible"
               </p>
             </motion.div>
 
