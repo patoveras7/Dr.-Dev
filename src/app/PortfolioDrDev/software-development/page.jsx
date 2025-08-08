@@ -355,13 +355,13 @@ useEffect(() => {
       </section>
 
       {/* SECCIÓN 3: Proyectos individuales */}
-      <section className="flex flex-col gap-12 items-center w-full mt-8 bg-clearIceFullLight py-12">
+      <section className="flex flex-col gap-12 items-center w-full mt-3 bg-clearIceFullLight pb-[48px] pt-[15px]">
         {/* PARTE 1: Alkemy Pocket */}
         <div id="alkemy-pocket" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto mt-[30px] lg:mt-[50px] xl:mt-[70px]">
           {/* Header unificado */}
           <div className="mb-4 w-full">
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
-              <span className="font-extrabold underline text-primary">AlkemyPocket</span>: Ejemplo de descripción del proyecto Alkemy Pocket. Aquí irá una breve explicación del objetivo y funcionalidades principales.
+            <p className="text-base sm:text-xl md:text-2xl text-gray-600 text-justify px-3 leading-tight">
+              <span className="font-extrabold underline text-primary">AlkemyPocket</span>: Desarrollo de billetera virtual "digitalizando" el bolsillo del consumidor. La aplicación cuenta con una interfaz interactiva, responsiva e intuitiva para el cliente capaz de efectuar depósitos, concretar transacciones, listar contactos frecuentes, extraer dinero, asociar tarjetas o solicitar alta de nuevas cuentas tanto en pesos argentinos como en moneda extranjera. La integración de la API con la base de datos y el frontend puede visualizarse en "ver tecnologías" no obstante se invita a visualizar el código desde GitHub cuyo link se encuentra presente en la barra de navegación o directamente desde "ver código". 
             </p>
           </div>
           {/* Carousel */}
@@ -516,7 +516,7 @@ useEffect(() => {
           </div>
 
           {/* Carousel de Fullness */}
-          <div className="relative overflow-hidden rounded-2xl">
+          <div className="relative overflow-hidden rounded-2xl px-2">
             <div 
               className="flex gap-4 transition-transform duration-500 ease-in-out"
               style={{
@@ -526,7 +526,7 @@ useEffect(() => {
               {fullnessSlides.map((image, index) => (
                 <div 
                   key={index}
-                  className="flex-shrink-0 w-[270px] h-[400px] sm:w-[470px] sm:h-[360px] md:w-[330px] md:h-[410px] lg:w-[450px] lg:h-[440px] xl:w-[630px] xl:h-[500px] bg-clearIceFullLight rounded-2xl overflow-hidden shadow-lg"
+                  className="flex-shrink-0 w-full h-[400px] sm:w-[470px] sm:h-[360px] md:w-[330px] md:h-[410px] lg:w-[450px] lg:h-[440px] xl:w-[630px] xl:h-[500px] bg-clearIceFullLight rounded-2xl overflow-hidden shadow-lg"
                 >
                   {/* Imagen (80% del espacio) */}
                   <div className="w-full h-[80%] relative">
