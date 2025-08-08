@@ -34,7 +34,7 @@ const Navbar = () => {
 
   const collapsedWidths = 'w-[70px] sm:w-[85px] md:w-[100px] lg:w-[115px] xl:w-[130px] flex items-center justify-center';
   // Solo XS (<=350px): usar 38% del ancho de la pantalla
-  const expandedWidths = 'w-[160px] max-[350px]:w-[42vw] sm:w-[256px] md:w-[307px] lg:w-[410px] xl:w-[512px]';
+  const expandedWidths = 'w-[160px] max-[350px]:w-[190px] sm:w-[256px] md:w-[307px] lg:w-[410px] xl:w-[512px]';
 
   return (
     <>
