@@ -8,6 +8,10 @@ const Navbar = () => {
   const { isNavbarExpanded, setIsNavbarExpanded } = useNavbar();
   const audioRef = useRef(null);
   const [showArrows, setShowArrows] = useState(false);
+  const [showB2Modal, setShowB2Modal] = useState(false);
+  const [b2ImgIdx, setB2ImgIdx] = useState(0);
+  const b2ImgCandidates = ['/EF SET Certificate_page-0001.jpg'];
+  const [b2ViewerUrl, setB2ViewerUrl] = useState('');
 
   useEffect(() => {
     if (!isNavbarExpanded) {
@@ -31,6 +35,32 @@ const Navbar = () => {
   const handleCollapse = () => {
     setIsNavbarExpanded(false);
   };
+
+  // Cerrar modal B2 con Escape
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setShowB2Modal(false);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  // URL del visor de Google como fallback final al PDF
+  useEffect(() => {
+    if (!showB2Modal) return;
+    try {
+      const origin = window.location.origin;
+      const pdfUrl = `${origin}/EF%20SET%20Certificate.pdf`;
+      const viewer = `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(pdfUrl)}`;
+      setB2ViewerUrl(viewer);
+    } catch (_) {
+      setB2ViewerUrl('');
+    }
+  }, [showB2Modal]);
+
+  // Sin cálculo dinámico: usamos clases responsivas para mantener forma del JPG
 
   const collapsedWidths = 'w-[70px] sm:w-[85px] md:w-[100px] lg:w-[115px] xl:w-[130px] flex items-center justify-center';
   // Solo XS (<=350px): usar 38% del ancho de la pantalla
@@ -146,22 +176,22 @@ const Navbar = () => {
             <div className="flex justify-center items-center pb-4 pt-2 md:pt-2 md:pb-2 lg:pt-1 lg:pb-1 xl:pt-1 xl:pb-1 lg:mt-4">
               <div className="flex flex-col gap-3 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-5 lg:flex-row">
                 <div className="flex gap-3 sm:gap-4 md:gap-3 lg:gap-4 xl:gap-5">
-                  <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer"
+                  <a href="https://github.com/patoveras7" target="_blank" rel="noopener noreferrer"
                     className="flex justify-center items-center hover:scale-110 transition-transform duration-200 w-auto h-auto">
                     <img src="/images/github.png" alt="GitHub" className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14" draggable="false" />
                   </a>
-                  <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer"
+                  <a href="https://www.linkedin.com/in/patricio-veras" target="_blank" rel="noopener noreferrer"
                     className="flex justify-center items-center hover:scale-110 transition-transform duration-200 w-auto h-auto">
                     <img src="/images/linkedin.png" alt="LinkedIn" className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14" draggable="false" />
                   </a>
                 </div>
 
                 <div className="flex gap-3 sm:gap-4 md:gap-3 lg:gap-4 xl:gap-5">
-                  <a href="https://instagram.com/tu-usuario" target="_blank" rel="noopener noreferrer"
+                  <a href="https://www.instagram.com/patoveras7" target="_blank" rel="noopener noreferrer"
                     className="flex justify-center items-center hover:scale-110 transition-transform duration-200 w-auto h-auto">
                     <img src="/images/instagram.png" alt="Instagram" className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14" draggable="false" />
                   </a>
-                  <a href="mailto:tu-email@gmail.com" target="_blank" rel="noopener noreferrer"
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=patricioverasc@gmail.com" target="_blank" rel="noopener noreferrer"
                     className="flex justify-center items-center hover:scale-110 transition-transform duration-200 w-auto h-auto">
                     <img src="/images/gmail.png" alt="Gmail" className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14" draggable="false" />
                   </a>
@@ -181,7 +211,7 @@ const Navbar = () => {
 
             <div className="flex flex-col justify-center gap-12 sm:gap-8 lg:gap-4 xl:gap-6 max-[639px]:pb-0 sm:pb-4 lg:pb-2 max-[639px]:my-auto md:pt-5">
               <div className="flex flex-col items-center gap-6 sm:gap-4 md:gap-3 lg:gap-2 xl:gap-3 sm:pt-2 md:pt-1">
-                <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
+                <button onClick={() => setShowB2Modal(true)} className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
                   text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]
                   font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
                   B2 Upper
@@ -231,6 +261,51 @@ const Navbar = () => {
                 © 2025 Dr. Dev - All rights reserved
               </div>
             </div>
+            {/* Modal B2 Upper */}
+            {showB2Modal && (
+              <>
+                {/* Overlay con blur */}
+                <div
+                  className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[60]"
+                  onClick={() => setShowB2Modal(false)}
+                />
+
+                {/* Contenido centrado */}
+                <div
+                  className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+                  onClick={() => setShowB2Modal(false)}
+                >
+                  <div
+                    className="relative flex flex-col items-center"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <button
+                      onClick={() => setShowB2Modal(false)}
+                      className="mb-2 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    {b2ImgIdx < b2ImgCandidates.length ? (
+                      <img
+                        src={b2ImgCandidates[b2ImgIdx]}
+                        alt="EF SET Certificate"
+                        className="w-[90vw] h-auto sm:w-[520px] md:w-[620px] lg:w-[720px] xl:w-[820px] 2xl:w-[920px] max-h-[85vh] object-contain rounded-xl shadow-2xl"
+                        onError={() => setB2ImgIdx((i) => i + 1)}
+                      />
+                    ) : (
+                      <iframe
+                        src={b2ViewerUrl}
+                        title="EF SET Certificate"
+                        className="w-[90vw] h-[70vh] sm:w-[520px] md:w-[620px] lg:w-[720px] xl:w-[820px] 2xl:w-[920px] rounded-xl shadow-2xl bg-white"
+                        style={{ border: 'none' }}
+                      />
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         )}
         <audio ref={audioRef} src="/hammer.mp3" preload="auto" />

@@ -565,7 +565,7 @@ const LawPage = () => {
               {/* Botón de cerrar fijo sobre la imagen */}
               <button
                 onClick={handleCloseModal}
-                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[163px] lg:top-[123px] md:right-6 lg:right-24 xl:right-1/2 xl:top-[75px]"
+                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-32 sm:top-16 right-1/2 md:top-28 lg:top-20 xl:top-9"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
