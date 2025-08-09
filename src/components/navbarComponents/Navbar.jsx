@@ -143,8 +143,8 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="flex justify-center items-center pb-4 pt-4 md:pt-2 md:pb-2 lg:pt-1 lg:pb-1 xl:pt-1 xl:pb-1">
-              <div className="flex flex-col gap-3 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-5">
+            <div className="flex justify-center items-center pb-4 pt-2 md:pt-2 md:pb-2 lg:pt-1 lg:pb-1 xl:pt-1 xl:pb-1 lg:mt-4">
+              <div className="flex flex-col gap-3 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-5 lg:flex-row">
                 <div className="flex gap-3 sm:gap-4 md:gap-3 lg:gap-4 xl:gap-5">
                   <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer"
                     className="flex justify-center items-center hover:scale-110 transition-transform duration-200 w-auto h-auto">
@@ -179,8 +179,13 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col justify-center gap-12 md:gap-6 lg:gap-4 xl:gap-6 pb-4 lg:pb-2">
-              <div className="flex flex-col items-center gap-6 md:gap-3 lg:gap-2 xl:gap-6 pt-4 md:pt-1 lg:pt-1 xl:pt-1">
+            <div className="flex flex-col justify-center gap-10 sm:gap-8 md:gap-6 lg:gap-4 xl:gap-6 pb-4 lg:pb-2 mt-5 mb-6">
+              <div className="flex flex-col items-center gap-3 md:gap-3 lg:gap-2 xl:gap-6 sm:pt-2 md:pt-1">
+                <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
+                  text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]
+                  font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
+                  B2 Upper
+                </button>
                 <button 
                   onClick={() => {
                     handleCollapse();
@@ -188,12 +193,12 @@ const Navbar = () => {
                     window.location.href = '/PortfolioDrDev/software-development#tech-stack';
                   }}
                   className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
-                    text-[12px] sm:text-[16px] md:text-[17px] lg:text-[19px]
+                    text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]
                     font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
                   Stack tecnológico
                 </button>
                 <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
-                  text-[12px] sm:text-[16px] md:text-[17px] lg:text-[19px]
+                  text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]
                   font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
                   Sobre mí
                 </button>
@@ -221,7 +226,7 @@ const Navbar = () => {
               </svg>
             </button>
 
-            <div className="p-4 border-t border-clearIce/20">
+            <div className="mt-auto p-4 border-t border-clearIce/20">
               <div className="text-clearIce/70 text-[12px] text-center">
                 © 2025 Dr. Dev - All rights reserved
               </div>
