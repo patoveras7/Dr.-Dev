@@ -226,8 +226,8 @@ const Navbar = () => {
               </svg>
             </button>
 
-            <div className="mt-auto p-4 border-t border-clearIce/20">
-              <div className="text-clearIce/70 text-[12px] text-center">
+            <div className="mt-auto p-5 border-t border-clearIce/20">
+              <div className="text-clearIce/70 text-[13px] text-center">
                 © 2025 Dr. Dev - All rights reserved
               </div>
             </div>
