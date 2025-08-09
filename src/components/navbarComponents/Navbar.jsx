@@ -34,8 +34,8 @@ const Navbar = () => {
 
   const collapsedWidths = 'w-[70px] sm:w-[85px] md:w-[100px] lg:w-[115px] xl:w-[130px] flex items-center justify-center';
   // Solo XS (<=350px): usar 38% del ancho de la pantalla
-  // ≤639px: 50% del viewport; ≥640px mantienen sus valores fijos
-  const expandedWidths = 'w-[50vw] sm:w-[256px] md:w-[307px] lg:w-[410px] xl:w-[512px]';
+  // ≤639px: 45% del viewport; ≥640px mantienen sus valores fijos
+  const expandedWidths = 'w-[45vw] sm:w-[256px] md:w-[307px] lg:w-[410px] xl:w-[512px]';
 
   return (
     <>
@@ -189,12 +189,12 @@ const Navbar = () => {
                   }}
                   className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
                     text-[12px] sm:text-[16px] md:text-[17px] lg:text-[19px]
-                    font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-full max-w-[120px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
+                    font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
                   Stack tecnológico
                 </button>
                 <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
                   text-[12px] sm:text-[16px] md:text-[17px] lg:text-[19px]
-                  font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-full max-w-[120px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
+                  font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
                   Sobre mí
                 </button>
               </div>
