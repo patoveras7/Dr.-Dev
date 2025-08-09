@@ -476,7 +476,7 @@ useEffect(() => {
         <img
           src={currentTechImage}
           alt="Tecnologías del proyecto"
-          className="w-[330px] h-[190px] sm:w-[500px] sm:h-[280px] md:w-[650px] md:h-[365px] lg:w-[750px] lg:h-[420px] xl:w-[900px] xl:h-[505px] object-contain"
+          className="w-[95vw] h-auto sm:w-[500px] sm:h-[280px] md:w-[650px] md:h-[365px] lg:w-[750px] lg:h-[420px] xl:w-[900px] xl:h-[505px] object-contain"
         />
         {/* Botón de cerrar */}
         <button
