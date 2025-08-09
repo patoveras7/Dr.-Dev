@@ -179,7 +179,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="flex flex-col justify-center gap-10 sm:gap-8 md:gap-6 lg:gap-4 xl:gap-6 pb-4 lg:pb-2 mt-5 mb-6">
+            <div className="flex flex-col justify-center gap-10 sm:gap-8 md:gap-6 lg:gap-4 xl:gap-6 max-[639px]:pb-0 sm:pb-4 lg:pb-2 max-[639px]:my-auto sm:mt-5 sm:mb-6">
               <div className="flex flex-col items-center gap-3 md:gap-3 lg:gap-2 xl:gap-6 sm:pt-2 md:pt-1">
                 <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
                   text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]
