@@ -179,8 +179,8 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="flex flex-col justify-center gap-12 sm:gap-8 md:gap-6 lg:gap-4 xl:gap-6 max-[639px]:pb-0 sm:pb-4 lg:pb-2 max-[639px]:my-auto sm:mt-5 sm:mb-6">
-              <div className="flex flex-col items-center gap-6 md:gap-3 lg:gap-2 xl:gap-6 sm:pt-2 md:pt-1">
+            <div className="flex flex-col justify-center gap-12 sm:gap-8 lg:gap-4 xl:gap-6 max-[639px]:pb-0 sm:pb-4 lg:pb-2 max-[639px]:my-auto md:pt-5">
+              <div className="flex flex-col items-center gap-6 sm:gap-4 md:gap-3 lg:gap-2 xl:gap-3 sm:pt-2 md:pt-1">
                 <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
                   text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]
                   font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
