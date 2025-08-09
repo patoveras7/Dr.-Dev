@@ -396,8 +396,8 @@ useEffect(() => {
         <div id="apple-be" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
           {/* Header unificado */}
           <div className="mb-4 w-full">
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
-              <span className="font-extrabold underline text-primary">AppleBe</span>: Ejemplo de descripción del proyecto AppleBe. Aquí irá una breve explicación del objetivo y funcionalidades principales.
+            <p className="text-base sm:text-xl md:text-2xl text-gray-600 text-justify px-3 leading-tight">
+              <span className="font-extrabold underline text-primary">AppleBe</span>: Plataforma e-commerce  dedicada  a la venta de artículos de tecnología en general pero centrada en su mayoría a la comercialización de productos Apple. El usuario puede observar productos, registrarse, loguearse y completar su carrito de compras. La integración de la API con la base de datos y el frontend puede visualizarse en "ver tecnologías" no obstante se invita a visualizar el código desde GitHub cuyo link se encuentra presente en la barra de navegación o directamente desde "ver código".
             </p>
           </div>
           {/* Carousel */}
@@ -427,8 +427,8 @@ useEffect(() => {
         <div id="rompiendo-barreras" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
           {/* Header unificado */}
           <div className="mb-4 w-full">
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-justify px-3 leading-tight">
-              <span className="font-extrabold underline text-primary">RompiendoBarreras</span>: Ejemplo de descripción del proyecto Rompiendo Barreras. Aquí irá una breve explicación del objetivo y funcionalidades principales.
+            <p className="text-base sm:text-xl md:text-2xl text-gray-600 text-justify px-3 leading-tight">
+              <span className="font-extrabold underline text-primary">RompiendoBarreras</span>: Plataforma web destinada a la enseñanza de todo tipo de idiomas. El sitio acepta el pago de determinadas membresías que posibilitan el acceso a ciertos cursos de distintos lenguajes. Cada lenguaje cuenta con distintos tipos de curso dependiendo la motivación que haya tenido el usuario a la hora de estudiar el idioma, sea rendir un exámen internacional, viajar por placer, viajar por trabajo, trabajar para extranjero, etc. La integración de la API con la base de datos y el frontend puede visualizarse en "ver tecnologías" no obstante se invita a visualizar el código desde GitHub cuyo link se encuentra presente en la barra de navegación o directamente desde "ver código".
             </p>
           </div>
           {/* Carousel */}
@@ -539,7 +539,7 @@ useEffect(() => {
                   {/* Contenido de texto (20% del espacio) */}
                   <div className="h-[20%] p-4 flex flex-col justify-center">
                     <p className="text-gray-700 text-xs sm:text-sm md:text-xs lg:text-sm xl:text-xs leading-tight">
-                      Descripción del proyecto Fullness. Aquí se muestra información relevante sobre las funcionalidades y características principales de esta aplicación profesional.
+                      Fullness es un sitio web interactivo que ofrece servicios de medicina no farmacológica, en especial fisioterapia, conectando a los usuarios (pacientes) con los profesionales en la salud que los atenderán.
                     </p>
                   </div>
                 </div>
@@ -573,7 +573,7 @@ useEffect(() => {
               Fullness
             </h2>
             <p className="text-clearIceFullLight text-justify text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed px-3">
-              Fullness es una aplicación profesional desarrollada con tecnologías modernas que permite a los usuarios gestionar y optimizar sus recursos de manera eficiente. La plataforma ofrece una interfaz intuitiva y funcionalidades avanzadas para mejorar la productividad y organización del trabajo diario.
+              Tuve el enorme placer de trabajar en el proyecto Fullness, que conecta usuarios (pacientes) con profesionales de la salud que los atenderán según el turno acordado en agenda. En el sitio cada profesional de la salud tiene su agenda personalizada y un repertorio donde podrá subir las certificaciones y reconocimientos personales que el paciente podrá analizar al momento de elegir el servicio. Mi intervención en el proyecto se da en el marco de una pasantia en la empresa Fullness de Perú (el proyecto no le pertenece a Dr. Dev). Visita Fullness en <a href="https://www.linkedin.com/company/fisiofullness/" className="text-clearYellow underline">Fisiofullness</a>.
             </p>
           </div>
         </div>
@@ -594,7 +594,7 @@ useEffect(() => {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold text-primary mb-6 leading-tight">
                 Por qué Dr. Dev??
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-xl md:text-2xl text-gray-800 leading-relaxed max-w-4xl mx-auto lg:mx-0">
               Mi background consta de graduación y experiencia en una gran cantidad de rubros lo cual es fiel reflejo de mi responsabilidad, disciplina y optimismo a la hora de aprender nuevas habilidades y desenvolverme en el campo laboral, cualquiera sea la dedicacion que se requiera. Creo firmemente en el trabajo duro y en responder con mi maximo esfuerzo a quienes me brindaron su confianza, si me das la oportunidad con total seguridad te seré de gran utilidad. Dr. Dev se jacta de poseer una gran capacidad de gestión, por lo que si existe alguna solicitud que requiera de investigacion para llevarse a cabo, se encontrará la forma de concretarla. Además, la pasión por el código limpio, la arquitectura robusta y la experiencia de usuario excepcional define cada proyecto, transformando ideas en realidades digitales que impactan positivamente en la vida de las personas.
               </p>
             </motion.div>
