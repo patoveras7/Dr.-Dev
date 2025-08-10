@@ -14,6 +14,7 @@ const LawPage = () => {
   const [showIaModal, setShowIaModal] = useState(false);
   const [showMaratonModal, setShowMaratonModal] = useState(false);
   const [showInvestigacionModal, setShowInvestigacionModal] = useState(false);
+  const [showSolucionSoftwareModal, setShowSolucionSoftwareModal] = useState(false);
   const [expandedDescriptions, setExpandedDescriptions] = useState({
     escribano: false,
     procurador: false,
@@ -95,6 +96,7 @@ const LawPage = () => {
         setShowIaModal(false);
         setShowMaratonModal(false);
         setShowInvestigacionModal(false);
+        setShowSolucionSoftwareModal(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -194,6 +196,14 @@ const LawPage = () => {
     setShowInvestigacionModal(false);
   };
 
+  const handleShowSolucionSoftwareModal = () => {
+    setShowSolucionSoftwareModal(true);
+  };
+
+  const handleCloseSolucionSoftwareModal = () => {
+    setShowSolucionSoftwareModal(false);
+  };
+
   const toggleDescription = (descriptionKey) => {
     setExpandedDescriptions(prev => ({
       ...prev,
@@ -222,10 +232,10 @@ const LawPage = () => {
                 LAW
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-4 leading-relaxed">
-                Especialización en derecho y certificaciones legales que complementan mi formación profesional integral.
+                Amplio conocedor del marco legal argentino con una sólida trayectoria en el fuero penal.
               </p>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
-                Comprometido con la excelencia legal y la actualización constante en materia jurídica, manteniendo los más altos estándares de profesionalismo y ética.
+                Habiendo obtenido el título de escribano y demás reconocimientos, me encuentro comprometido con un servicio de excelencia y la actualización constante en materia jurídica, lo cual me permite lograr una integración robusta de conocimientos legales con el desarrollo de software y aplicación de IA.
               </p>
               <p className="text-sm sm:text-base md:text-lg text-gray-500 leading-relaxed">
                 Las certificaciones obtenidas reflejan mi dedicación al estudio del derecho y mi compromiso con la justicia y el ordenamiento legal vigente.
@@ -449,9 +459,7 @@ const LawPage = () => {
                 <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
                     <p className="text-gray-700 text-sm leading-relaxed text-justify">
-                      Proyecto innovador que integra tecnologías de inteligencia artificial generativa en el ámbito judicial. 
-                      Desarrollamos soluciones que optimizan procesos legales, automatizan análisis de documentos y mejoran 
-                      la eficiencia en la administración de justicia.
+                    Durante el año 2024 se llevó a cabo un proyecto a nivel nacional para concientizar el uso responsable y estratégico de la IA en el marco de los procedimientos judiciales en general. Se plantearon muchas razonables e inevitables automatizaciones en aras de la prestación de un mejor servicio de justicia.
                     </p>
                   </div>
                   <button 
@@ -480,17 +488,23 @@ const LawPage = () => {
                 <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
                     <p className="text-gray-700 text-sm leading-relaxed text-justify">
-                      Evento colaborativo que reúne profesionales del derecho y desarrolladores para crear soluciones 
-                      tecnológicas innovadoras en el campo legal. Fomentamos la creatividad y el intercambio de ideas 
-                      para modernizar la justicia argentina.
+                    El 2 de Agosto del año 2025 el Poder Judicial de la Provincia de Córdoba organizó y desplegó una Maratón de ideas con el fin de que pequeños grupos de empleados, funcionarios y magistrados judiciales plantearan soluciones con integración de IA a problemas existentes en la labor judicial diaria. Junto con grupo del que formé parte plateamos una solución de software que, mediante el uso de los servicios de Azure AI Language que proporcionan un análisis semántico y vectorial de texto, permite la notificación automática de resoluciones inmediatamente luego de la firma digital de las mismas. Conocé mas haciendo <a href="https://www.instagram.com/reel/DNB1HZVS0W-/?utm_source=ig_web_copy_link&igsh=NGdhNG80NmF6cm5l" className="text-primary font-bold underline hover:text-primary/80 transition-colors">click aquí</a>.
                     </p>
                   </div>
-                  <button 
-                    onClick={handleShowMaratonModal}
-                    className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
-                  >
-                    ver certificación
-                  </button>
+                  <div className="flex flex-col gap-2">
+                    <button 
+                      onClick={handleShowMaratonModal}
+                      className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+                    >
+                      ver certificación
+                    </button>
+                    <button 
+                      onClick={handleShowSolucionSoftwareModal}
+                      className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+                    >
+                      Solución Software
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -512,9 +526,7 @@ const LawPage = () => {
                 <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
                     <p className="text-gray-700 text-sm leading-relaxed text-justify">
-                      Investigación aplicada que combina conocimientos jurídicos con desarrollo de software. 
-                      Desarrollamos herramientas y aplicaciones que resuelven problemas reales en el ámbito legal, 
-                      contribuyendo al avance tecnológico en la justicia.
+                    El Ministerio Público Fiscal de la Provincia de Córdoba abrió convocatoria a la presentación de proyectos de investigación aplicada que puedan contribuir tanto a la construcción de capacidades institucionales como a la resolución de problemas en los distintos ámbitos de intervención. Dr. Dev junto a otros colaboradores está en vías de presentación de un proyecto con integración de IA que mejora procesos de trabajo institucionales y el servicio de justicia.
                     </p>
                   </div>
                   <button 
@@ -611,7 +623,7 @@ const LawPage = () => {
               {/* Botón de cerrar fijo sobre la imagen */}
               <button
                 onClick={handleCloseIaModal}
-                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[173px] sm:top-[125px] right-6 md:top-[157px] lg:top-[111px] md:right-8 lg:right-24 xl:right-1/2 xl:top-[62px]"
+                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-32 sm:top-16 right-1/2 md:top-28 lg:top-20 xl:top-9"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -706,6 +718,52 @@ const LawPage = () => {
         </>
       )}
 
+      {/* Modal de Solución Software */}
+      {showSolucionSoftwareModal && (
+        <>
+          {/* Overlay con blur */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
+            onClick={handleCloseSolucionSoftwareModal}
+          />
+
+          {/* Modal centrado */}
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={handleCloseSolucionSoftwareModal}
+          >
+            <div
+              className="relative overflow-y-auto overflow-x-auto md:overflow-hidden md:max-h-none md:max-w-none"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Imagen de la solución software */}
+              <img
+                src="/justicIA.jpeg"
+                alt="Solución Software justicIA"
+                className="certification-image w-[800px] h-[400px] sm:h-[600px] md:w-[750px] md:h-[650px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill"
+                style={{ minWidth: '700px' }}
+                onLoad={(e) => {
+                  if (window.innerWidth >= 640 && window.innerWidth < 768) {
+                    e.target.style.minWidth = '1000px';
+                  } else if (window.innerWidth >= 768) {
+                    e.target.style.minWidth = 'auto';
+                  }
+                }}
+              />
+              {/* Botón de cerrar fijo sobre la imagen */}
+              <button
+                onClick={handleCloseSolucionSoftwareModal}
+                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-44 sm:top-20 right-1/2 md:top-40 lg:top-32 xl:top-20"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
      {/* SECCIÓN 4: De interés */}
 <section className="flex items-start justify-start px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 pt-10 pb-20 bg-clearIceFullLight">
   <div className="container mx-auto">
@@ -775,7 +833,7 @@ const LawPage = () => {
           <div className="ml-12 sm:ml-16 flex-1">
             <div className="flex items-center gap-3 mb-2">
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
-                Escribano Público
+                CRPPA - Tribunales II
               </h3>
               <img
                 src="/images/MPF.png"
@@ -784,13 +842,11 @@ const LawPage = () => {
               />
             </div>
             <p className="text-sm sm:text-base text-gray-600 mb-3">
-              ene. 2023 - actualidad · 2 años 3 meses
+              dic. 2021 - actualidad · 3 años 9 meses
             </p>
             <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
               <p className={expandedDescriptions.escribano ? "" : "line-clamp-4 sm:line-clamp-3"}>
-                Ejercicio profesional como Escribano Público, realizando actos de fe pública, 
-                protocolización de documentos, asesoramiento legal y gestión de trámites notariales. 
-                Especialización en derecho civil, comercial y sucesorio.
+                Centro de Recepción de Procedimientos con Personas Aprehendidas (CRPPA) - Recepción e instrucción de procedimientos judiciales con aprehendidos en flagrancia por la supuesta comisión de hechos delictivos. Desarrollo de los actos iniciales de la IPP (instrucción penal preparatoria) recabando la prueba inmediata e inicial a hechos de la naturaleza mencionada.
               </p>
               {!expandedDescriptions.escribano && (
                 <button 
@@ -826,7 +882,7 @@ const LawPage = () => {
           <div className="ml-12 sm:ml-16 flex-1">
             <div className="flex items-center gap-3 mb-2">
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
-                Procurador
+                Fiscalía de Instrucción
               </h3>
               <img
                 src="/images/MPF.png"
@@ -835,13 +891,11 @@ const LawPage = () => {
               />
             </div>
             <p className="text-sm sm:text-base text-gray-600 mb-3">
-              jun. 2021 - dic. 2022 · 1 año 6 meses
+              dic. 2020 - dic. 2021 · 1 año
             </p>
             <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
               <p className={expandedDescriptions.procurador ? "" : "line-clamp-4 sm:line-clamp-3"}>
-                Representación legal en procesos judiciales, gestión de expedientes, 
-                presentación de escritos y asesoramiento jurídico especializado. 
-                Manejo de casos en diversas áreas del derecho.
+                Fiscalia de Instrucción del Primer Turno (Rio Tercero) - Instrucción de causas penales en general abarcando todos los actos procesales hasta la elevación a juicio. Incluye la recepción de testimonios, recepción de indagatoria, realización de diligencias probatorias de segundo grado como ruedas de reconocimiento y cámara gesell, redacción de prisiones preventivas, redacción de elevaciones a juicio y cierre de juicios abreviados.
               </p>
               {!expandedDescriptions.procurador && (
                 <button 
@@ -877,7 +931,7 @@ const LawPage = () => {
           <div className="ml-12 sm:ml-16 flex-1">
             <div className="flex items-center gap-3 mb-2">
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
-                Abogado
+                Unidad Judicial
               </h3>
               <img
                 src="/images/MPF.png"
@@ -886,13 +940,11 @@ const LawPage = () => {
               />
             </div>
             <p className="text-sm sm:text-base text-gray-600 mb-3">
-              mar. 2020 - may. 2021 · 1 año 2 meses
+              ago. 2020 - dic. 2021 · 5 meses
             </p>
             <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
               <p className={expandedDescriptions.abogado ? "" : "line-clamp-4 sm:line-clamp-3"}>
-                Ejercicio de la abogacía con especialización en derecho civil y comercial. 
-                Asesoramiento legal integral, representación en juicios y mediaciones. 
-                Desarrollo de estrategias legales personalizadas para cada caso.
+              Unidad Judicial de Rio Tercero – Dependencia judicial multifuero donde se receptaron denuncias de todo tipo v. gr: abusos sexuales, estafas, hechos de violencia familiar, robos, procedimientos con aprehendidos en flagrancia, etc. Se cumplimentó con la recepción inicial de prueba hasta la elevación del sumario en definitivo a la Fiscalía de Instrucción pertinente.
               </p>
               {!expandedDescriptions.abogado && (
                 <button 
