@@ -51,6 +51,23 @@
   will-change: transform, opacity;
 }
 
+/* Estilos para animaciones 3D de cartas */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
 /* Oculta la barra superior de Google Translate */
 .goog-te-banner-frame {
     display: none !important;

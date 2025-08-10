@@ -36,7 +36,7 @@ const Carousel = () => {
               key={index}
               className={`flex flex-col gap-[20px] ${
                 isActive
-                  ? "z-10 w-full h-fit shadow-lg shadow-gray-900"
+                  ? "z-10 w-full h-fit shadow-lg shadow-gray900"
                   : isLeft || isRight
                   ? "hidden"
                   : "hidden" 

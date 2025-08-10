@@ -238,13 +238,13 @@ const LawPage = () => {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold text-primary mb-6 leading-tight">
                 LAW
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-4 leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray700 mb-4 leading-relaxed">
                 Amplio conocedor del marco legal argentino con una sólida trayectoria en el fuero penal.
               </p>
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray600 mb-6 leading-relaxed">
                 Habiendo obtenido el título de escribano y demás reconocimientos, me encuentro comprometido con un servicio de excelencia y la actualización constante en materia jurídica, lo cual me permite lograr una integración robusta de conocimientos legales con el desarrollo de software y aplicación de IA.
               </p>
-              <p className="text-sm sm:text-base md:text-lg text-gray-500 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-gray500 leading-relaxed">
                 Las certificaciones obtenidas reflejan mi dedicación al estudio del derecho y mi compromiso con la justicia y el ordenamiento legal vigente.
               </p>
             </motion.div>
@@ -343,7 +343,7 @@ const LawPage = () => {
                   .map((pdfFile, index) => (
                   <motion.div
                     key={index}
-                    className="flex w-[98%] h-[110px] bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
+                    className="flex w-[98%] h-[110px] bg-clearIceFullLight rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
                     onClick={() => handleImageClick(pdfFile)}
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -354,7 +354,7 @@ const LawPage = () => {
                      <div className={`w-[48%] sm:w-[37%] lg:w-[30%] xl:w-[25%] flex items-center justify-center p-2 ${
                        selectedYear === "destacadas" ? "bg-clearYellow" : "bg-primary"
                      }`}>
-                       <div className="w-full h-full bg-white rounded-lg overflow-hidden shadow-sm">
+                       <div className="w-full h-full bg-clearIceFullLight rounded-lg overflow-hidden shadow-sm">
                        <img
                            src={`/certificaciones/${selectedYear === "destacadas" ? "Destacadas" : selectedYear}/${pdfFile}`}
                            alt="Certificación"
@@ -365,7 +365,7 @@ const LawPage = () => {
 
                     {/* Contenido (62% del ancho) */}
                     <div className="w-[52%] sm:w-[63%] lg:w-[70%] xl:w-[75%] flex items-center justify-center">
-                      <p className="text-gray-600 text-[12px] text-center pr-2 pl-2">
+                      <p className="text-gray600 text-[12px] text-center pr-2 pl-2">
                         {getCertificationDescription(pdfFile)}
                       </p>
                     </div>
@@ -385,16 +385,16 @@ const LawPage = () => {
                       className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 min-w-[200px] ${
                         isBlinking 
                           ? "bg-primary border-primary" 
-                          : "bg-white border-gray-200 hover:border-primary"
+                          : "bg-clearIceFullLight border-gray200 hover:border-primary"
                       }`}
                     >
-                      <div className="w-full h-0.5 bg-gray-300 flex-1"></div>
+                      <div className="w-full h-0.5 bg-gray300 flex-1"></div>
                       <svg className={`w-4 h-4 sm:w-5 sm:h-5 transform transition-all duration-300 ${
                         isBlinking ? "text-clearIceFullLight" : "text-primary"
                       }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
-                      <div className="w-full h-0.5 bg-gray-300 flex-1"></div>
+                      <div className="w-full h-0.5 bg-gray300 flex-1"></div>
                     </button>
                   </motion.div>
                 )}
@@ -409,13 +409,13 @@ const LawPage = () => {
                   >
                     <button
                       onClick={toggleShowAllCertifications}
-                      className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gray-200 hover:border-primary min-w-[200px]"
+                      className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-clearIceFullLight rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gray200 hover:border-primary min-w-[200px]"
                     >
-                      <div className="w-full h-0.5 bg-gray-300 flex-1"></div>
+                      <div className="w-full h-0.5 bg-gray300 flex-1"></div>
                       <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary transform rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
-                      <div className="w-full h-0.5 bg-gray-300 flex-1"></div>
+                      <div className="w-full h-0.5 bg-gray300 flex-1"></div>
                     </button>
                   </motion.div>
                 )}
@@ -431,7 +431,7 @@ const LawPage = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="text-gray-500 text-lg">No hay certificaciones disponibles para el año {selectedYear}.</p>
+              <p className="text-gray500 text-lg">No hay certificaciones disponibles para el año {selectedYear}.</p>
             </motion.div>
           )}
         </div>
@@ -465,7 +465,7 @@ const LawPage = () => {
               {expandedItems.iaGenerativa && (
                 <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
-                    <p className="text-gray-700 text-sm leading-relaxed text-justify">
+                    <p className="text-gray700 text-sm leading-relaxed text-justify">
                     Durante el año 2024 se llevó a cabo un proyecto a nivel nacional para concientizar el uso responsable y estratégico de la IA en el marco de los procedimientos judiciales en general. Se plantearon muchas razonables e inevitables automatizaciones en aras de la prestación de un mejor servicio de justicia.
                     </p>
                   </div>
@@ -494,7 +494,7 @@ const LawPage = () => {
               {expandedItems.maratonIdeas && (
                 <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
-                    <p className="text-gray-700 text-sm leading-relaxed text-justify">
+                    <p className="text-gray700 text-sm leading-relaxed text-justify">
                     El 2 de Agosto del año 2025 el Poder Judicial de la Provincia de Córdoba organizó y desplegó una Maratón de ideas con el fin de que pequeños grupos de empleados, funcionarios y magistrados judiciales plantearan soluciones con integración de IA a problemas existentes en la labor judicial diaria. Junto con grupo del que formé parte plateamos una solución de software que, mediante el uso de los servicios de Azure AI Language que proporcionan un análisis semántico y vectorial de texto, permite la notificación automática de resoluciones inmediatamente luego de la firma digital de las mismas. Conocé mas haciendo <a href="https://www.instagram.com/reel/DNB1HZVS0W-/?utm_source=ig_web_copy_link&igsh=NGdhNG80NmF6cm5l" className="text-primary font-bold underline hover:text-primary/80 transition-colors">click aquí</a>.
                     </p>
                   </div>
@@ -532,7 +532,7 @@ const LawPage = () => {
               {expandedItems.proyectosInvestigacion && (
                 <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
                   <div className="mb-4">
-                    <p className="text-gray-700 text-sm leading-relaxed text-justify">
+                    <p className="text-gray700 text-sm leading-relaxed text-justify">
                     El Ministerio Público Fiscal de la Provincia de Córdoba abrió convocatoria a la presentación de proyectos de investigación aplicada que puedan contribuir tanto a la construcción de capacidades institucionales como a la resolución de problemas en los distintos ámbitos de intervención. Dr. Dev junto a otros colaboradores está en vías de presentación de un proyecto con integración de IA que mejora procesos de trabajo institucionales y el servicio de justicia.
                     </p>
                   </div>
@@ -664,7 +664,7 @@ const LawPage = () => {
                 <h3 className="text-2xl font-bold text-primary mb-4">
                   Certificación en curso
                 </h3>
-                <p className="text-gray-700 text-lg leading-relaxed">
+                <p className="text-gray700 text-lg leading-relaxed">
                   La certificación para el proyecto "Maratón de ideas justicIA" se encuentra actualmente en proceso de evaluación.
                 </p>
               </div>
@@ -672,7 +672,7 @@ const LawPage = () => {
               {/* Botón de cerrar */}
               <button
                 onClick={handleCloseMaratonModal}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+                className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -706,7 +706,7 @@ const LawPage = () => {
                 <h3 className="text-2xl font-bold text-primary mb-4">
                   Proyecto pendiente de aprobación por comité evaluador
                 </h3>
-                <p className="text-gray-700 text-lg leading-relaxed">
+                <p className="text-gray700 text-lg leading-relaxed">
                   El proyecto de investigación aplicada se encuentra actualmente en revisión por el comité evaluador correspondiente.
                 </p>
               </div>
@@ -714,7 +714,7 @@ const LawPage = () => {
               {/* Botón de cerrar */}
               <button
                 onClick={handleCloseInvestigacionModal}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+                className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -801,15 +801,15 @@ const LawPage = () => {
           className="w-16 h-16 sm:w-20 sm:h-20 object-contain self-start"
         />
         <div className="flex flex-col">
-          <h2 className="text-[18px] sm:text-2xl lg:text-3xl font-bold text-gray-800">
+                        <h2 className="text-[18px] sm:text-2xl lg:text-3xl font-bold text-gray800">
             Poder Judicial de la Provincia de Córdoba
           </h2>
-          <p className="text-sm sm:text-base text-gray-600">
-            Jornada Completa - 5 años
-          </p>
-          <p className="text-sm sm:text-base text-gray-600">
-            Argentina - Presencial
-          </p>
+                      <p className="text-sm sm:text-base text-gray600">
+              Jornada Completa - 5 años
+            </p>
+            <p className="text-sm sm:text-base text-gray600">
+              Argentina - Presencial
+            </p>
         </div>
       </motion.div>
 
@@ -817,7 +817,7 @@ const LawPage = () => {
       <div className="relative">
         {/* Línea vertical */}
                   <motion.div
-            className="absolute left-4 sm:left-6 top-0 w-0.5 bg-gray-300"
+            className="absolute left-4 sm:left-6 top-0 w-0.5 bg-gray300"
             style={{ height: lineHeight }}
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -837,21 +837,21 @@ const LawPage = () => {
           <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
           
           {/* Contenido */}
-          <div className="ml-12 sm:ml-16 flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
-                CRPPA - Tribunales II
-              </h3>
+                      <div className="ml-12 sm:ml-16 flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray800">
+                  CRPPA - Tribunales II
+                </h3>
               <img
                 src="/images/MPF.png"
                 alt="MPF"
                 className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
               />
             </div>
-            <p className="text-sm sm:text-base text-gray-600 mb-3">
+            <p className="text-sm sm:text-base text-gray600 mb-3">
               dic. 2021 - actualidad · 3 años 9 meses
             </p>
-            <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
+            <div className="text-sm sm:text-base text-gray700 leading-relaxed">
               <p className={expandedDescriptions.escribano ? "" : "line-clamp-4 sm:line-clamp-3"}>
                 Centro de Recepción de Procedimientos con Personas Aprehendidas (CRPPA) - Recepción e instrucción de procedimientos judiciales con aprehendidos en flagrancia por la supuesta comisión de hechos delictivos. Desarrollo de los actos iniciales de la IPP (instrucción penal preparatoria) recabando la prueba inmediata e inicial a hechos de la naturaleza mencionada.
               </p>
@@ -888,7 +888,7 @@ const LawPage = () => {
           
           <div className="ml-12 sm:ml-16 flex-1">
             <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray800">
                 Fiscalía de Instrucción
               </h3>
               <img
@@ -897,10 +897,10 @@ const LawPage = () => {
                 className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
               />
             </div>
-            <p className="text-sm sm:text-base text-gray-600 mb-3">
+            <p className="text-sm sm:text-base text-gray600 mb-3">
               dic. 2020 - dic. 2021 · 1 año
             </p>
-            <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
+            <div className="text-sm sm:text-base text-gray700 leading-relaxed">
               <p className={expandedDescriptions.procurador ? "" : "line-clamp-4 sm:line-clamp-3"}>
                 Fiscalia de Instrucción del Primer Turno (Rio Tercero) - Instrucción de causas penales en general abarcando todos los actos procesales hasta la elevación a juicio. Incluye la recepción de testimonios, recepción de indagatoria, realización de diligencias probatorias de segundo grado como ruedas de reconocimiento y cámara gesell, redacción de prisiones preventivas, redacción de elevaciones a juicio y cierre de juicios abreviados.
               </p>
@@ -937,7 +937,7 @@ const LawPage = () => {
           
           <div className="ml-12 sm:ml-16 flex-1">
             <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray800">
                 Unidad Judicial
               </h3>
               <img
@@ -946,10 +946,10 @@ const LawPage = () => {
                 className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
               />
             </div>
-            <p className="text-sm sm:text-base text-gray-600 mb-3">
+            <p className="text-sm sm:text-base text-gray600 mb-3">
               ago. 2020 - dic. 2021 · 5 meses
             </p>
-            <div className="text-sm sm:text-base text-gray-700 leading-relaxed">
+            <div className="text-sm sm:text-base text-gray700 leading-relaxed">
               <p className={expandedDescriptions.abogado ? "" : "line-clamp-4 sm:line-clamp-3"}>
               Unidad Judicial de Rio Tercero – Dependencia judicial multifuero donde se receptaron denuncias de todo tipo v. gr: abusos sexuales, estafas, hechos de violencia familiar, robos, procedimientos con aprehendidos en flagrancia, etc. Se cumplimentó con la recepción inicial de prueba hasta la elevación del sumario en definitivo a la Fiscalía de Instrucción pertinente.
               </p>

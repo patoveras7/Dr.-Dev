@@ -224,13 +224,13 @@ useEffect(() => {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold text-primary mb-6 leading-tight">
                 Software Development
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-4 leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray700 mb-4 leading-relaxed">
                 Desarrollando soluciones innovadoras y aplicaciones web modernas que transforman ideas en realidad digital.
               </p>
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray600 mb-6 leading-relaxed">
                 Dr. Dev está especializado en tecnologías frontend y backend, creando experiencias de usuario excepcionales y sistemas robustos que escalan con tu negocio. Desde aplicaciones web responsivas hasta sistemas complejos de gestión, cada proyecto es una oportunidad para innovar y superar expectativas.
               </p>
-              <p className="text-sm sm:text-base md:text-lg text-gray-500 leading-relaxed italic font-semibold">
+              <p className="text-sm sm:text-base md:text-lg text-gray500 leading-relaxed italic font-semibold">
               "Sólo aquellos que se atreven a desafiar lo establecido pueden crear lo imposible"
               </p>
             </motion.div>
@@ -299,7 +299,7 @@ useEffect(() => {
   <div className="flex justify-center gap-4 mt-6">
     <button
       onClick={prevSlide}
-      className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200"
+      className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-clearIce hover:bg-primary/80 transition-colors duration-200"
     >
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -307,7 +307,7 @@ useEffect(() => {
     </button>
     <button
       onClick={nextSlide}
-      className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors duration-200"
+      className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-clearIce hover:bg-primary/80 transition-colors duration-200"
     >
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -360,7 +360,7 @@ useEffect(() => {
         <div id="alkemy-pocket" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto mt-[30px] lg:mt-[50px] xl:mt-[70px]">
           {/* Header unificado */}
           <div className="mb-4 w-full">
-            <p className="text-base sm:text-xl xl:text-2xl text-gray-600 text-justify px-3 leading-tight">
+            <p className="text-base sm:text-xl xl:text-2xl text-gray600 text-justify px-3 leading-tight">
               <span className="font-extrabold underline text-primary">AlkemyPocket</span>: Desarrollo de billetera virtual "digitalizando" el bolsillo del consumidor. La aplicación cuenta con una interfaz interactiva, responsiva e intuitiva para el cliente capaz de efectuar depósitos, concretar transacciones, listar contactos frecuentes, extraer dinero, asociar tarjetas o solicitar alta de nuevas cuentas tanto en pesos argentinos como en moneda extranjera. La integración de la API con la base de datos y el frontend puede visualizarse en "ver tecnologías" no obstante se invita a visualizar el código desde GitHub cuyo link se encuentra presente en la barra de navegación o directamente desde "ver código". 
             </p>
           </div>
@@ -401,7 +401,7 @@ useEffect(() => {
         <div id="apple-be" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
           {/* Header unificado */}
           <div className="mb-4 w-full">
-            <p className="text-base sm:text-xl xl:text-2xl text-gray-600 text-justify px-3 leading-tight">
+            <p className="text-base sm:text-xl xl:text-2xl text-gray600 text-justify px-3 leading-tight">
               <span className="font-extrabold underline text-primary">AppleBe</span>: Plataforma e-commerce  dedicada  a la venta de artículos de tecnología en general pero centrada en su mayoría a la comercialización de productos Apple. El usuario puede observar productos, registrarse, loguearse y completar su carrito de compras. La integración de la API con la base de datos y el frontend puede visualizarse en "ver tecnologías" no obstante se invita a visualizar el código desde GitHub cuyo link se encuentra presente en la barra de navegación o directamente desde "ver código".
             </p>
           </div>
@@ -437,7 +437,7 @@ useEffect(() => {
         <div id="rompiendo-barreras" className="flex flex-col items-center w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[830px] xl:max-w-[1150px] mx-auto">
           {/* Header unificado */}
           <div className="mb-4 w-full">
-            <p className="text-base sm:text-xl xl:text-2xl text-gray-600 text-justify px-3 leading-tight">
+            <p className="text-base sm:text-xl xl:text-2xl text-gray600 text-justify px-3 leading-tight">
               <span className="font-extrabold underline text-primary">RompiendoBarreras</span>: Plataforma web destinada a la enseñanza de todo tipo de idiomas. El sitio acepta el pago de determinadas membresías que posibilitan el acceso a ciertos cursos de distintos lenguajes. Cada lenguaje cuenta con distintos tipos de curso dependiendo la motivación que haya tenido el usuario a la hora de estudiar el idioma, sea rendir un exámen internacional, viajar por placer, viajar por trabajo, trabajar para extranjero, etc. La integración de la API con la base de datos y el frontend puede visualizarse en "ver tecnologías" no obstante se invita a visualizar el código desde GitHub cuyo link se encuentra presente en la barra de navegación o directamente desde "ver código".
             </p>
           </div>
@@ -553,7 +553,7 @@ useEffect(() => {
                   </div>
                   {/* Contenido de texto (20% del espacio) */}
                   <div className="h-[20%] p-4 flex flex-col justify-center">
-                    <p className="text-gray-700 text-xs sm:text-sm md:text-xs lg:text-sm xl:text-xs leading-tight">
+                    <p className="text-gray700 text-xs sm:text-sm md:text-xs lg:text-sm xl:text-xs leading-tight">
                       Fullness es un sitio web interactivo que ofrece servicios de medicina no farmacológica, en especial fisioterapia, conectando a los usuarios (pacientes) con los profesionales en la salud que los atenderán.
                     </p>
                   </div>
@@ -609,7 +609,7 @@ useEffect(() => {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold text-primary mb-6 leading-tight text-center">
                 Por qué Dr. Dev??
               </h1>
-              <p className="text-base sm:text-xl xl:text-2xl text-gray-800 leading-relaxed max-w-4xl mx-auto lg:mx-0 text-center">
+              <p className="text-base sm:text-xl xl:text-2xl text-gray800 leading-relaxed max-w-4xl mx-auto lg:mx-0 text-center">
               Mi background consta de graduación y experiencia en una gran cantidad de rubros lo cual es fiel reflejo de mi responsabilidad, disciplina y optimismo a la hora de aprender nuevas habilidades y desenvolverme en el campo laboral, cualquiera sea la dedicacion que se requiera. Creo firmemente en el trabajo duro y en responder con mi maximo esfuerzo a quienes me brindaron su confianza, si me das la oportunidad con total seguridad te seré de gran utilidad. Dr. Dev se jacta de poseer una gran capacidad de gestión, por lo que si existe alguna solicitud que requiera de investigacion para llevarse a cabo, se encontrará la forma de concretarla. Además, la pasión por el código limpio, la arquitectura robusta y la experiencia de usuario excepcional define cada proyecto, transformando ideas en realidades digitales que impactan positivamente en la vida de las personas.
               </p>
             </motion.div>

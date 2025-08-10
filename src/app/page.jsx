@@ -46,7 +46,7 @@ const page = () => {
                 </h1>
                 <Link href="PortfolioDrDev/home">
                   <button
-                    className="flex items-center justify-center w-[230px] h-[45px] md:w-[280px] md:h-[50px] bg-primary text-clearIce p-[4px] rounded-[7px] text-[25px] md:text-[30px] border-solid border-[2px] border-clearIce"
+                    className="flex items-center justify-center w-fit min-w-[200px] md:min-w-[250px] h-[45px] md:h-[50px] bg-primary text-clearIce px-6 py-2 rounded-[7px] text-[25px] md:text-[30px] border-solid border-[2px] border-clearIce whitespace-nowrap"
                   >
                     <TranslatableText>
                       Tap to get in 💼

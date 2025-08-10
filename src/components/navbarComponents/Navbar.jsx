@@ -227,9 +227,14 @@ const Navbar = () => {
                     font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
                   Stack tecnológico
                 </button>
-                <button className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
-                  text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]
-                  font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
+                <button 
+                  onClick={() => {
+                    handleCollapse();
+                    window.location.href = '/PortfolioDrDev/about';
+                  }}
+                  className="bg-primary text-clearIceFullLight border-2 border-clearIceFullLight rounded-[7px] px-3 py-2 
+                    text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]
+                    font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg w-auto max-w-none whitespace-nowrap sm:max-w-[140px] md:max-w-[180px] lg:max-w-[180px] xl:max-w-[200px]">
                   Sobre mí
                 </button>
               </div>
@@ -298,7 +303,7 @@ const Navbar = () => {
                       <iframe
                         src={b2ViewerUrl}
                         title="EF SET Certificate"
-                        className="w-[90vw] h-[70vh] sm:w-[520px] md:w-[620px] lg:w-[720px] xl:w-[820px] 2xl:w-[920px] rounded-xl shadow-2xl bg-white"
+                        className="w-[90vw] h-[70vh] sm:w-[520px] md:w-[620px] lg:w-[720px] xl:w-[820px] 2xl:w-[920px] rounded-xl shadow-2xl bg-clearIceFullLight"
                         style={{ border: 'none' }}
                       />
                     )}

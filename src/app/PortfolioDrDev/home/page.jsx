@@ -19,7 +19,7 @@ const page = () => {
   };
 
   return (
-    <div className="h-screen bg-secondary w-full overflow-hidden">
+    <div className="h-screen bg-clearIceFullLight w-full overflow-hidden">
       {/* Contenedor flex para los botones */}
       <div className="flex flex-col h-full justify-center items-center">
         {/* Primera mitad con carrusel y card */}

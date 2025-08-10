@@ -15,7 +15,7 @@ const TranslationButton = () => {
     >
       <motion.button
         onClick={toggleLanguage}
-        className="flex items-center justify-center w-[50px] h-7 sm:w-[55px] sm:h-8 lg:w-[60px] lg:h-9 xl:w-[65px] xl:h-10 bg-primary rounded-full border-[2px] border-clearIceFullLight p-1 transition-colors duration-300 hover:bg-red-900"
+        className="flex items-center justify-center w-[50px] h-7 sm:w-[55px] sm:h-8 lg:w-[60px] lg:h-9 xl:w-[65px] xl:h-10 bg-primary rounded-full border-[2px] border-clearIceFullLight p-1 transition-colors duration-300 hover:bg-red900"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
