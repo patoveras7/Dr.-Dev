@@ -40,10 +40,16 @@ const LawPage = () => {
     2023: [
       "20230321_JusticiaCordoba_Certificado_veras14584_page-0001.jpg",
       "20230404_JusticiaCordoba_Certificado_veras14584_page-0001.jpg",
-      "20230411_JusticiaCordoba_Certificado_veras14584_page-0001.jpg"
+      "20230411_JusticiaCordoba_Certificado_veras14584_page-0001.jpg",
+      "PROGRAMA DE TUTORÍAS 30.11.2023.png",
+      "Taller sobre declaración testimonial de víctimas - 2023.png"
     ],
     2024: [
-      "20240930_JusticiaCordoba_Certificado_veras14584_page-0001.jpg"
+      "20240930_JusticiaCordoba_Certificado_veras14584_page-0001.jpg",
+      "PROGRAMA DE TUTORÍAS 19.12.2024.png",
+      "Certificación de antecedentes, declaración de persona imputada y declaración de la víctima - 2024.png",
+      "Hacia la construcción de un Sistema Integral de Flagrancia - 2024.png",
+      "Solicitud de informes al Registro Nacional de Reincidencia 2024.png"
     ],
     2025: [
       "20250701_JusticiaCordoba_Certificado_veras14584_page-0001.jpg",
@@ -54,7 +60,8 @@ const LawPage = () => {
       "20250702_JusticiaCordoba_Certificado_veras14584_page-0001.jpg",
       "20250702_JusticiaCordoba_Certificado_veras14584 (1)_page-0001.jpg",
       "20250702_JusticiaCordoba_Certificado_veras14584 (2)_page-0001.jpg",
-      "20250702_JusticiaCordoba_Certificado_veras14584 (3)_page-0001.jpg"
+      "20250702_JusticiaCordoba_Certificado_veras14584 (3)_page-0001.jpg",
+      "Tratamiento de la evidencia digital - 2025.png"
     ],
     destacadas: [
       "TITULO ESCRIBANO.-_page-0001.jpg",
@@ -162,7 +169,7 @@ const LawPage = () => {
 
   const getCertificationDescription = (filename) => {
     // Descripción de ejemplo basada en el archivo
-    return "Certificación oficial emitida por la Justicia de Córdoba.";
+    return "Certificación oficial. Clickear para visualizar.";
   };
 
   const toggleExpandedItem = (itemKey) => {
@@ -358,7 +365,7 @@ const LawPage = () => {
 
                     {/* Contenido (62% del ancho) */}
                     <div className="w-[52%] sm:w-[63%] lg:w-[70%] xl:w-[75%] flex items-center justify-center">
-                      <p className="text-gray-600 text-[12px] text-center">
+                      <p className="text-gray-600 text-[12px] text-center pr-2 pl-2">
                         {getCertificationDescription(pdfFile)}
                       </p>
                     </div>
