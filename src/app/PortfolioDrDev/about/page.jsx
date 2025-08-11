@@ -77,9 +77,9 @@ const AboutPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            {/* Imágenes superpuestas */}
-            <div className="relative w-full lg:w-1/2 flex justify-center">
-                             <motion.div
+                                      {/* Imágenes superpuestas */}
+              <div className="relative w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8">
+               <motion.div
                  className="relative w-[364px] h-[260px] sm:w-[416px] sm:h-[312px] md:w-[468px] md:h-[364px]"
                  initial={{ opacity: 0, x: -100 }}
                  whileInView={{ opacity: 1, x: 0 }}
@@ -140,14 +140,14 @@ const AboutPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
           >
-            {/* Imagen */}
-            <motion.div
-              className="w-full lg:w-1/2 flex justify-center"
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
-            >
+                                      {/* Imagen */}
+              <motion.div
+                className="w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8"
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              >
                              <img
                  src="/arbitraje.jpeg"
                  alt="Arbitraje"
@@ -198,14 +198,14 @@ const AboutPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            {/* Imagen */}
-            <motion.div
-              className="w-full lg:w-1/2 flex justify-center"
-              initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            >
+                                      {/* Imagen */}
+              <motion.div
+                className="w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8"
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+              >
               <img
                 src="/redSocial.jpeg"
                 alt="Redes Sociales"
@@ -255,7 +255,7 @@ const AboutPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            ¿Quién es el GOAT? clickea para ver mi opinión.
+            ¿Quién es el GOAT? clickea en las imágenes para ver mi opinión.
           </motion.h2>
 
           {/* Grid de cartas */}
@@ -323,13 +323,13 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Botón Home */}
-      <button
-        onClick={() => window.location.href = '/PortfolioDrDev/home'}
-        className="fixed z-50 right-16 top-2.5 sm:top-4 sm:right-20 md:top-6 md:right-[85px] lg:top-8 lg:right-[100px] xl:top-10 xl:right-[120px] bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-2 py-1 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
-      >
-        home
-      </button>
+             {/* Botón Inicio */}
+       <button
+         onClick={() => window.location.href = '/PortfolioDrDev/home'}
+         className="fixed z-50 right-16 top-2.5 sm:top-4 sm:right-20 md:top-6 md:right-[85px] lg:top-8 lg:right-[100px] xl:top-10 xl:right-[120px] bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-3 py-1 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
+       >
+         inicio
+       </button>
     </div>
   );
 };
