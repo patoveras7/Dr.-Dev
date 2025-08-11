@@ -25,7 +25,8 @@ module.exports = {
         
         // Colores adicionales
         red900: "#7f1d1d",
-        black: "#000000"
+        black: "#000000",
+        pureBlack: "#000000"
       },
       fontFamily: {
         playfair: ["Playfair Display", "serif"],

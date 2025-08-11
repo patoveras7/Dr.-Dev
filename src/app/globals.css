@@ -68,6 +68,150 @@
   transform: rotateY(180deg);
 }
 
+/* Estilos para modo oscuro */
+.dark-mode {
+  /* Variables CSS para modo oscuro */
+  --bg-primary: #111827; /* gray900 */
+  --bg-secondary: #1f2937; /* gray800 */
+  --bg-clear-ice: #374151; /* gray700 */
+  --bg-clear-ice-full-light: #4b5563; /* gray600 */
+  --text-primary: #e5e7eb; /* gray200 */
+  --text-secondary: #d1d5db; /* gray300 */
+  --text-clear-ice: #6b7280; /* gray500 */
+  --border-color: #374151; /* gray700 */
+}
+
+.light-mode {
+  /* Variables CSS para modo claro (valores por defecto) */
+  --bg-primary: #450a0a;
+  --bg-secondary: #1F2937;
+  --bg-clear-ice: #b4ceda;
+  --bg-clear-ice-full-light: #d6eaf4;
+  --text-primary: #450a0a;
+  --text-secondary: #1F2937;
+  --text-clear-ice: #6b7280;
+  --border-color: #d6eaf4;
+}
+
+/* Aplicar variables CSS dinámicamente */
+.dark-mode .bg-clearIceFullLight {
+  background-color: #000000 !important; /* pureBlack */
+}
+
+.dark-mode .bg-secondary {
+  background-color: #000000 !important; /* pureBlack */
+}
+
+/* Mantener bg original en sección de proyecto profesional */
+.dark-mode .bg-secondary.keep-original {
+  background-color: #1F2937 !important; /* secondary original */
+}
+
+/* Botones con bg primary en modo oscuro */
+.dark-mode .bg-primary {
+  background-color: #eab308 !important; /* clearYellow */
+}
+
+/* Títulos y H1 en modo oscuro */
+.dark-mode .text-primary {
+  color: #eab308 !important; /* clearYellow */
+}
+
+/* Textos normales en modo oscuro */
+.dark-mode .text-secondary {
+  color: var(--text-secondary);
+}
+
+.dark-mode .text-gray700 {
+  color: #d6eaf4 !important; /* clearIceFullLight */
+}
+
+.dark-mode .text-gray600 {
+  color: #d6eaf4 !important; /* clearIceFullLight */
+}
+
+.dark-mode .text-gray500 {
+  color: #d6eaf4 !important; /* clearIceFullLight */
+}
+
+/* Texto de "Por qué Dr. Dev" en modo oscuro */
+.dark-mode .text-gray800 {
+  color: #d6eaf4 !important; /* clearIceFullLight */
+}
+
+.dark-mode .border-clearIceFullLight {
+  border-color: var(--border-color);
+}
+
+.dark-mode .border-clearIce {
+  border-color: var(--border-color);
+}
+
+/* Texto negro en botones en modo oscuro */
+.dark-mode .text-clearIce {
+  color: #000000 !important; /* pureBlack */
+}
+
+/* Texto negro en botón Destacadas en modo oscuro */
+.dark-mode .text-clearYellow {
+  color: #000000 !important; /* pureBlack */
+}
+
+/* Deshabilitar efectos hover y click en modo oscuro para vista law */
+.dark-mode .hover\:bg-clearIceFullLight\/90:hover {
+  background-color: transparent !important;
+}
+
+.dark-mode .hover\:bg-clearIce:hover {
+  background-color: #eab308 !important; /* clearYellow - mantener bg original */
+}
+
+.dark-mode .hover\:text-primary:hover {
+  color: #eab308 !important; /* clearYellow - mantener color original */
+}
+
+.dark-mode .hover\:border-primary:hover {
+  border-color: #eab308 !important; /* clearYellow - mantener border original */
+}
+
+.dark-mode .hover\:text-primary\/80:hover {
+  color: #eab308 !important; /* clearYellow - mantener color original */
+}
+
+/* Mantener texto negro en botones activos/seleccionados en modo oscuro */
+.dark-mode .bg-clearIce .text-clearYellow {
+  color: #000000 !important; /* pureBlack */
+}
+
+.dark-mode .bg-clearIce .text-clearIce {
+  color: #000000 !important; /* pureBlack */
+}
+
+/* Texto negro en botones activos con bg claro */
+.dark-mode .bg-clearIce span {
+  color: #000000 !important; /* pureBlack */
+}
+
+/* Texto negro en botones activos en modo oscuro */
+.dark-mode .bg-clearIce.text-primary {
+  color: #000000 !important; /* pureBlack */
+}
+
+/* Texto negro en botón reset en modo oscuro */
+.dark-mode .bg-primary.text-clearIce {
+  color: #000000 !important; /* pureBlack */
+}
+
+/* Border amarillo para elementos de certificaciones en modo oscuro */
+.dark-mode .bg-clearIceFullLight.rounded-2xl {
+  border: 1px solid #eab308 !important; /* clearYellow */
+}
+
+/* Transiciones suaves para cambios de tema */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 /* Oculta la barra superior de Google Translate */
 .goog-te-banner-frame {
     display: none !important;

@@ -1,14 +1,12 @@
 import "./globals.css";
 import { TranslationProvider } from "../context/TranslationContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import ConditionalTranslationButton from "../components/ConditionalTranslationButton";
 import ConditionalThemeButton from "../components/ConditionalThemeButton";
 
 export const metadata = {
   title: "Dr. Dev Portfolio",
-  description: "Created by Veras Carrara Patricio Raúl",
-  icons: {
-    icon: "/favicon.png",
-  },
+  description: "Portfolio personal de Dr. Dev",
 };
 
 export default function RootLayout({ children }) {
@@ -16,11 +14,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-secondary overflow-x-hidden">
         <TranslationProvider>
-          {/* Botón de traducción solo visible en la landing principal */}
-          <ConditionalTranslationButton />
-          {/* Botón de tema solo visible en las vistas de PortfolioDrDev */}
-          <ConditionalThemeButton />
-          {children} 
+          <ThemeProvider>
+            {/* Botón de traducción solo visible en la landing principal */}
+            <ConditionalTranslationButton />
+            {/* Botón de tema solo visible en las vistas de PortfolioDrDev */}
+            <ConditionalThemeButton />
+            {children} 
+          </ThemeProvider>
         </TranslationProvider>
       </body>
     </html>

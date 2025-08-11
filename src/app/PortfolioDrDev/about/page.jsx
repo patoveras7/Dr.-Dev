@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import ThemeWrapper from "../../../components/ThemeWrapper";
 
 const AboutPage = () => {
   const [flippedCards, setFlippedCards] = useState({
@@ -55,7 +56,8 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-clearIceFullLight">
+    <ThemeWrapper>
+      <div className="min-h-screen bg-clearIceFullLight">
       {/* SECCIÓN 1: Deportes */}
       <section className="flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-32 pb-10 sm:pb-[45px] md:pb-[55px] lg:pb-[70px]">
         <div className="container mx-auto">
@@ -332,8 +334,9 @@ const AboutPage = () => {
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             inicio
-          </motion.button>
-    </div>
+                     </motion.button>
+      </div>
+    </ThemeWrapper>
   );
 };
 

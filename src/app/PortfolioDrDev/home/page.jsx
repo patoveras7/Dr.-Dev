@@ -6,6 +6,7 @@ import Carousel from '../../../components/carouselComponents/Carousel';
 import TranslatableText from '../../../components/TranslatableText';
 import SoftwareDevelopmentCarousel from '../../../components/carouselComponents/SoftwareDevelopmentCarousel';
 import LawCarousel from '../../../components/carouselComponents/LawCarousel';
+import ThemeWrapper from '../../../components/ThemeWrapper';
 
 const page = () => {
   const router = useRouter();
@@ -19,7 +20,8 @@ const page = () => {
   };
 
   return (
-    <div className="h-screen bg-clearIceFullLight w-full overflow-hidden">
+    <ThemeWrapper>
+      <div className="h-screen bg-clearIceFullLight w-full overflow-hidden">
       {/* Contenedor flex para los botones */}
       <div className="flex flex-col h-full justify-center items-center">
                  {/* Primera mitad con carrusel y card */}
@@ -91,7 +93,8 @@ const page = () => {
           </motion.button>
         </div>
       </div>
-    </div>
+      </div>
+    </ThemeWrapper>
   );
 };
 

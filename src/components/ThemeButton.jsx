@@ -1,17 +1,14 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from "framer-motion";
+import { useTheme } from '../context/ThemeContext';
 
 const ThemeButton = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const handleToggle = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <motion.button
-      onClick={handleToggle}
+      onClick={toggleTheme}
       className="flex items-center justify-center w-[50px] h-8 sm:w-[55px] sm:h-8 lg:w-[60px] lg:h-9 xl:w-[65px] xl:h-10 bg-primary rounded-full border-[2px] border-clearIceFullLight p-1 transition-colors duration-300 hover:bg-red900 mx-auto"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}

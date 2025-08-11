@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import ProjectImagesCarousel from "../../../components/carouselComponents/ProjectImagesCarousel";
+import ThemeWrapper from "../../../components/ThemeWrapper";
 
 const SoftwareDevelopmentPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -209,7 +210,8 @@ useEffect(() => {
 }, [handleCloseModal]);
 
   return (
-    <div className="min-h-screen bg-clearIceFullLight">
+    <ThemeWrapper>
+      <div className="min-h-screen bg-clearIceFullLight">
       {/* SECCIÓN 1 */}
       <section className="flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-32 pb-10 sm:pb-[45px] md:pb-[55px] lg:pb-[70px]">
         <div className="container mx-auto">
@@ -508,7 +510,7 @@ useEffect(() => {
 )}
 
       {/* SECCIÓN 4: Proyecto Profesional */}
-      <section className="flex flex-col gap-12 items-center w-full mt-8 bg-secondary py-12 px-1">
+      <section className="flex flex-col gap-12 items-center w-full mt-8 bg-secondary keep-original py-12 px-1">
         <div className="w-full max-w-7xl mx-auto">
           {/* Header con título y enlace */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8">
@@ -945,7 +947,8 @@ useEffect(() => {
                >
                  inicio
                </motion.button>
-    </div>
+      </div>
+    </ThemeWrapper>
   );
 };
 

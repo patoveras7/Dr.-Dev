@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import ThemeWrapper from "../../../components/ThemeWrapper";
 
 const LawPage = () => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -223,7 +224,8 @@ const LawPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-clearIceFullLight">
+    <ThemeWrapper>
+      <div className="min-h-screen bg-clearIceFullLight">
       {/* SECCIÓN 1: Presentación inicial */}
       <section className="flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-32 pb-10 sm:pb-[45px] md:pb-[55px] lg:pb-[70px]">
         <div className="container mx-auto">
@@ -438,7 +440,7 @@ const LawPage = () => {
       </section>
 
       {/* SECCIÓN 3: Relacionado al Desarrollo de Software */}
-      <section className="flex flex-col gap-12 items-center w-full bg-secondary py-12 px-1 pb-20">
+      <section className="flex flex-col gap-12 items-center w-full bg-secondary keep-original py-12 px-1 pb-20">
         <div className="w-full max-w-7xl mx-auto">
           {/* Header con título */}
           <div className="flex justify-center mb-8">
@@ -989,7 +991,8 @@ const LawPage = () => {
                  </motion.button>
 
 
-    </div>
+      </div>
+    </ThemeWrapper>
   );
 };
 
