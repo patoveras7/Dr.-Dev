@@ -1,6 +1,5 @@
 "use client";
 import Navbar from '../../components/navbarComponents/Navbar';
-import TranslationButton from '../../components/TranslationButton';
 import DownloadCVButton from '../../components/DownloadCVButton';
 import { useState, createContext, useContext } from 'react';
 
@@ -23,10 +22,6 @@ export default function RootLayout({ children }) {
       <div className="flex overflow-hidden bg-secondary">
         <Navbar />
         <main className="flex-1 min-h-screen ml-[70px] sm:ml-[85px] md:ml-[100px] lg:ml-[115px] xl:ml-[130px] overflow-hidden">
-          {/* Botón de traducción siempre visible arriba a la derecha */}
-          <div className="fixed top-4 right-4 z-[100]">
-            <TranslationButton />
-          </div>
           <DownloadCVButton />
           {children} 
         </main>
