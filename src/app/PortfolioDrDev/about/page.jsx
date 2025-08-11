@@ -290,7 +290,11 @@ const AboutPage = () => {
                     <img
                       src={player.image}
                       alt={player.name}
-                      className="w-full h-full object-cover rounded-lg border-2 border-clearIceFullLight"
+                      className={`w-full h-full rounded-lg border-2 border-clearIceFullLight ${
+                        player.name === "murray" 
+                          ? "object-cover min-[400px]:object-top sm:object-cover md:object-cover lg:object-cover xl:object-cover" 
+                          : "object-cover"
+                      }`}
                     />
                   </div>
 
