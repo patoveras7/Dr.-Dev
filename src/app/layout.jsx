@@ -1,6 +1,7 @@
 import "./globals.css";
 import { TranslationProvider } from "../context/TranslationContext";
 import ConditionalTranslationButton from "../components/ConditionalTranslationButton";
+import ConditionalThemeButton from "../components/ConditionalThemeButton";
 
 export const metadata = {
   title: "Dr. Dev Portfolio",
@@ -17,6 +18,8 @@ export default function RootLayout({ children }) {
         <TranslationProvider>
           {/* Botón de traducción solo visible en la landing principal */}
           <ConditionalTranslationButton />
+          {/* Botón de tema solo visible en las vistas de PortfolioDrDev */}
+          <ConditionalThemeButton />
           {children} 
         </TranslationProvider>
       </body>

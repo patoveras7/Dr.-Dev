@@ -78,7 +78,7 @@ const AboutPage = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
                                       {/* Imágenes superpuestas */}
-              <div className="relative w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8">
+              <div className="relative w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8 lg:self-start lg:mt-[200px]">
                <motion.div
                  className="relative w-[364px] h-[260px] sm:w-[416px] sm:h-[312px] md:w-[468px] md:h-[364px]"
                  initial={{ opacity: 0, x: -100 }}
@@ -142,7 +142,7 @@ const AboutPage = () => {
           >
                                       {/* Imagen */}
               <motion.div
-                className="w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8"
+                className="w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8 lg:self-start lg:mt-[200px]"
                 initial={{ opacity: 0, x: 100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -200,7 +200,7 @@ const AboutPage = () => {
           >
                                       {/* Imagen */}
               <motion.div
-                className="w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8"
+                className="w-full lg:w-1/2 flex justify-center lg:items-start lg:pt-8 lg:self-start lg:mt-[200px]"
                 initial={{ opacity: 0, x: -100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
