@@ -24,7 +24,7 @@ export const metadata = {
   openGraph: {
     title: "Dr. Dev Portfolio",
     description: "Portfolio personal de Dr. Dev - Abogado apasionado por la tecnología y desarrollo de software",
-    url: "https://dr-dev-portfolio.vercel.app",
+    url: "https://dr-developer.vercel.app",
     siteName: "Dr. Dev Portfolio",
     images: [
       {
