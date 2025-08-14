@@ -28,7 +28,7 @@ export const metadata = {
     siteName: "Dr. Dev Portfolio",
     images: [
       {
-        url: "/images/martillo1.png",
+        url: "/images/logoFigma.png",
         width: 1200,
         height: 630,
         alt: "Dr. Dev - Abogado y Desarrollador de Software",
@@ -43,7 +43,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Dr. Dev Portfolio",
     description: "Portfolio personal de Dr. Dev - Abogado apasionado por la tecnología y desarrollo de software",
-    images: ["/images/martillo1.png"],
+    images: ["/images/logoFigma.png"],
     creator: "@drdev",
   },
   
