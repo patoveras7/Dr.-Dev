@@ -19,7 +19,14 @@ const LawPage = () => {
   const [expandedDescriptions, setExpandedDescriptions] = useState({
     escribano: false,
     procurador: false,
-    abogado: false
+    abogado: false,
+    fiscaliaCibercrimen: false
+  });
+  const [textTruncated, setTextTruncated] = useState({
+    escribano: false,
+    procurador: false,
+    abogado: false,
+    fiscaliaCibercrimen: false
   });
   const [showAllCertifications, setShowAllCertifications] = useState(false);
   const [isBlinking, setIsBlinking] = useState(false);
@@ -218,6 +225,39 @@ const LawPage = () => {
       [descriptionKey]: !prev[descriptionKey]
     }));
   };
+
+  const checkTextTruncation = (element, key) => {
+    if (element) {
+      const isTruncated = element.scrollHeight > element.clientHeight;
+      setTextTruncated(prev => ({
+        ...prev,
+        [key]: isTruncated
+      }));
+    }
+  };
+
+  useEffect(() => {
+    const checkAllTruncations = () => {
+      const elements = {
+        escribano: document.querySelector('.escribano-text'),
+        procurador: document.querySelector('.procurador-text'),
+        abogado: document.querySelector('.abogado-text'),
+        fiscaliaCibercrimen: document.querySelector('.fiscalia-cibercrimen-text')
+      };
+
+      Object.entries(elements).forEach(([key, element]) => {
+        if (element) {
+          checkTextTruncation(element, key);
+        }
+      });
+    };
+
+    // Check on mount and resize
+    checkAllTruncations();
+    window.addEventListener('resize', checkAllTruncations);
+    
+    return () => window.removeEventListener('resize', checkAllTruncations);
+  }, []);
 
   const toggleShowAllCertifications = () => {
     setShowAllCertifications(!showAllCertifications);
@@ -827,13 +867,65 @@ const LawPage = () => {
             transition={{ duration: 1.2, ease: "easeOut" }}
           />
 
-        {/* === Puesto 1: Escribano Público === */}
+        {/* === Puesto 1: Fiscalía Cibercrimen === */}
         <motion.div
           className="relative flex items-start gap-6 sm:gap-8 mb-8"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        >
+          {/* Punto en la línea */}
+          <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
+          
+          {/* Contenido */}
+          <div className="ml-12 sm:ml-16 flex-1">
+            <div className="flex items-center gap-3 mb-2">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray800">
+                Fiscalía Cibercrimen
+              </h3>
+              <img
+                src="/images/MPF.png"
+                alt="MPF"
+                className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
+              />
+            </div>
+            <p className="text-sm sm:text-base text-gray600 mb-3">
+              oct. 2025 - actualidad
+            </p>
+            <div className="text-sm sm:text-base text-gray700 leading-relaxed">
+              <p 
+                className={`fiscalia-cibercrimen-text ${expandedDescriptions.fiscaliaCibercrimen ? "" : "line-clamp-4 sm:line-clamp-3"}`}
+              >
+                Instrucción general de causas penales abarcando la recepción inicial de la prueba, recepción de testimonios, elevación de sumarios en definitivo, recepción de indagatoria, realización de diligencias probatorias de segundo grado como ruedas de reconocimiento y camara gesell, redacción de prisiones preventivas, redacción de elevaciones a juicio y cierre de juicios abreviados.
+              </p>
+              {!expandedDescriptions.fiscaliaCibercrimen && textTruncated.fiscaliaCibercrimen && (
+                <button 
+                  onClick={() => toggleDescription('fiscaliaCibercrimen')}
+                  className="text-secondary font-bold hover:underline mt-1 block"
+                >
+                  ... ver más
+                </button>
+              )}
+              {expandedDescriptions.fiscaliaCibercrimen && (
+                <button 
+                  onClick={() => toggleDescription('fiscaliaCibercrimen')}
+                  className="text-secondary font-bold hover:underline mt-1 block"
+                >
+                  ... ver menos
+                </button>
+              )}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* === Puesto 2: Escribano Público === */}
+        <motion.div
+          className="relative flex items-start gap-6 sm:gap-8 mb-8"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
         >
           {/* Punto en la línea */}
           <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
@@ -854,10 +946,12 @@ const LawPage = () => {
               dic. 2021 - actualidad · 3 años 9 meses
             </p>
             <div className="text-sm sm:text-base text-gray700 leading-relaxed">
-              <p className={expandedDescriptions.escribano ? "" : "line-clamp-4 sm:line-clamp-3"}>
+              <p 
+                className={`escribano-text ${expandedDescriptions.escribano ? "" : "line-clamp-4 sm:line-clamp-3"}`}
+              >
                 Centro de Recepción de Procedimientos con Personas Aprehendidas (CRPPA) - Recepción e instrucción de procedimientos judiciales con aprehendidos en flagrancia por la supuesta comisión de hechos delictivos. Desarrollo de los actos iniciales de la IPP (instrucción penal preparatoria) recabando la prueba inmediata e inicial a hechos de la naturaleza mencionada.
               </p>
-              {!expandedDescriptions.escribano && (
+              {!expandedDescriptions.escribano && textTruncated.escribano && (
                 <button 
                   onClick={() => toggleDescription('escribano')}
                   className="text-secondary font-bold hover:underline mt-1 block"
@@ -877,13 +971,13 @@ const LawPage = () => {
           </div>
         </motion.div>
 
-        {/* === Puesto 2: Procurador === */}
+        {/* === Puesto 3: Procurador === */}
         <motion.div
           className="relative flex items-start gap-6 sm:gap-8 mb-8"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
         >
           {/* Punto */}
           <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
@@ -903,10 +997,12 @@ const LawPage = () => {
               dic. 2020 - dic. 2021 · 1 año
             </p>
             <div className="text-sm sm:text-base text-gray700 leading-relaxed">
-              <p className={expandedDescriptions.procurador ? "" : "line-clamp-4 sm:line-clamp-3"}>
+              <p 
+                className={`procurador-text ${expandedDescriptions.procurador ? "" : "line-clamp-4 sm:line-clamp-3"}`}
+              >
                 Fiscalia de Instrucción del Primer Turno (Rio Tercero) - Instrucción de causas penales en general abarcando todos los actos procesales hasta la elevación a juicio. Incluye la recepción de testimonios, recepción de indagatoria, realización de diligencias probatorias de segundo grado como ruedas de reconocimiento y cámara gesell, redacción de prisiones preventivas, redacción de elevaciones a juicio y cierre de juicios abreviados.
               </p>
-              {!expandedDescriptions.procurador && (
+              {!expandedDescriptions.procurador && textTruncated.procurador && (
                 <button 
                   onClick={() => toggleDescription('procurador')}
                   className="text-secondary font-bold hover:underline mt-1 block"
@@ -926,13 +1022,13 @@ const LawPage = () => {
           </div>
         </motion.div>
 
-        {/* === Puesto 3: Abogado === */}
+        {/* === Puesto 4: Abogado === */}
         <motion.div
           className="relative flex items-start gap-6 sm:gap-8"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
         >
           {/* Punto */}
           <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
@@ -952,10 +1048,12 @@ const LawPage = () => {
               ago. 2020 - dic. 2021 · 5 meses
             </p>
             <div className="text-sm sm:text-base text-gray700 leading-relaxed">
-              <p className={expandedDescriptions.abogado ? "" : "line-clamp-4 sm:line-clamp-3"}>
+              <p 
+                className={`abogado-text ${expandedDescriptions.abogado ? "" : "line-clamp-4 sm:line-clamp-3"}`}
+              >
               Unidad Judicial de Rio Tercero – Dependencia judicial multifuero donde se receptaron denuncias de todo tipo v. gr: abusos sexuales, estafas, hechos de violencia familiar, robos, procedimientos con aprehendidos en flagrancia, etc. Se cumplimentó con la recepción inicial de prueba hasta la elevación del sumario en definitivo a la Fiscalía de Instrucción pertinente.
               </p>
-              {!expandedDescriptions.abogado && (
+              {!expandedDescriptions.abogado && textTruncated.abogado && (
                 <button 
                   onClick={() => toggleDescription('abogado')}
                   className="text-secondary font-bold hover:underline mt-1 block"
