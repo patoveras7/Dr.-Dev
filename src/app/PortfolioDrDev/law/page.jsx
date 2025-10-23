@@ -919,7 +919,7 @@ const LawPage = () => {
           </div>
         </motion.div>
 
-        {/* === Puesto 2: Escribano Público === */}
+        {/* === Puesto 2: CRPPA === */}
         <motion.div
           className="relative flex items-start gap-6 sm:gap-8 mb-8"
           initial={{ opacity: 0, x: -50 }}
@@ -943,7 +943,7 @@ const LawPage = () => {
               />
             </div>
             <p className="text-sm sm:text-base text-gray600 mb-3">
-              dic. 2021 - actualidad · 3 años 9 meses
+              dic. 2021 - oct. 2025 · 3 años 10 meses
             </p>
             <div className="text-sm sm:text-base text-gray700 leading-relaxed">
               <p 
@@ -994,7 +994,7 @@ const LawPage = () => {
               />
             </div>
             <p className="text-sm sm:text-base text-gray600 mb-3">
-              dic. 2020 - dic. 2021 · 1 año
+              feb. 2021 - dic. 2021 · 10 meses
             </p>
             <div className="text-sm sm:text-base text-gray700 leading-relaxed">
               <p 
@@ -1022,7 +1022,7 @@ const LawPage = () => {
           </div>
         </motion.div>
 
-        {/* === Puesto 4: Abogado === */}
+        {/* === Puesto 4: UJ === */}
         <motion.div
           className="relative flex items-start gap-6 sm:gap-8"
           initial={{ opacity: 0, x: -50 }}
@@ -1045,7 +1045,7 @@ const LawPage = () => {
               />
             </div>
             <p className="text-sm sm:text-base text-gray600 mb-3">
-              ago. 2020 - dic. 2021 · 5 meses
+              ago. 2020 - feb. 2021 · 6 meses
             </p>
             <div className="text-sm sm:text-base text-gray700 leading-relaxed">
               <p 
