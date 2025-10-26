@@ -2,6 +2,7 @@
 import React from "react";
 import ThemeWrapper from "../../../components/ThemeWrapper";
 import { Modal, ImageModal, BackToHomeButton } from "../../../components/common";
+import { useTheme } from "../../../context/ThemeContext";
 import {
   IntroductionSection,
   CertificationsSection,
@@ -11,6 +12,7 @@ import {
 import { useLawPage } from "../../../hooks/useLawPage";
 
 const LawPage = () => {
+  const { isDarkMode } = useTheme();
   const {
     certificationsData,
     expandedItems,
@@ -39,7 +41,7 @@ const LawPage = () => {
 
   return (
     <ThemeWrapper>
-      <div className="min-h-screen bg-clearIceFullLight">
+      <div className="min-h-screen bg-clearIceFullLight law-page">
       {/* SECCIÓN 1: Presentación inicial */}
         <IntroductionSection />
 
@@ -65,6 +67,12 @@ const LawPage = () => {
           onClose={onCloseModal}
         imageSrc={currentImage}
         imageAlt="Certificación"
+        closeButtonClassName={`fixed z-50 border-2 border-clearIceFullLight law-modal-close-button rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-lg top-[130px] sm:top-[80px] md:top-[135px] lg:top-[78px] right-1/2 xl:top-20 ${
+          isDarkMode 
+            ? 'bg-clearYellow text-primary hover:bg-clearYellow/80' 
+            : 'bg-primary text-clearIceFullLight hover:bg-primary/80'
+        }`}
+        iconClassName={`w-5 h-5 ${isDarkMode ? 'text-gray500' : ''}`}
       />
 
       {/* Modal de visualización de imagen de IA */}
@@ -73,6 +81,12 @@ const LawPage = () => {
           onClose={onCloseIaModal}
         imageSrc="/certificaciones/Relacionados/IA generativa en la justicia.jpg"
         imageAlt="Certificación IA Generativa"
+        closeButtonClassName={`fixed z-50 border-2 border-clearIceFullLight law-modal-close-button rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-lg top-[130px] sm:top-[80px] md:top-[135px] lg:top-[78px] right-1/2 xl:top-20 ${
+          isDarkMode 
+            ? 'bg-clearYellow text-primary hover:bg-clearYellow/80' 
+            : 'bg-primary text-clearIceFullLight hover:bg-primary/80'
+        }`}
+        iconClassName={`w-5 h-5 ${isDarkMode ? 'text-gray500' : ''}`}
       />
 
       {/* Modal de Maratón de Ideas */}
@@ -92,9 +106,13 @@ const LawPage = () => {
               
               <button
             onClick={onCloseMaratonModal}
-                className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
+                className={`absolute top-2 right-2 border-2 border-clearIceFullLight law-modal-close-button rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-lg ${
+                  isDarkMode 
+                    ? 'bg-clearYellow text-primary hover:bg-clearYellow/80' 
+                    : 'bg-primary text-clearIceFullLight hover:bg-primary/80'
+                }`}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-6 h-6 ${isDarkMode ? 'text-gray500' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -117,9 +135,13 @@ const LawPage = () => {
               
               <button
             onClick={onCloseInvestigacionModal}
-                className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
+                className={`absolute top-2 right-2 border-2 border-clearIceFullLight law-modal-close-button rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-lg ${
+                  isDarkMode 
+                    ? 'bg-clearYellow text-primary hover:bg-clearYellow/80' 
+                    : 'bg-primary text-clearIceFullLight hover:bg-primary/80'
+                }`}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-6 h-6 ${isDarkMode ? 'text-gray500' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -132,7 +154,12 @@ const LawPage = () => {
         imageSrc="/justicIA.jpeg"
         imageAlt="Solución Software justicIA"
         className="w-[800px] h-[400px] sm:h-[600px] md:w-[750px] md:h-[650px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill"
-        closeButtonClassName="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-44 sm:top-20 right-1/2 md:top-40 lg:top-32 xl:top-20"
+        closeButtonClassName={`fixed z-50 border-2 border-clearIceFullLight law-modal-close-button rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-lg top-44 sm:top-20 right-1/2 md:top-40 lg:top-32 xl:top-20 ${
+          isDarkMode 
+            ? 'bg-clearYellow text-primary hover:bg-clearYellow/80' 
+            : 'bg-primary text-clearIceFullLight hover:bg-primary/80'
+        }`}
+        iconClassName={`w-5 h-5 ${isDarkMode ? 'text-gray500' : ''}`}
       />
 
      {/* SECCIÓN 4: De interés */}

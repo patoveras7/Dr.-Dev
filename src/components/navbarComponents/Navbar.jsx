@@ -3,9 +3,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../logoComponents/Logo';
 import { useNavbar } from '../../app/PortfolioDrDev/layout';
+import { useTheme } from '../../context/ThemeContext';
 
 const Navbar = () => {
   const { isNavbarExpanded, setIsNavbarExpanded } = useNavbar();
+  const { isDarkMode } = useTheme();
   const audioRef = useRef(null);
   const [showArrows, setShowArrows] = useState(false);
   const [showB2Modal, setShowB2Modal] = useState(false);
@@ -77,7 +79,7 @@ const Navbar = () => {
       )}
 
       <div
-        className={`fixed left-0 top-0 h-full z-50 transition-all duration-300 ease-in-out select-none
+        className={`fixed left-0 top-0 h-full ${showB2Modal ? 'z-[130]' : 'z-50'} transition-all duration-300 ease-in-out select-none
           bg-primary
           ${isNavbarExpanded ? expandedWidths : collapsedWidths}
         `}
@@ -271,13 +273,13 @@ const Navbar = () => {
               <>
                 {/* Overlay con blur */}
                 <div
-                  className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[60]"
+                  className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[110]"
                   onClick={() => setShowB2Modal(false)}
                 />
 
                 {/* Contenido centrado */}
                 <div
-                  className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+                  className="fixed inset-0 z-[120] flex items-center justify-center p-4"
                   onClick={() => setShowB2Modal(false)}
                 >
                   <div
@@ -286,7 +288,11 @@ const Navbar = () => {
                   >
                     <button
                       onClick={() => setShowB2Modal(false)}
-                      className="mb-2 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg"
+                      className={`mb-2 border-2 border-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-lg ${
+                        isDarkMode 
+                          ? 'bg-clearYellow text-primary hover:bg-clearYellow/80' 
+                          : 'bg-primary text-clearIceFullLight hover:bg-primary/80'
+                      }`}
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

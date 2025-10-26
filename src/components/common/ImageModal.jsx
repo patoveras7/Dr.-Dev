@@ -8,12 +8,13 @@ const ImageModal = ({
   imageSrc, 
   imageAlt = "Modal image",
   className = "w-[700px] h-[500px] sm:w-[800px] sm:h-[600px] md:w-[730px] md:h-[530px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill",
-  closeButtonClassName = "fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[130px] sm:top-[80px] md:top-[135px] lg:top-[78px] right-1/2 xl:top-20"
+  closeButtonClassName = "fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[130px] sm:top-[80px] md:top-[135px] lg:top-[78px] right-1/2 xl:top-20",
+  iconClassName = "w-5 h-5"
 }) => {
   const containerRef = useRef(null);
   return (
     <Modal isOpen={isOpen} onClose={onClose} className="xl:p-0">
-      <div className="relative max-w-[90vw] overflow-x-auto lg:overflow-hidden xl:overflow-hidden xl:max-w-[980px]" ref={containerRef}>
+      <div className="relative max-w-[90vw] overflow-x-auto lg:overflow-hidden xl:overflow-hidden xl:max-w-[980px] scrollbar-custom" ref={containerRef}>
         <img
           src={imageSrc}
           alt={imageAlt}
@@ -45,7 +46,7 @@ const ImageModal = ({
           onClick={onClose}
           className={closeButtonClassName}
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className={iconClassName} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>

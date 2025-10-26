@@ -29,7 +29,7 @@ const Modal = ({
     <>
       {/* Overlay */}
       <motion.div
-        className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40 ${overlayClassName}`}
+        className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[110] ${overlayClassName}`}
         onClick={closeOnOverlayClick ? onClose : undefined}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -39,7 +39,7 @@ const Modal = ({
 
       {/* Modal */}
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 z-[120] flex items-center justify-center p-4"
         onClick={closeOnOverlayClick ? onClose : undefined}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

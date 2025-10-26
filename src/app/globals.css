@@ -10,10 +10,10 @@
     }
 }
 
-/* Scrollbar */
+/* Scrollbar - COLORES CONDICIONALES PARA MODALES */
 .scrollbar-custom {
   scrollbar-width: thin;
-  scrollbar-color: #d6eaf4 transparent;
+  scrollbar-color: #450a0a transparent; /* primary por defecto */
 }
 
 .scrollbar-custom::-webkit-scrollbar {
@@ -26,8 +26,16 @@
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: #d6eaf4;
+  background-color: #450a0a !important; /* primary en modo claro */
   border-radius: 4px;
+}
+
+.dark-mode .scrollbar-custom {
+  scrollbar-color: #eab308 transparent; /* clearYellow en modo oscuro */
+}
+
+.dark-mode .scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #eab308 !important; /* clearYellow en modo oscuro */
 }
 
 
@@ -205,6 +213,24 @@
 /* Border amarillo para elementos de certificaciones en modo oscuro */
 .dark-mode .bg-clearIceFullLight.rounded-2xl {
   border: 1px solid #eab308 !important; /* clearYellow */
+}
+
+/* Estilos específicos para botones de cierre de modales en vista LAW */
+.law-modal-close-button {
+  border-color: #d6eaf4 !important; /* clearIceFullLight */
+}
+
+.dark-mode .law-modal-close-button {
+  border-color: #d6eaf4 !important; /* clearIceFullLight - mantener en modo oscuro */
+}
+
+/* Asegurar que todos los botones de cierre de modales en LAW tengan el border correcto */
+.law-page .border-clearIceFullLight {
+  border-color: #d6eaf4 !important; /* clearIceFullLight */
+}
+
+.dark-mode .law-page .border-clearIceFullLight {
+  border-color: #d6eaf4 !important; /* clearIceFullLight - mantener en modo oscuro */
 }
 
 /* Transiciones suaves para cambios de tema */
