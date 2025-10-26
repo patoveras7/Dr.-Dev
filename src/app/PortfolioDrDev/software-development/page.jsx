@@ -40,53 +40,53 @@ const SoftwareDevelopmentPage = () => {
         <IntroductionSection />
 
         {/* SECCIÓN 2: Project Carousels */}
-        <ProjectCarousel
-          projects={projects}
-          currentSlide={currentSlide}
-          onPrevSlide={prevSlide}
-          onNextSlide={nextSlide}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-          onProjectClick={scrollToProject}
-        />
-        
-        <ProjectSection
-          projects={projects}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-          onProjectClick={scrollToProject}
-        />
+      <ProjectCarousel
+        projects={projects}
+        currentSlide={currentSlide}
+        onPrevSlide={prevSlide}
+        onNextSlide={nextSlide}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        onProjectClick={scrollToProject}
+      />
+      
+      <ProjectSection
+        projects={projects}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        onProjectClick={scrollToProject}
+      />
 
         {/* SECCIÓN 3: Individual Projects */}
         <ProjectsShowcaseSection onShowTechs={handleShowTechs} />
 
-        {/* Modal de Tecnologías */}
-        <ImageModal
-          isOpen={showTechModal}
-          onClose={handleCloseModal}
-          imageSrc={currentTechImage}
-          imageAlt="Tecnologías del proyecto"
-          className="w-[95vw] h-auto sm:w-[500px] sm:h-[280px] md:w-[650px] md:h-[365px] lg:w-[750px] lg:h-[420px] xl:w-[900px] xl:h-[505px] object-contain"
-          closeButtonClassName="absolute top-2 right-2 z-10 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg"
-        />
+      {/* Modal de Tecnologías */}
+      <ImageModal
+        isOpen={showTechModal}
+        onClose={handleCloseModal}
+        imageSrc={currentTechImage}
+        imageAlt="Tecnologías del proyecto"
+        className="w-[95vw] h-auto sm:w-[500px] sm:h-[280px] md:w-[650px] md:h-[365px] lg:w-[750px] lg:h-[420px] xl:w-[900px] xl:h-[505px] object-contain"
+        closeButtonClassName="absolute top-2 right-2 z-10 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg"
+      />
 
         {/* SECCIÓN 4: Profesional Project */}
-        <FullnessSection
-          fullnessImages={fullnessImages}
-          fullnessSlides={fullnessSlides}
-          fullnessCurrentSlide={fullnessCurrentSlide}
-          onPrevFullnessSlide={prevFullnessSlide}
-          onNextFullnessSlide={nextFullnessSlide}
-        />
+      <FullnessSection
+        fullnessImages={fullnessImages}
+        fullnessSlides={fullnessSlides}
+        fullnessCurrentSlide={fullnessCurrentSlide}
+        onPrevFullnessSlide={prevFullnessSlide}
+        onNextFullnessSlide={nextFullnessSlide}
+      />
 
         {/* SECCIÓN 5: Why Dr. Dev? */}
         <WhyDrDevSection />
 
         {/* SECCIÓN 6: Tech Carousel */}
-        <TechCarousel />
+      <TechCarousel />
 
-        {/* Botón Inicio */}
-        <BackToHomeButton />
+                           {/* Botón Inicio */}
+      <BackToHomeButton />
       </div>
     </ThemeWrapper>
   );
