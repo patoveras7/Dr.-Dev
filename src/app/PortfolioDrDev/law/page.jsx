@@ -2,6 +2,20 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ThemeWrapper from "../../../components/ThemeWrapper";
+import { 
+  Button, 
+  Modal, 
+  ImageModal, 
+  Section, 
+  AnimatedTitle, 
+  BackToHomeButton 
+} from "../../../components/common";
+import {
+  CertificationYearSelector,
+  CertificationList,
+  SoftwareDevelopmentSection,
+  WorkExperienceTimeline
+} from "../../../components/law";
 
 const LawPage = () => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -19,14 +33,12 @@ const LawPage = () => {
   const [expandedDescriptions, setExpandedDescriptions] = useState({
     escribano: false,
     procurador: false,
-    abogado: false,
-    fiscaliaCibercrimen: false
+    abogado: false
   });
   const [textTruncated, setTextTruncated] = useState({
     escribano: false,
     procurador: false,
-    abogado: false,
-    fiscaliaCibercrimen: false
+    abogado: false
   });
   const [showAllCertifications, setShowAllCertifications] = useState(false);
   const [isBlinking, setIsBlinking] = useState(false);
@@ -241,8 +253,7 @@ const LawPage = () => {
       const elements = {
         escribano: document.querySelector('.escribano-text'),
         procurador: document.querySelector('.procurador-text'),
-        abogado: document.querySelector('.abogado-text'),
-        fiscaliaCibercrimen: document.querySelector('.fiscalia-cibercrimen-text')
+        abogado: document.querySelector('.abogado-text')
       };
 
       Object.entries(elements).forEach(([key, element]) => {
@@ -314,155 +325,32 @@ const LawPage = () => {
       {/* SECCIÓN 2: Certificaciones por año */}
       <section className="flex items-start justify-center px-1">
         <div className="container mx-auto">
-          <motion.h2
+          <AnimatedTitle
             className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-primary mb-8 lg:mb-12 text-left ml-[10px] sm:ml-[18px] lg:ml-[25px]"
-            initial={{ opacity: 0, y: -50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             Certificaciones por año calendario
-          </motion.h2>
+          </AnimatedTitle>
 
           {/* Panel de selección de año */}
-          <motion.div
-            className="flex flex-wrap pb-10 gap-3 px-4 lg:px-7 justify-center sm:justify-start"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          >
-            {/* Botón Reset */}
-            <button
-              onClick={() => handleYearSelect("reset")}
-              className="bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-bold hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
-            >
-              Reset
-            </button>
+          <CertificationYearSelector
+            selectedYear={selectedYear}
+            onYearSelect={handleYearSelect}
+            years={years}
+            showAllCertifications={showAllCertifications}
+            onToggleShowAll={toggleShowAllCertifications}
+          />
 
-            {/* Botones de años */}
-            {years.map((year) => (
-              <button
-                key={year}
-                onClick={() => handleYearSelect(year)}
-                className={`border-2 rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-bold transition-all duration-200 shadow-lg ${
-                  selectedYear === year
-                    ? "bg-clearIce text-primary border-clearIce"
-                    : "bg-primary text-clearIce border-clearIce hover:bg-clearIce hover:text-primary"
-                }`}
-              >
-                {year}
-              </button>
-            ))}
-
-            {/* Botón Destacadas */}
-            <button
-              onClick={() => handleYearSelect("destacadas")}
-              className={`border-2 rounded-[7px] px-4 py-2 text-sm lg:text-base xl:text-lg font-bold transition-all duration-200 shadow-lg flex items-center gap-2 ${
-                selectedYear === "destacadas"
-                  ? "bg-clearIce border-clearIce"
-                  : "bg-primary border-clearIce hover:bg-clearIce"
-              }`}
-                         >
-               <svg className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 text-clearYellow" fill="currentColor" viewBox="0 0 20 20">
-                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-               </svg>
-              <span className="text-clearYellow">Destacadas</span>
-            </button>
-          </motion.div>
-
-                    {/* Contenedores por año (render condicional) */}
+          {/* Contenedores por año (render condicional) */}
           {selectedYear && certificationsData[selectedYear] && (
-            <motion.div
-              className=""
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <div className="flex flex-col gap-6 justify-center items-center md:px-[30px] lg:px-[40px] xl:px-[50px] pb-10">
-                {certificationsData[selectedYear]
-                  .slice(0, showAllCertifications ? certificationsData[selectedYear].length : 4)
-                  .map((pdfFile, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex w-[98%] h-[110px] bg-clearIceFullLight rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
-                    onClick={() => handleImageClick(pdfFile)}
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
-                  >
-                     {/* Miniatura (38% del ancho) */}
-                     <div className={`w-[48%] sm:w-[37%] lg:w-[30%] xl:w-[25%] flex items-center justify-center p-2 ${
-                       selectedYear === "destacadas" ? "bg-clearYellow" : "bg-primary"
-                     }`}>
-                       <div className="w-full h-full bg-clearIceFullLight rounded-lg overflow-hidden shadow-sm">
-                       <img
-                           src={`/certificaciones/${selectedYear === "destacadas" ? "Destacadas" : selectedYear}/${pdfFile}`}
-                           alt="Certificación"
-                           className="w-full h-full object-contain"
-                         />
-                       </div>
-                     </div>
-
-                    {/* Contenido (62% del ancho) */}
-                    <div className="w-[52%] sm:w-[63%] lg:w-[70%] xl:w-[75%] flex items-center justify-center">
-                      <p className="text-gray600 text-[12px] text-center pr-2 pl-2">
-                        {getCertificationDescription(pdfFile)}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-
-                {/* Botón "Ver más" cuando hay más de 4 certificaciones */}
-                {certificationsData[selectedYear].length > 4 && !showAllCertifications && (
-                  <motion.div
-                    className="w-[98%] flex justify-center items-center mt-4 mb-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                  >
-                    <button
-                      onClick={toggleShowAllCertifications}
-                      className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 min-w-[200px] ${
-                        isBlinking 
-                          ? "bg-primary border-primary" 
-                          : "bg-clearIceFullLight border-gray200 hover:border-primary"
-                      }`}
-                    >
-                      <div className="w-full h-0.5 bg-gray300 flex-1"></div>
-                      <svg className={`w-4 h-4 sm:w-5 sm:h-5 transform transition-all duration-300 ${
-                        isBlinking ? "text-clearIceFullLight" : "text-primary"
-                      }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                      <div className="w-full h-0.5 bg-gray300 flex-1"></div>
-                    </button>
-                  </motion.div>
-                )}
-
-                {/* Botón "Ver menos" cuando están todas las certificaciones mostradas */}
-                {certificationsData[selectedYear].length > 4 && showAllCertifications && (
-                  <motion.div
-                    className="w-[98%] flex justify-center items-center mt-4 mb-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                  >
-                    <button
-                      onClick={toggleShowAllCertifications}
-                      className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-clearIceFullLight rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gray200 hover:border-primary min-w-[200px]"
-                    >
-                      <div className="w-full h-0.5 bg-gray300 flex-1"></div>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary transform rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                      <div className="w-full h-0.5 bg-gray300 flex-1"></div>
-                    </button>
-                  </motion.div>
-                )}
-              </div>
-            </motion.div>
+            <CertificationList
+              certifications={certificationsData[selectedYear]}
+              selectedYear={selectedYear}
+              showAllCertifications={showAllCertifications}
+              onImageClick={handleImageClick}
+              getCertificationDescription={getCertificationDescription}
+              isBlinking={isBlinking}
+              onToggleShowAll={toggleShowAllCertifications}
+            />
           )}
 
           {/* Mensaje cuando no hay certificaciones */}
@@ -480,613 +368,145 @@ const LawPage = () => {
       </section>
 
       {/* SECCIÓN 3: Relacionado al Desarrollo de Software */}
-      <section className="flex flex-col gap-12 items-center w-full bg-secondary keep-original py-12 px-1 pb-20">
-        <div className="w-full max-w-7xl mx-auto">
-          {/* Header con título */}
-          <div className="flex justify-center mb-8">
-            <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-bold text-clearIceFullLight text-center">
-              Relacionado al Desarrollo de Software
-            </h1>
-          </div>
-
-          {/* Elementos desplegables */}
-          <div className="flex flex-col gap-4 w-[80%] md:w-[70%] lg:w-[60%] mx-auto">
-            
-            {/* Elemento 1: IA generativa en la Justicia */}
-            <div className="bg-clearIceFullLight rounded-lg overflow-hidden">
-              <button
-                onClick={() => toggleExpandedItem('iaGenerativa')}
-                className="w-full p-2 flex items-center gap-3 hover:bg-clearIceFullLight/90 transition-colors duration-200"
-              >
-                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <span className="text-secondary font-medium">IA generativa en la Justicia</span>
-              </button>
-              
-              {expandedItems.iaGenerativa && (
-                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
-                  <div className="mb-4">
-                    <p className="text-gray700 text-sm leading-relaxed text-justify">
-                    Durante el año 2024 se llevó a cabo un proyecto a nivel nacional para concientizar el uso responsable y estratégico de la IA en el marco de los procedimientos judiciales en general. Se plantearon muchas razonables e inevitables automatizaciones en aras de la prestación de un mejor servicio de justicia.
-                    </p>
-                  </div>
-                  <button 
-                    onClick={handleShowIaModal}
-                    className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
-                  >
-                    ver certificación
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Elemento 2: Maratón de ideas justicIA */}
-            <div className="bg-clearIceFullLight rounded-lg overflow-hidden">
-              <button
-                onClick={() => toggleExpandedItem('maratonIdeas')}
-                className="w-full p-2 flex items-center gap-3 hover:bg-clearIceFullLight/90 transition-colors duration-200"
-              >
-                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <span className="text-secondary font-medium">Maratón de ideas justicIA</span>
-              </button>
-              
-              {expandedItems.maratonIdeas && (
-                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
-                  <div className="mb-4">
-                    <p className="text-gray700 text-sm leading-relaxed text-justify">
-                    El 2 de Agosto del año 2025 el Poder Judicial de la Provincia de Córdoba organizó y desplegó una Maratón de ideas con el fin de que pequeños grupos de empleados, funcionarios y magistrados judiciales plantearan soluciones con integración de IA a problemas existentes en la labor judicial diaria. Junto con grupo del que formé parte plateamos una solución de software que, mediante el uso de los servicios de Azure AI Language que proporcionan un análisis semántico y vectorial de texto, permite la notificación automática de resoluciones inmediatamente luego de la firma digital de las mismas. Conocé mas haciendo <a href="https://www.instagram.com/reel/DNB1HZVS0W-/?utm_source=ig_web_copy_link&igsh=NGdhNG80NmF6cm5l" className="text-primary font-bold underline hover:text-primary/80 transition-colors">click aquí</a>.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <button 
-                      onClick={handleShowMaratonModal}
-                      className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
-                    >
-                      ver certificación
-                    </button>
-                    <button 
-                      onClick={handleShowSolucionSoftwareModal}
-                      className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
-                    >
-                      Solución Software
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Elemento 3: Proyectos de Investigación Aplicada */}
-            <div className="bg-clearIceFullLight rounded-lg overflow-hidden">
-              <button
-                onClick={() => toggleExpandedItem('proyectosInvestigacion')}
-                className="w-full p-2 flex items-center gap-3 hover:bg-clearIceFullLight/90 transition-colors duration-200"
-              >
-                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                                 <span className="text-secondary font-medium sm:hidden">Investigación Aplicada</span>
-                 <span className="text-secondary font-medium hidden sm:block">Proyectos de Investigación Aplicada (PIA)</span>
-              </button>
-              
-              {expandedItems.proyectosInvestigacion && (
-                <div className="border-l-4 border-clearIceFullLight p-4 bg-clearIceFullLight/50 flex flex-col justify-center items-center">
-                  <div className="mb-4">
-                    <p className="text-gray700 text-sm leading-relaxed text-justify">
-                    El Ministerio Público Fiscal de la Provincia de Córdoba abrió convocatoria a la presentación de proyectos de investigación aplicada que puedan contribuir tanto a la construcción de capacidades institucionales como a la resolución de problemas en los distintos ámbitos de intervención. Dr. Dev junto a otros colaboradores está en vías de presentación de un proyecto con integración de IA que mejora procesos de trabajo institucionales y el servicio de justicia.
-                    </p>
-                  </div>
-                  <button 
-                    onClick={handleShowInvestigacionModal}
-                    className="bg-primary sm:w-[250px] text-clearIce border-2 border-clearIce rounded-[7px] px-4 py-2 text-sm font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
-                  >
-                    ver certificación
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      <SoftwareDevelopmentSection
+        expandedItems={expandedItems}
+        onToggleExpandedItem={toggleExpandedItem}
+        onShowIaModal={handleShowIaModal}
+        onShowMaratonModal={handleShowMaratonModal}
+        onShowInvestigacionModal={handleShowInvestigacionModal}
+        onShowSolucionSoftwareModal={handleShowSolucionSoftwareModal}
+      />
 
       {/* Modal de visualización de imagen */}
-      {showImageModal && (
-        <>
-          {/* Overlay con blur */}
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
-            onClick={handleCloseModal}
-          />
-
-          {/* Modal centrado */}
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            onClick={handleCloseModal}
-          >
-            <div
-              className="relative overflow-y-auto overflow-x-auto md:overflow-hidden md:max-h-none md:max-w-none"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Imagen de la certificación */}
-              <img
-                src={currentImage}
-                alt="Certificación"
-                className="certification-image w-[700px] h-[500px] sm:w-[800px] sm:h-[600px] md:w-[730px] md:h-[530px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill"
-                style={{ minWidth: '700px' }}
-                onLoad={(e) => {
-                  if (window.innerWidth >= 640 && window.innerWidth < 768) {
-                    e.target.style.minWidth = '1000px';
-                  } else if (window.innerWidth >= 768) {
-                    e.target.style.minWidth = 'auto';
-                  }
-                }}
-              />
-              {/* Botón de cerrar fijo sobre la imagen */}
-              <button
-                onClick={handleCloseModal}
-                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-32 sm:top-16 right-1/2 md:top-28 lg:top-20 xl:top-9"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+      <ImageModal
+        isOpen={showImageModal}
+        onClose={handleCloseModal}
+        imageSrc={currentImage}
+        imageAlt="Certificación"
+      />
 
       {/* Modal de visualización de imagen de IA */}
-      {showIaModal && (
-        <>
-          {/* Overlay con blur */}
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
-            onClick={handleCloseIaModal}
-          />
-
-          {/* Modal centrado */}
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            onClick={handleCloseIaModal}
-          >
-            <div
-              className="relative overflow-y-auto overflow-x-auto md:overflow-hidden md:max-h-none md:max-w-none"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Imagen de la certificación de IA */}
-              <img
-                src="/certificaciones/Relacionados/IA generativa en la justicia.jpg"
-                alt="Certificación IA Generativa"
-                className="certification-image w-[700px] h-[500px] sm:w-[800px] sm:h-[600px] md:w-[730px] md:h-[530px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill"
-                style={{ minWidth: '700px' }}
-                onLoad={(e) => {
-                  if (window.innerWidth >= 640 && window.innerWidth < 768) {
-                    e.target.style.minWidth = '1000px';
-                  } else if (window.innerWidth >= 768) {
-                    e.target.style.minWidth = 'auto';
-                  }
-                }}
-              />
-              {/* Botón de cerrar fijo sobre la imagen */}
-              <button
-                onClick={handleCloseIaModal}
-                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-32 sm:top-16 right-1/2 md:top-28 lg:top-20 xl:top-9"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+      <ImageModal
+        isOpen={showIaModal}
+        onClose={handleCloseIaModal}
+        imageSrc="/certificaciones/Relacionados/IA generativa en la justicia.jpg"
+        imageAlt="Certificación IA Generativa"
+      />
 
       {/* Modal de Maratón de Ideas */}
-      {showMaratonModal && (
-        <>
-          {/* Overlay con blur */}
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
-            onClick={handleCloseMaratonModal}
-          />
-
-          {/* Modal centrado */}
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            onClick={handleCloseMaratonModal}
-          >
-            <div
-              className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Contenido del modal */}
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-primary mb-4">
-                  Certificación en curso
-                </h3>
-                <p className="text-gray700 text-lg leading-relaxed">
-                  La certificación para el proyecto "Maratón de ideas justicIA" se encuentra actualmente en proceso de evaluación.
-                </p>
-              </div>
-              
-              {/* Botón de cerrar */}
-              <button
-                onClick={handleCloseMaratonModal}
-                className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+      <Modal
+        isOpen={showMaratonModal}
+        onClose={handleCloseMaratonModal}
+        className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
+      >
+        <div className="text-center">
+          <h3 className="text-2xl font-bold text-primary mb-4">
+            Certificación en curso
+          </h3>
+          <p className="text-gray700 text-lg leading-relaxed">
+            La certificación para el proyecto "Maratón de ideas justicIA" se encuentra actualmente en proceso de evaluación.
+          </p>
+        </div>
+        
+        <button
+          onClick={handleCloseMaratonModal}
+          className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </Modal>
 
       {/* Modal de Investigación Aplicada */}
-      {showInvestigacionModal && (
-        <>
-          {/* Overlay con blur */}
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
-            onClick={handleCloseInvestigacionModal}
-          />
-
-          {/* Modal centrado */}
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            onClick={handleCloseInvestigacionModal}
-          >
-            <div
-              className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Contenido del modal */}
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-primary mb-4">
-                  Proyecto pendiente de aprobación por comité evaluador
-                </h3>
-                <p className="text-gray700 text-lg leading-relaxed">
-                  El proyecto de investigación aplicada se encuentra actualmente en revisión por el comité evaluador correspondiente.
-                </p>
-              </div>
-              
-              {/* Botón de cerrar */}
-              <button
-                onClick={handleCloseInvestigacionModal}
-                className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+      <Modal
+        isOpen={showInvestigacionModal}
+        onClose={handleCloseInvestigacionModal}
+        className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
+      >
+        <div className="text-center">
+          <h3 className="text-2xl font-bold text-primary mb-4">
+            Proyecto pendiente de aprobación por comité evaluador
+          </h3>
+          <p className="text-gray700 text-lg leading-relaxed">
+            El proyecto de investigación aplicada se encuentra actualmente en revisión por el comité evaluador correspondiente.
+          </p>
+        </div>
+        
+        <button
+          onClick={handleCloseInvestigacionModal}
+          className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </Modal>
 
       {/* Modal de Solución Software */}
-      {showSolucionSoftwareModal && (
-        <>
-          {/* Overlay con blur */}
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
-            onClick={handleCloseSolucionSoftwareModal}
-          />
-
-          {/* Modal centrado */}
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            onClick={handleCloseSolucionSoftwareModal}
-          >
-            <div
-              className="relative overflow-y-auto overflow-x-auto md:overflow-hidden md:max-h-none md:max-w-none"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Imagen de la solución software */}
-              <img
-                src="/justicIA.jpeg"
-                alt="Solución Software justicIA"
-                className="certification-image w-[800px] h-[400px] sm:h-[600px] md:w-[750px] md:h-[650px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill"
-                style={{ minWidth: '700px' }}
-                onLoad={(e) => {
-                  if (window.innerWidth >= 640 && window.innerWidth < 768) {
-                    e.target.style.minWidth = '1000px';
-                  } else if (window.innerWidth >= 768) {
-                    e.target.style.minWidth = 'auto';
-                  }
-                }}
-              />
-              {/* Botón de cerrar fijo sobre la imagen */}
-              <button
-                onClick={handleCloseSolucionSoftwareModal}
-                className="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-44 sm:top-20 right-1/2 md:top-40 lg:top-32 xl:top-20"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+      <ImageModal
+        isOpen={showSolucionSoftwareModal}
+        onClose={handleCloseSolucionSoftwareModal}
+        imageSrc="/justicIA.jpeg"
+        imageAlt="Solución Software justicIA"
+        className="w-[800px] h-[400px] sm:h-[600px] md:w-[750px] md:h-[650px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill"
+        closeButtonClassName="fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-44 sm:top-20 right-1/2 md:top-40 lg:top-32 xl:top-20"
+      />
 
      {/* SECCIÓN 4: De interés */}
-<section className="flex items-start justify-start px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 pt-10 pb-20 bg-clearIceFullLight">
-  <div className="container mx-auto">
-    {/* Título de la sección */}
-    <motion.h1
-      className="text-3xl sm:text-3xl lg:text-[40px] font-bold text-primary mb-8 text-left"
-      initial={{ opacity: 0, y: -50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      De interés
-    </motion.h1>
+     <Section 
+       className="flex items-start justify-start px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 pt-10 pb-20"
+       background="bg-clearIceFullLight"
+     >
+       <div className="container mx-auto">
+         {/* Título de la sección */}
+         <AnimatedTitle
+           className="text-3xl sm:text-3xl lg:text-[40px] font-bold text-primary mb-8 text-left"
+         >
+           De interés
+         </AnimatedTitle>
 
-    {/* Contenido principal */}
-    <div className="max-w-4xl">
-      {/* Header de la empresa */}
-      <motion.div
-        className="flex items-center gap-4 mb-8"
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <img
-          src="/images/PODER JUDICIAL.png"
-          alt="Poder Judicial"
-          className="w-16 h-16 sm:w-20 sm:h-20 object-contain self-start"
-        />
-        <div className="flex flex-col">
-                        <h2 className="text-[18px] sm:text-2xl lg:text-3xl font-bold text-gray800">
-            Poder Judicial de la Provincia de Córdoba
-          </h2>
-                      <p className="text-sm sm:text-base text-gray600">
-              Jornada Completa - 5 años
-            </p>
-            <p className="text-sm sm:text-base text-gray600">
-              Argentina - Presencial
-            </p>
-        </div>
-      </motion.div>
+         {/* Contenido principal */}
+         <div className="max-w-4xl">
+           {/* Header de la empresa */}
+           <motion.div
+             className="flex items-center gap-4 mb-8"
+             initial={{ opacity: 0, x: -100 }}
+             whileInView={{ opacity: 1, x: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 0.8, ease: "easeOut" }}
+           >
+             <img
+               src="/images/PODER JUDICIAL.png"
+               alt="Poder Judicial"
+               className="w-16 h-16 sm:w-20 sm:h-20 object-contain self-start"
+             />
+             <div className="flex flex-col">
+               <h2 className="text-[18px] sm:text-2xl lg:text-3xl font-bold text-gray800">
+                 Poder Judicial de la Provincia de Córdoba
+               </h2>
+               <p className="text-sm sm:text-base text-gray600">
+                 Jornada Completa - 5 años
+               </p>
+               <p className="text-sm sm:text-base text-gray600">
+                 Argentina - Presencial
+               </p>
+             </div>
+           </motion.div>
 
-      {/* Timeline de experiencia laboral */}
-      <div className="relative">
-        {/* Línea vertical */}
-                  <motion.div
-            className="absolute left-4 sm:left-6 top-0 w-0.5 bg-gray300"
-            style={{ height: lineHeight }}
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-          />
+           {/* Timeline de experiencia laboral */}
+           <WorkExperienceTimeline
+             lineHeight={lineHeight}
+             expandedDescriptions={expandedDescriptions}
+             textTruncated={textTruncated}
+             onToggleDescription={toggleDescription}
+           />
+         </div>
+       </div>
+     </Section>
 
-        {/* === Puesto 1: Fiscalía Cibercrimen === */}
-        <motion.div
-          className="relative flex items-start gap-6 sm:gap-8 mb-8"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        >
-          {/* Punto en la línea */}
-          <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
-          
-          {/* Contenido */}
-          <div className="ml-12 sm:ml-16 flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray800">
-                Fiscalía Cibercrimen
-              </h3>
-              <img
-                src="/images/MPF.png"
-                alt="MPF"
-                className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
-              />
-            </div>
-            <p className="text-sm sm:text-base text-gray600 mb-3">
-              oct. 2025 - actualidad
-            </p>
-            <div className="text-sm sm:text-base text-gray700 leading-relaxed">
-              <p 
-                className={`fiscalia-cibercrimen-text ${expandedDescriptions.fiscaliaCibercrimen ? "" : "line-clamp-4 sm:line-clamp-3"}`}
-              >
-                Instrucción general de causas penales abarcando la recepción inicial de la prueba, recepción de testimonios, elevación de sumarios en definitivo, recepción de indagatoria, realización de diligencias probatorias de segundo grado como ruedas de reconocimiento y camara gesell, redacción de prisiones preventivas, redacción de elevaciones a juicio y cierre de juicios abreviados.
-              </p>
-              {!expandedDescriptions.fiscaliaCibercrimen && textTruncated.fiscaliaCibercrimen && (
-                <button 
-                  onClick={() => toggleDescription('fiscaliaCibercrimen')}
-                  className="text-secondary font-bold hover:underline mt-1 block"
-                >
-                  ... ver más
-                </button>
-              )}
-              {expandedDescriptions.fiscaliaCibercrimen && (
-                <button 
-                  onClick={() => toggleDescription('fiscaliaCibercrimen')}
-                  className="text-secondary font-bold hover:underline mt-1 block"
-                >
-                  ... ver menos
-                </button>
-              )}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* === Puesto 2: CRPPA === */}
-        <motion.div
-          className="relative flex items-start gap-6 sm:gap-8 mb-8"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-        >
-          {/* Punto en la línea */}
-          <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
-          
-          {/* Contenido */}
-                      <div className="ml-12 sm:ml-16 flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray800">
-                  CRPPA - Tribunales II
-                </h3>
-              <img
-                src="/images/MPF.png"
-                alt="MPF"
-                className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
-              />
-            </div>
-            <p className="text-sm sm:text-base text-gray600 mb-3">
-              dic. 2021 - oct. 2025 · 3 años 10 meses
-            </p>
-            <div className="text-sm sm:text-base text-gray700 leading-relaxed">
-              <p 
-                className={`escribano-text ${expandedDescriptions.escribano ? "" : "line-clamp-4 sm:line-clamp-3"}`}
-              >
-                Centro de Recepción de Procedimientos con Personas Aprehendidas (CRPPA) - Recepción e instrucción de procedimientos judiciales con aprehendidos en flagrancia por la supuesta comisión de hechos delictivos. Desarrollo de los actos iniciales de la IPP (instrucción penal preparatoria) recabando la prueba inmediata e inicial a hechos de la naturaleza mencionada.
-              </p>
-              {!expandedDescriptions.escribano && textTruncated.escribano && (
-                <button 
-                  onClick={() => toggleDescription('escribano')}
-                  className="text-secondary font-bold hover:underline mt-1 block"
-                >
-                  ... ver más
-                </button>
-              )}
-              {expandedDescriptions.escribano && (
-                <button 
-                  onClick={() => toggleDescription('escribano')}
-                  className="text-secondary font-bold hover:underline mt-1 block"
-                >
-                  ... ver menos
-                </button>
-              )}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* === Puesto 3: Procurador === */}
-        <motion.div
-          className="relative flex items-start gap-6 sm:gap-8 mb-8"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-        >
-          {/* Punto */}
-          <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
-          
-          <div className="ml-12 sm:ml-16 flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray800">
-                Fiscalía de Instrucción
-              </h3>
-              <img
-                src="/images/MPF.png"
-                alt="MPF"
-                className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
-              />
-            </div>
-            <p className="text-sm sm:text-base text-gray600 mb-3">
-              feb. 2021 - dic. 2021 · 10 meses
-            </p>
-            <div className="text-sm sm:text-base text-gray700 leading-relaxed">
-              <p 
-                className={`procurador-text ${expandedDescriptions.procurador ? "" : "line-clamp-4 sm:line-clamp-3"}`}
-              >
-                Fiscalia de Instrucción del Primer Turno (Rio Tercero) - Instrucción de causas penales en general abarcando todos los actos procesales hasta la elevación a juicio. Incluye la recepción de testimonios, recepción de indagatoria, realización de diligencias probatorias de segundo grado como ruedas de reconocimiento y cámara gesell, redacción de prisiones preventivas, redacción de elevaciones a juicio y cierre de juicios abreviados.
-              </p>
-              {!expandedDescriptions.procurador && textTruncated.procurador && (
-                <button 
-                  onClick={() => toggleDescription('procurador')}
-                  className="text-secondary font-bold hover:underline mt-1 block"
-                >
-                  ... ver más
-                </button>
-              )}
-              {expandedDescriptions.procurador && (
-                <button 
-                  onClick={() => toggleDescription('procurador')}
-                  className="text-secondary font-bold hover:underline mt-1 block"
-                >
-                  ... ver menos
-                </button>
-              )}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* === Puesto 4: UJ === */}
-        <motion.div
-          className="relative flex items-start gap-6 sm:gap-8"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
-        >
-          {/* Punto */}
-          <div className="absolute left-2 sm:left-4 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg z-10" />
-          
-          <div className="ml-12 sm:ml-16 flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray800">
-                Unidad Judicial
-              </h3>
-              <img
-                src="/images/MPF.png"
-                alt="MPF"
-                className="w-6 h-6 sm:w-8 sm:h-8 object-contain mt-1"
-              />
-            </div>
-            <p className="text-sm sm:text-base text-gray600 mb-3">
-              ago. 2020 - feb. 2021 · 6 meses
-            </p>
-            <div className="text-sm sm:text-base text-gray700 leading-relaxed">
-              <p 
-                className={`abogado-text ${expandedDescriptions.abogado ? "" : "line-clamp-4 sm:line-clamp-3"}`}
-              >
-              Unidad Judicial de Rio Tercero – Dependencia judicial multifuero donde se receptaron denuncias de todo tipo v. gr: abusos sexuales, estafas, hechos de violencia familiar, robos, procedimientos con aprehendidos en flagrancia, etc. Se cumplimentó con la recepción inicial de prueba hasta la elevación del sumario en definitivo a la Fiscalía de Instrucción pertinente.
-              </p>
-              {!expandedDescriptions.abogado && textTruncated.abogado && (
-                <button 
-                  onClick={() => toggleDescription('abogado')}
-                  className="text-secondary font-bold hover:underline mt-1 block"
-                >
-                  ... ver más
-                </button>
-              )}
-              {expandedDescriptions.abogado && (
-                <button 
-                  onClick={() => toggleDescription('abogado')}
-                  className="text-secondary font-bold hover:underline mt-1 block"
-                >
-                  ... ver menos
-                </button>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  </div>
-</section>
-
-                                                                                   {/* Botón Inicio */}
-                 <motion.button
-                   onClick={() => window.location.href = '/PortfolioDrDev/home'}
-                   className="fixed z-50 right-16 top-2.5 sm:top-4 sm:right-[78px] md:top-6 md:right-[88px] lg:top-8 lg:right-[102px] xl:top-10 xl:right-[115px] bg-primary text-clearIce border-2 border-clearIce rounded-[7px] px-3 py-1 text-sm lg:text-base xl:text-lg font-medium hover:bg-clearIce hover:text-primary transition-all duration-200 shadow-lg"
-                   initial={{ opacity: 0, y: -10, x: -10 }}
-                   animate={{ opacity: 1, y: 0, x: 0 }}
-                   transition={{ duration: 0.5, ease: "easeOut" }}
-                 >
-                   inicio
-                 </motion.button>
+      {/* Botón Inicio */}
+      <BackToHomeButton />
 
 
       </div>
