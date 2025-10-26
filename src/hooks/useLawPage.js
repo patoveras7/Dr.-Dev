@@ -14,11 +14,13 @@ export const useLawPage = () => {
   const [showInvestigacionModal, setShowInvestigacionModal] = useState(false);
   const [showSolucionSoftwareModal, setShowSolucionSoftwareModal] = useState(false);
   const [expandedDescriptions, setExpandedDescriptions] = useState({
+    // 'fiscalia-cibercrimen': false,
     escribano: false,
     procurador: false,
     abogado: false
   });
   const [textTruncated, setTextTruncated] = useState({
+    // 'fiscalia-cibercrimen': false,
     escribano: false,
     procurador: false,
     abogado: false

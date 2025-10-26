@@ -8,6 +8,15 @@ const WorkExperienceTimeline = ({
   onToggleDescription
 }) => {
   const workPositions = [
+    // {
+    //   id: 'fiscalia-cibercrimen',
+    //   title: 'Fiscalía Cibercrimen',
+    //   period: 'oct. 2025 - actualidad',
+    //   description: 'ESTA ES UNA DESCRIPCION DE EJMPLO',
+    //   className: 'fiscalia-cibercrimen-text',
+    //   key: 'fiscalia-cibercrimen',
+    //   delay: 0.1
+    // },
     {
       id: 'crppa',
       title: 'CRPPA - Tribunales II',
