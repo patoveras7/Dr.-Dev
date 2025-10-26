@@ -340,7 +340,7 @@ const LawPage = () => {
             onToggleShowAll={toggleShowAllCertifications}
           />
 
-          {/* Contenedores por año (render condicional) */}
+                    {/* Contenedores por año (render condicional) */}
           {selectedYear && certificationsData[selectedYear] && (
             <CertificationList
               certifications={certificationsData[selectedYear]}
@@ -397,50 +397,50 @@ const LawPage = () => {
       <Modal
         isOpen={showMaratonModal}
         onClose={handleCloseMaratonModal}
-        className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
-      >
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-primary mb-4">
-            Certificación en curso
-          </h3>
-          <p className="text-gray700 text-lg leading-relaxed">
-            La certificación para el proyecto "Maratón de ideas justicIA" se encuentra actualmente en proceso de evaluación.
-          </p>
-        </div>
-        
-        <button
-          onClick={handleCloseMaratonModal}
-          className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+              className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
+            >
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-primary mb-4">
+                  Certificación en curso
+                </h3>
+                <p className="text-gray700 text-lg leading-relaxed">
+                  La certificación para el proyecto "Maratón de ideas justicIA" se encuentra actualmente en proceso de evaluación.
+                </p>
+              </div>
+              
+              <button
+                onClick={handleCloseMaratonModal}
+                className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
       </Modal>
 
       {/* Modal de Investigación Aplicada */}
       <Modal
         isOpen={showInvestigacionModal}
         onClose={handleCloseInvestigacionModal}
-        className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
-      >
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-primary mb-4">
-            Proyecto pendiente de aprobación por comité evaluador
-          </h3>
-          <p className="text-gray700 text-lg leading-relaxed">
-            El proyecto de investigación aplicada se encuentra actualmente en revisión por el comité evaluador correspondiente.
-          </p>
-        </div>
-        
-        <button
-          onClick={handleCloseInvestigacionModal}
-          className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+              className="relative bg-clearIceFullLight rounded-2xl p-8 max-w-md mx-auto shadow-2xl"
+            >
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-primary mb-4">
+                  Proyecto pendiente de aprobación por comité evaluador
+                </h3>
+                <p className="text-gray700 text-lg leading-relaxed">
+                  El proyecto de investigación aplicada se encuentra actualmente en revisión por el comité evaluador correspondiente.
+                </p>
+              </div>
+              
+              <button
+                onClick={handleCloseInvestigacionModal}
+                className="absolute top-4 right-4 text-gray500 hover:text-gray700 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
       </Modal>
 
       {/* Modal de Solución Software */}
@@ -458,54 +458,54 @@ const LawPage = () => {
        className="flex items-start justify-start px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 pt-10 pb-20"
        background="bg-clearIceFullLight"
      >
-       <div className="container mx-auto">
-         {/* Título de la sección */}
+  <div className="container mx-auto">
+    {/* Título de la sección */}
          <AnimatedTitle
-           className="text-3xl sm:text-3xl lg:text-[40px] font-bold text-primary mb-8 text-left"
-         >
-           De interés
+      className="text-3xl sm:text-3xl lg:text-[40px] font-bold text-primary mb-8 text-left"
+    >
+      De interés
          </AnimatedTitle>
 
-         {/* Contenido principal */}
-         <div className="max-w-4xl">
-           {/* Header de la empresa */}
-           <motion.div
-             className="flex items-center gap-4 mb-8"
-             initial={{ opacity: 0, x: -100 }}
-             whileInView={{ opacity: 1, x: 0 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.8, ease: "easeOut" }}
-           >
-             <img
-               src="/images/PODER JUDICIAL.png"
-               alt="Poder Judicial"
-               className="w-16 h-16 sm:w-20 sm:h-20 object-contain self-start"
-             />
-             <div className="flex flex-col">
-               <h2 className="text-[18px] sm:text-2xl lg:text-3xl font-bold text-gray800">
-                 Poder Judicial de la Provincia de Córdoba
-               </h2>
-               <p className="text-sm sm:text-base text-gray600">
-                 Jornada Completa - 5 años
-               </p>
-               <p className="text-sm sm:text-base text-gray600">
-                 Argentina - Presencial
-               </p>
-             </div>
-           </motion.div>
+    {/* Contenido principal */}
+    <div className="max-w-4xl">
+      {/* Header de la empresa */}
+      <motion.div
+        className="flex items-center gap-4 mb-8"
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <img
+          src="/images/PODER JUDICIAL.png"
+          alt="Poder Judicial"
+          className="w-16 h-16 sm:w-20 sm:h-20 object-contain self-start"
+        />
+        <div className="flex flex-col">
+                        <h2 className="text-[18px] sm:text-2xl lg:text-3xl font-bold text-gray800">
+            Poder Judicial de la Provincia de Córdoba
+          </h2>
+                      <p className="text-sm sm:text-base text-gray600">
+              Jornada Completa - 5 años
+            </p>
+            <p className="text-sm sm:text-base text-gray600">
+              Argentina - Presencial
+            </p>
+        </div>
+      </motion.div>
 
-           {/* Timeline de experiencia laboral */}
+      {/* Timeline de experiencia laboral */}
            <WorkExperienceTimeline
              lineHeight={lineHeight}
              expandedDescriptions={expandedDescriptions}
              textTruncated={textTruncated}
              onToggleDescription={toggleDescription}
-           />
-         </div>
-       </div>
+              />
+            </div>
+            </div>
      </Section>
 
-      {/* Botón Inicio */}
+                                                                                   {/* Botón Inicio */}
       <BackToHomeButton />
 
 
