@@ -8,12 +8,12 @@ const ImageModal = ({
   imageSrc, 
   imageAlt = "Modal image",
   className = "w-[700px] h-[500px] sm:w-[800px] sm:h-[600px] md:w-[730px] md:h-[530px] md:object-contain lg:w-[850px] lg:h-[750px] xl:w-[980px] xl:h-[880px] object-fill sm:object-fill",
-  closeButtonClassName = "fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-32 sm:top-16 right-1/2 md:top-28 lg:top-20 xl:top-9"
+  closeButtonClassName = "fixed z-50 bg-primary text-clearIceFullLight rounded-full w-8 h-8 flex items-center justify-center hover:bg-primary/80 transition-colors shadow-lg top-[130px] sm:top-[80px] md:top-[135px] lg:top-[78px] right-1/2 xl:top-20"
 }) => {
   const containerRef = useRef(null);
   return (
     <Modal isOpen={isOpen} onClose={onClose} className="xl:p-0">
-      <div className="relative max-w-[90vw] overflow-x-auto lg:overflow-hidden xl:overflow-hidden xl:max-w-[730px]" ref={containerRef}>
+      <div className="relative max-w-[90vw] overflow-x-auto lg:overflow-hidden xl:overflow-hidden xl:max-w-[980px]" ref={containerRef}>
         <img
           src={imageSrc}
           alt={imageAlt}
