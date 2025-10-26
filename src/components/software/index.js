@@ -4,3 +4,6 @@ export { default as ProjectSection } from './ProjectSection';
 export { default as IndividualProject } from './IndividualProject';
 export { default as FullnessSection } from './FullnessSection';
 export { default as TechCarousel } from './TechCarousel';
+export { default as IntroductionSection } from './IntroductionSection';
+export { default as ProjectsShowcaseSection } from './ProjectsShowcaseSection';
+export { default as WhyDrDevSection } from './WhyDrDevSection';
