@@ -6,17 +6,16 @@ import { WorkExperienceTimeline } from "./";
 const InterestSection = ({ lineHeight, expandedDescriptions, textTruncated, onToggleDescription }) => {
   return (
     <Section 
-      className="flex items-start justify-start px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 pt-10 pb-20"
+      className="pt-10 pb-20"
       background="bg-clearIceFullLight"
     >
-      <div className="container mx-auto">
-        <AnimatedTitle
-          className="text-3xl sm:text-3xl lg:text-[40px] font-bold text-primary mb-8 text-left"
-        >
-          De interés
-        </AnimatedTitle>
+      <AnimatedTitle
+        className="text-3xl sm:text-3xl lg:text-[40px] font-bold text-primary mb-8 text-left"
+      >
+        De interés
+      </AnimatedTitle>
 
-        <div className="max-w-4xl">
+      <div className="max-w-4xl">
           <motion.div
             className="flex items-center gap-4 mb-8"
             initial={{ opacity: 0, x: -100 }}
@@ -48,7 +47,6 @@ const InterestSection = ({ lineHeight, expandedDescriptions, textTruncated, onTo
             textTruncated={textTruncated}
             onToggleDescription={onToggleDescription}
           />
-        </div>
       </div>
     </Section>
   );
