@@ -12,8 +12,8 @@ const ImageModal = ({
 }) => {
   const containerRef = useRef(null);
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="relative max-w-[90vw] max-h-[90vh] overflow-x-auto overflow-y-auto" ref={containerRef}>
+    <Modal isOpen={isOpen} onClose={onClose} className="xl:p-0">
+      <div className="relative max-w-[90vw] overflow-x-auto lg:overflow-hidden xl:overflow-hidden xl:max-w-[730px]" ref={containerRef}>
         <img
           src={imageSrc}
           alt={imageAlt}
